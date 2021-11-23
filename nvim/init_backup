@@ -1,0 +1,88 @@
+
+call plug#begin('~/.config/nvim/plugged')
+" Themes
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+call plug#end() 
+
+" Theme related config for nord
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+      "\ }
+"let g:nord_cursor_line_number_background = 1
+"let g:rainbow_active = 1
+colorscheme gruvbox
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+syntax on
+" Cancel compatibility with vi 
+set nocompatible
+
+filetype on
+filetype plugin on
+filetype indent on
+
+" Show partial command you type in the last line of the screen.
+set noshowmode
+set showcmd
+" Show relative number on left
+set relativenumber
+" Show number on left 
+set number
+set linebreak	
+set showbreak=+++
+set textwidth=100	
+" set showmatch	
+set visualbell
+
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+
+set autoindent
+set expandtab
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+" Show caret
+set ruler	
+
+set undolevels=1000
+set backspace=indent,eol,start	
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set colorcolumn=100
+
+" split window vertically with vimrc
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" source last version vimrc in terminal
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" yank from cursor to the end of line
+nnoremap Y y$
+
+" keep cursor in the middle of the screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" makes undo better
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-k> <esc>:m .-2<CR>==
+inoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
