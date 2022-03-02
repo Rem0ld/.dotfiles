@@ -30,13 +30,11 @@
     Plug 'mhinz/vim-startify'
 
     " Tinkeray
-    Plug 'jesseleite/vim-tinkeray'
+    " for PHP
+    " Plug 'jesseleite/vim-tinkeray'
 
     " Vim Sourcery
     Plug 'jesseleite/vim-sourcery'
-    
-    " Surround
-    Plug 'tpope/vim-surround'
 
     " Emmet
     Plug 'mattn/emmet-vim'

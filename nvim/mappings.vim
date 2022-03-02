@@ -9,6 +9,44 @@
 
 let mapleader = ' '
 
+
+inoremap <silent> jk <ESC>:w<CR>
+inoremap <silent> kj <ESC>:w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>qq :q!<CR>
+
+" use alt+hjkl to move between split/vsplit panels
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" yank from cursor to the end of line
+nnoremap Y y$
+
+" keep cursor in the middle of the screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" makes undo better
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-k> <esc>:m .-2<CR>==
+inoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
 " Mappings: telescope
 nnoremap <Leader><Leader>v :Telescope sourcery<CR>
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>

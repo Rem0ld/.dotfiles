@@ -33,7 +33,7 @@ augroup END
 
 " -------------------------------------- Color Scheme --------------------------------- "                                  
 
-colorscheme iceberg
+colorscheme carbon
 
 " --------------------------------- Carbon Theme Overrides ---------------------------- "                                  
 

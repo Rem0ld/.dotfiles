@@ -7,7 +7,7 @@ require('telescope').load_extension('sourcery')
 telescope.setup {
   defaults = {
     shorten_path = true,
-    preview = false,
+    preview = true,
     mappings = {
       i = { ["<c-t>"] = trouble.open_with_trouble },
       n = { ["<c-t>"] = trouble.open_with_trouble },
