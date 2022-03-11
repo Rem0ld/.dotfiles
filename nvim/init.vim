@@ -22,4 +22,4 @@ endif
 call sourcery#source_defer('config/bufferline.lua')
 
 " Initialize sourcery
-call sourcery#init()
+ call sourcery#init()
