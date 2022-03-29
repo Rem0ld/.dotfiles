@@ -23,7 +23,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -45,9 +45,9 @@
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 6
+    y: 6
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -81,7 +81,7 @@
   #startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: Terminal 2.0
 
   # Allow terminal applications to change Alacritty's window title.
   #dynamic_title: true
@@ -99,10 +99,10 @@
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 10000
 
   # Scrolling distance multiplier.
   #multiplier: 3
@@ -113,8 +113,8 @@
   #normal:
     # Font family
     #
-    # Default:
-    #   - (macOS) Menlo
+    #Default:
+    #  - (macOS) FiraCode
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: monospace
@@ -442,7 +442,7 @@
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: ~/workspace
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true

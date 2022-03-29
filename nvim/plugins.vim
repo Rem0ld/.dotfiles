@@ -1,3 +1,4 @@
+call plug#begin('~/.vim/plugged')
 " ------------------------------------------------------------------------------
 " # Plugin Definitions
 " ------------------------------------------------------------------------------
@@ -27,14 +28,7 @@
     Plug 'tpope/vim-commentary'
 
     " Vim Startify
-    Plug 'mhinz/vim-startify'
-
-    " Tinkeray
-    " for PHP
-    " Plug 'jesseleite/vim-tinkeray'
-
-    " Vim Sourcery
-    Plug 'jesseleite/vim-sourcery'
+    " Plug 'mhinz/vim-startify'
 
     " Emmet
     Plug 'mattn/emmet-vim'
@@ -44,7 +38,7 @@
     Plug 'nvim-telescope/telescope.nvim'
 
     " Terminal
-    Plug 'voldikss/vim-floaterm'
+    " Plug 'voldikss/vim-floaterm'
 
     " Git Diff
     Plug 'sindrets/diffview.nvim'
@@ -102,17 +96,18 @@
     " Smooth Scroll
     Plug 'karb94/neoscroll.nvim'
 
+    " CSS colors
+    Plug 'ap/vim-css-color'
+
+call plug#end()
+
 " ------------------------------------------------------------------------------
 " # Plugins Config
 " ------------------------------------------------------------------------------
 
-" Config: floaterm
-let g:floaterm_width=0.9
-let g:floaterm_height=0.9
-let floaterm_title='($1/$2)'
 
 " Config: indent-blankline
-let g:indent_blankline_filetype_exclude = ['dashboard',  'startify', 'floaterm', 'nerdtree', 'lspinfo', 'lsp-installer' ]
+let g:indent_blankline_filetype_exclude = ['dashboard','nerdtree', 'lspinfo', 'lsp-installer' ]
 let g:indent_blankline_use_treesitter = v:true
 
 " Config: vim-signify
@@ -145,30 +140,4 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 
 let g:NERDTreeStatusline = '%#NonText#'
-
-" Config:startify
-
-autocmd VimEnter *
-            \   if !argc()
-            \ |   Startify
-            \ |   NERDTree
-            \ |   wincmd w
-            \ | endif
-
-let g:startify_lists = [
-    \ { 'type': 'files',     'header': ['   Recently opened files']                    },
-    \ { 'type': 'dir',       'header': ['   Recently opened project files '. getcwd()] },
-    \ { 'type': 'sessions', 'header': ['   Sessions']                                 },
-    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']                                },
-    \ { 'type': 'commands',  'header': ['   Commands']                                 },
-    \ ]
-
-let g:startify_bookmarks = [
-  \ '~/.dotfiles/tmux/.tmux.conf',
-  \ '~/.dotfiles/install.conf.yaml',
-\ ]
-
-let g:startify_custom_header = [
-    \       '      Project Explorer     ',
-    \ ]
 
