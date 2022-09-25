@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/pielov/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -102,29 +102,4 @@ export PATH="/usr/local/sbin:$PATH"
 #alias docker='sudo /usr/local/bin/docker'
 alias docker-compose='sudo /usr/local/bin/docker-compose'
 alias vim='nvim'
-alias python=/opt/homebrew/opt/python@3.8/bin/python3
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-# alias pip=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin/pip
-export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
-#determines search program for fzf
-if type ag &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-fi
-#refer rg over ag
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore' 
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 
