@@ -63,6 +63,10 @@ export UPDATE_ZSH_DAYS=15
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+if [[ $OSTYPE == *"linux"* ]]; then
+ZSH_CUSTOM=/usr/share/zsh
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
