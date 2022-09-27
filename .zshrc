@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/pielov/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -99,9 +99,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="/usr/local/sbin:$PATH"
 
+if [[ $OSTYPE == *"darwin"* ]]; then
 #alias docker='sudo /usr/local/bin/docker'
 alias docker-compose='sudo /usr/local/bin/docker-compose'
-alias vim='nvim'
 alias python=/opt/homebrew/opt/python@3.8/bin/python3
 
 export NVM_DIR="$HOME/.nvm"
@@ -126,7 +126,12 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
+# Not working, python cannot import iterm2
+# Look for replacement iterm2 maybe, python is shit
+# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
 
 # quick way to go in current personal project
 alias quick='cd ~/workspace/quickFlix'
+fi
+
+alias vim='nvim'
