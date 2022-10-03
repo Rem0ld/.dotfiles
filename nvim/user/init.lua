@@ -172,6 +172,8 @@ local config = {
 			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
 			["<leader>j"] = { ":m .+1<cr>==", desc = "Move 1 down" },
 			["<leader>k"] = { ":m .-2<cr>==", desc = "Move 1 up" },
+			["<leader>vm"] = { ":vsp ~/.dotfiles/nvim/user/init.lua<cr>", desc = "edit vimrc user" },
+			["<leader>sv"] = { ":source ~/.dotfiles/nvim/user/init.lua<cr>", desc = "source vimrc user" },
 			-- quick save
 			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 		},
