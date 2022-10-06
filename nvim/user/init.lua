@@ -180,6 +180,15 @@ local config = {
 			["<leader>k"] = { ":m .-2<cr>==", desc = "Move 1 up" },
 			["<leader>vm"] = { ":vsp ~/.dotfiles/nvim/user/init.lua<cr>", desc = "edit vimrc user" },
 			["<leader>sv"] = { ":source ~/.dotfiles/nvim/user/init.lua<cr>", desc = "source vimrc user" },
+			-- Keep cursor at the center of the screen
+			["<C-d>"] = { "<C-d>zz" },
+			["<C-u"] = { "<C-u>zz" },
+			["n"] = { "nzzzv" },
+			["N"] = { "Nzzzv" },
+
+			-- Makes delete better
+			["<leader>d"] = { '"_d' },
+
 			-- quick save
 			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 		},
@@ -193,6 +202,9 @@ local config = {
 		v = {
 			["J"] = { ":m '>+1<cr>gv=gv", desc = "Move line 1 down" },
 			["K"] = { ":m '<-2<cr>gv=gv", desc = "Move line 1 up" },
+
+			-- Makes delete better
+			["<leader>d"] = { '"_d' },
 		},
 		t = {
 			-- setting a mapping to false will disable it
@@ -203,11 +215,23 @@ local config = {
 	-- Configure plugins
 	plugins = {
 		init = {
+			-- Disabling stuff here
 			["lewis6991/gitsigns.nvim"] = { disable = true },
+			["declancm/cinnamon.nvim"] = { disable = true },
+
+			-- Theme here
 			{ "folke/tokyonight.nvim" },
+
+			-- Other plugins here
 			["tanvirtin/vgit.nvim"] = {
 				config = function()
 					require("vgit").setup()
+				end,
+			},
+			["kylechui/nvim-surround"] = {
+				tag = "*",
+				config = function()
+					require("nvim-surround").setup()
 				end,
 			},
 			-- You can disable default plugins as follows:
@@ -333,6 +357,7 @@ local config = {
 		local function toggle_transparent()
 			if vim.t.is_transparent == 0 then
 				vim.api.nvim_set_hl(0, "Normal", { guibg = NONE, ctermbg = NONE })
+				vim.api.nvim_set_hl(0, "LineNr", { guibg = black, ctermbg = black })
 				vim.t.is_transparent = 1
 			else
 				vim.opt.background = "dark"
