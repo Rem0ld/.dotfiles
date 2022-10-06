@@ -103,6 +103,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="/usr/local/sbin:$PATH"
 
+# MacOs specifics
+# ==============
 if [[ $OSTYPE == *"darwin"* ]]; then
 #alias docker='sudo /usr/local/bin/docker'
 alias docker-compose='sudo /usr/local/bin/docker-compose'
@@ -130,9 +132,7 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Not working, python cannot import iterm2
-# Look for replacement iterm2 maybe, python is shit
-# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
+~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
 
 # quick way to go in current personal project
 alias quick='cd ~/workspace/quickFlix'
