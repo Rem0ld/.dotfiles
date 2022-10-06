@@ -26,7 +26,7 @@ local config = {
 	},
 
 	-- Set colorscheme to use
-	colorscheme = "default_theme",
+	colorscheme = "tokyonight-storm",
 
 	-- Override highlight groups in any theme
 	highlights = {
@@ -197,6 +197,13 @@ local config = {
 	-- Configure plugins
 	plugins = {
 		init = {
+			["lewis6991/gitsigns.nvim"] = { disable = true },
+			{ "folke/tokyonight.nvim" },
+			["tanvirtin/vgit.nvim"] = {
+				config = function()
+					require("vgit").setup()
+				end,
+			},
 			-- You can disable default plugins as follows:
 			-- ["goolord/alpha-nvim"] = { disable = true },
 
