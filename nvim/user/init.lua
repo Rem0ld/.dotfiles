@@ -25,9 +25,6 @@ local config = {
 		-- },
 	},
 
-	-- Set colorscheme to use
-	colorscheme = "tokyonight-storm",
-
 	-- Override highlight groups in any theme
 	highlights = {
 		-- duskfox = { -- a table of overrides/changes to the default
@@ -216,18 +213,19 @@ local config = {
 	plugins = {
 		init = {
 			-- Disabling stuff here
-			["lewis6991/gitsigns.nvim"] = { disable = true },
+			-- ["lewis6991/gitsigns.nvim"] = { disable = true },
 			["declancm/cinnamon.nvim"] = { disable = true },
 
 			-- Theme here
-			{ "folke/tokyonight.nvim" },
+			-- ["folke/tokyonight.nvim"] = {
+			-- 	config = function()
+			-- 		require("tokyonight").setup()
+			-- 	end,
+			-- },
+			{ "EdenEast/nightfox.nvim" },
 
 			-- Other plugins here
-			["tanvirtin/vgit.nvim"] = {
-				config = function()
-					require("vgit").setup()
-				end,
-			},
+			{ "nanozuki/tabby.nvim" },
 			["kylechui/nvim-surround"] = {
 				tag = "*",
 				config = function()
@@ -297,6 +295,9 @@ local config = {
 		},
 	},
 
+	-- Set colorscheme to use
+	colorscheme = "nightfox",
+
 	-- LuaSnip Options
 	luasnip = {
 		-- Add paths for including more VS Code style snippets in luasnip
@@ -357,7 +358,6 @@ local config = {
 		local function toggle_transparent()
 			if vim.t.is_transparent == 0 then
 				vim.api.nvim_set_hl(0, "Normal", { guibg = NONE, ctermbg = NONE })
-				vim.api.nvim_set_hl(0, "LineNr", { guibg = black, ctermbg = black })
 				vim.t.is_transparent = 1
 			else
 				vim.opt.background = "dark"
@@ -365,7 +365,7 @@ local config = {
 			end
 		end
 		vim.keymap.set("n", "<leader>vb", toggle_transparent)
-		toggle_transparent()
+
 		-- Set up custom filetypes
 		-- vim.filetype.add {
 		--   extension = {
