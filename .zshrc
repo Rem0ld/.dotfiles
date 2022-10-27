@@ -139,3 +139,4 @@ alias quick='cd ~/workspace/quickFlix'
 fi
 
 alias vim='nvim'
+alias dot='cd ~/.dotfiles'

@@ -152,10 +152,10 @@ local config = {
 			-- },
 			-- Example disabling formatting for a specific language server
 			-- gopls = { -- override table for require("lspconfig").gopls.setup({...})
-			--   on_attach = function(client, bufnr)
-			--     client.resolved_capabilities.document_formatting = false
-			--   end
-			-- }
+			-- 	on_attach = function(client, bufnr)
+			-- 		client.server_capabilities.document_formatting = false
+			-- 	end,
+			-- },
 		},
 	},
 
@@ -173,6 +173,8 @@ local config = {
 			["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
 			["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
 			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+			["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", desc = "go to next buffer" },
+			["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = " go to previous buffer" },
 			["<leader>j"] = { ":m .+1<cr>==", desc = "Move 1 down" },
 			["<leader>k"] = { ":m .-2<cr>==", desc = "Move 1 up" },
 			["<leader>vm"] = { ":vsp ~/.dotfiles/nvim/user/init.lua<cr>", desc = "edit vimrc user" },
@@ -213,27 +215,28 @@ local config = {
 	plugins = {
 		init = {
 			-- Disabling stuff here
+
 			-- ["lewis6991/gitsigns.nvim"] = { disable = true },
 			["declancm/cinnamon.nvim"] = { disable = true },
 
 			-- Theme here
-			-- ["folke/tokyonight.nvim"] = {
-			-- 	config = function()
-			-- 		require("tokyonight").setup()
-			-- 	end,
-			-- },
+
+			["folke/tokyonight.nvim"] = {
+				config = function()
+					require("tokyonight").setup()
+				end,
+			},
 			{ "EdenEast/nightfox.nvim" },
 
 			-- Other plugins here
-			{ "nanozuki/tabby.nvim" },
+
 			["kylechui/nvim-surround"] = {
 				tag = "*",
 				config = function()
 					require("nvim-surround").setup()
 				end,
 			},
-			-- You can disable default plugins as follows:
-			-- ["goolord/alpha-nvim"] = { disable = true },
+			{ "nvim-treesitter/nvim-treesitter-context" },
 
 			-- You can also add new plugins here as well:
 			-- Add plugins, the packer syntax without the "use"
@@ -269,18 +272,29 @@ local config = {
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
 			config.on_attach = function(client)
-				if client.resolved_capabilities.document_formatting then
+				if client.server_capabilities.document_formatting then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						desc = "Auto format before save",
 						pattern = "<buffer>",
-						callback = vim.lsp.buf.formatting_sync,
+						callback = vim.lsp.buf.format,
 					})
 				end
 			end
 			return config -- return final config table to use in require("null-ls").setup(config)
 		end,
 		treesitter = { -- overrides `require("treesitter").setup(...)`
-			ensure_installed = { "lua" },
+			highlight = {
+				enable = true,
+				disable = {},
+			},
+			indent = {
+				enable = true,
+				disable = {},
+			},
+			ensure_installed = { "lua", "tsx", "json", "yaml", "css", "html" },
+			autotag = {
+				enable = true,
+			},
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
@@ -364,6 +378,7 @@ local config = {
 				vim.t.is_transparent = 0
 			end
 		end
+
 		vim.keymap.set("n", "<leader>vb", toggle_transparent)
 
 		-- Set up custom filetypes
