@@ -128,8 +128,9 @@ local config = {
 			},
 		},
 		-- add to the global LSP on_attach function
-		-- on_attach = function(client, bufnr)
-		-- end,
+		on_attach = function(_, bufnr)
+			require("tailwindcss-colors").buf_attach(bufnr)
+		end,
 
 		-- override the mason server-registration function
 		-- server_registration = function(server, opts)
@@ -237,6 +238,25 @@ local config = {
 				end,
 			},
 			{ "nvim-treesitter/nvim-treesitter-context" },
+			["themaxmarchuk/tailwindcss-colors.nvim"] = {
+				config = function()
+					require("tailwindcss-colors").setup()
+				end,
+			},
+			["nvim-neo-tree/neo-tree.nvim"] = {
+				config = function()
+					require("neo-tree").setup({
+						filesystem = {
+							filtered_items = {
+								visible = false, -- when true, they will just be displayed differently than normal items
+								hide_dotfiles = false,
+								hide_gitignored = false,
+								hide_hidden = false, -- only works on Windows for hidden files/directories
+							},
+						},
+					})
+				end,
+			},
 
 			-- You can also add new plugins here as well:
 			-- Add plugins, the packer syntax without the "use"
@@ -309,8 +329,7 @@ local config = {
 		},
 	},
 
-	-- Set colorscheme to use
-	colorscheme = "nightfox",
+	colorscheme = "tokyonight-storm",
 
 	-- LuaSnip Options
 	luasnip = {
