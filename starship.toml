@@ -1,0 +1,42 @@
+# format = """
+# $username\
+# $hostname\
+# $directory\
+# $git_branch\
+# $git_status\
+# ${custom.kubeselect}\
+# $line_break\
+# $status\
+# $shell\
+# $character"""
+format = """
+(bold green)$env_var$character $directory$git_branch$git_status$nodejs$package$cmd_duration
+ 
+"""
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[➜](bold red)" 
+
+# Disable the package module, hiding it from the prompt completely
+# [package]
+# disabled = true
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+
+[git_branch]
+
+[nodejs]
+
+[env_var.USER]
+symbol = ""
+format = "[$env_value](bold #bf6069) "

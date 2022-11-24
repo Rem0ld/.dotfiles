@@ -140,3 +140,7 @@ fi
 
 alias vim='nvim'
 alias dot='cd ~/.dotfiles'
+
+# load starship - prompt command line manager
+eval "$(starship init zsh)"
+

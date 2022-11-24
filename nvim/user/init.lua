@@ -128,8 +128,10 @@ local config = {
 			},
 		},
 		-- add to the global LSP on_attach function
-		on_attach = function(_, bufnr)
-			require("tailwindcss-colors").buf_attach(bufnr)
+		on_attach = function(client, bufnr)
+			if client.name == "tailwindcss" then
+				require("tailwindcss-colors").buf_attach(bufnr)
+			end
 		end,
 
 		-- override the mason server-registration function
@@ -139,6 +141,12 @@ local config = {
 
 		-- Add overrides for LSP server settings, the keys are the name of the server
 		["server-settings"] = {
+			tsserver = {
+				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+				root_dir = function()
+					return vim.loop.cwd()
+				end,
+			},
 			-- example for addings schemas to yamlls
 			-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
 			--   settings = {
@@ -185,6 +193,9 @@ local config = {
 			["<C-u"] = { "<C-u>zz" },
 			["n"] = { "nzzzv" },
 			["N"] = { "Nzzzv" },
+			["gd"] = { "gd<cr><cmd>:norm zz" },
+			["[q"] = { ":cp<cr>", desc = "go previous item in quickfix list" },
+			["]q"] = { ":cn<cr>", desc = "go next item in quickflix lst" },
 
 			-- Makes delete better
 			["<leader>d"] = { '"_d' },
@@ -329,7 +340,8 @@ local config = {
 		},
 	},
 
-	colorscheme = "tokyonight-storm",
+	-- colorscheme = "tokyonight-storm",
+	colorscheme = "nightfox",
 
 	-- LuaSnip Options
 	luasnip = {

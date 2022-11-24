@@ -1,6 +1,6 @@
 NEWLINE=$'\n'
 PROMPT="%{%F{red}%}%n %{%f%}%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[purple]%}%~%{$reset_color%} $(git_prompt_info)${NEWLINE} '
+PROMPT+=' %{$fg[purple]%}%~%{$reset_color%} $(git_prompt_info) $(node -v)${NEWLINE} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
