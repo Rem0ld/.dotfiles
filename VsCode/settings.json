@@ -1,0 +1,217 @@
+{
+  "editor.fontFamily": "\"Fira code\", Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.iconTheme": "vscode-icons",
+  "editor.renderControlCharacters": false,
+  "editor.renderWhitespace": "all",
+  "vsicons.dontShowNewVersionMessage": true,
+  "[elixir]": {
+    "editor.formatOnSave": true
+  },
+  "[HTML (Eex)]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "files.associations": {
+    ".dmn": "xml",
+    // ".leex": "html"
+    ".leex": "html-eex"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabCompletion": "on",
+  "editor.quickSuggestionsDelay": 200,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
+  "editor.accessibilitySupport": "off",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.dragAndDrop": false,
+  "editor.inlineHints.enabled": false,
+  "editor.hover.delay": 400,
+  "liveServer.settings.donotVerifyTags": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vim.useSystemClipboard": true,
+  "vim.surround": true,
+  "vim.commentary": true,
+  "vim.replaceWithRegister": true,
+  "vim.history": 500,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["k", "k"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [","],
+      "after": [",", "<c-g>", "u"]
+    },
+    {
+      "before": ["."],
+      "after": [".", "<c-g>", "u"]
+    },
+    {
+      "before": ["!"],
+      "after": ["!", "<c-g>", "u"]
+    },
+    {
+      "before": ["?"],
+      "after": ["?", "<c-g>", "u"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.list"]
+    },
+    {
+      "before": ["n"],
+      "after": ["N", "z", "z", "z", "v"]
+    },
+    {
+      "before": ["N"],
+      "after": ["N", "z", "z", "z", "v"]
+    },
+    {
+      "before": ["J"],
+      "after": ["m", "z", "J", "`", "z"]
+    },
+    {
+      "before": ["<c-d>"],
+      "after": ["<c-d>", "z", "z"]
+    },
+    {
+      "before": ["<c-u>"],
+      "after": ["<c-u>", "z", "z"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["Y"],
+      "after": ["y", "$"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": [":bN"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": [":bp"]
+    }
+  ],
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+  "vim.statusBarColors.insert": "#BF616A",
+  "vim.statusBarColors.visual": "#B48EAD",
+  "vim.statusBarColors.visualline": "#B48EAD",
+  "vim.statusBarColors.visualblock": "#A3BE8C",
+  "vim.statusBarColors.replace": "#D08770",
+  "vim.statusBarColors.commandlineinprogress": "#007ACC",
+  "vim.statusBarColors.searchinprogressmode": "#007ACC",
+  "vim.statusBarColors.easymotionmode": "#007ACC",
+  "vim.statusBarColors.easymotioninputmode": "#007ACC",
+  "vim.statusBarColors.surroundinputmode": "#007ACC",
+  "workbench.startupEditor": "none",
+  "window.newWindowDimensions": "maximized",
+  "workbench.editor.untitled.hint": "hidden",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.tabSize": 2,
+  "eslint.run": "onSave",
+  "eslint.packageManager": "yarn",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorSurroundingLines": 6,
+  "workbench.enableExperiments": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.inlineSuggest.enabled": false,
+  "editor.wordBasedSuggestions": false,
+  "emmet.showAbbreviationSuggestions": false,
+  "emmet.showExpandedAbbreviation": "never",
+  "terminal.external.osxExec": "iterm2",
+  "editor.snippetSuggestions": "none",
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "html.format.wrapLineLength": 100,
+  "window.confirmBeforeClose": "always",
+  "window.restoreWindows": "preserve",
+  "vim.smartRelativeLine": true,
+  "git.inputValidationSubjectLength": null,
+  "git.inputValidationLength": 180,
+  "workbench.colorTheme": "Nightfox",
+  "npm.keybindingsChangedWarningShown": true,
+  "editor.fontSize": 13,
+  "editor.lineNumbers": "relative",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#8FBCBB",
+    "statusBar.noFolderBackground": "#8FBCBB",
+    "statusBar.debuggingBackground": "#8FBCBB",
+    "statusBar.foreground": "#434C5E",
+    "statusBar.debuggingForeground": "#434C5E"
+  },
+  "telemetry.telemetryLevel": "off",
+  "editor.stickyScroll.enabled": true,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "window.zoomLevel": -1,
+  "go.toolsManagement.autoUpdate": true,
+  "[vue]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
+}
