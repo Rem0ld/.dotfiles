@@ -186,16 +186,16 @@ local config = {
 			["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = " go to previous buffer" },
 			["<leader>j"] = { ":m .+1<cr>==", desc = "Move 1 down" },
 			["<leader>k"] = { ":m .-2<cr>==", desc = "Move 1 up" },
-			["<leader>vm"] = { ":vsp ~/.dotfiles/nvim/user/init.lua<cr>", desc = "edit vimrc user" },
-			["<leader>sv"] = { ":source ~/.dotfiles/nvim/user/init.lua<cr>", desc = "source vimrc user" },
+			["<leader>vm"] = { ":vsp ~/.config/nvim/lua/user/init.lua<cr>", desc = "edit vimrc user" },
+			["<leader>sv"] = { ":source ~/.config/nvim/lua/user/init.lua<cr>", desc = "source vimrc user" },
 			-- Keep cursor at the center of the screen
 			["<C-d>"] = { "<C-d>zz" },
 			["<C-u"] = { "<C-u>zz" },
 			["n"] = { "nzzzv" },
 			["N"] = { "Nzzzv" },
 			["gd"] = { "gd<cr><cmd>:norm zz" },
-			["[q"] = { ":cp<cr>", desc = "go previous item in quickfix list" },
-			["]q"] = { ":cn<cr>", desc = "go next item in quickflix lst" },
+			["[q"] = { ":cp<cr><cr>", desc = "go previous item in quickfix list" },
+			["]q"] = { ":cn<cr><cr>", desc = "go next item in quickflix lst" },
 
 			-- Makes delete better
 			["<leader>d"] = { '"_d' },
@@ -297,8 +297,8 @@ local config = {
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 			config.sources = {
 				-- Set a formatter
-				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.stylua,
 			}
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
