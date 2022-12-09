@@ -188,7 +188,7 @@
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
   "git.inputValidationLength": 180,
-  "workbench.colorTheme": "Nightfox",
+  "workbench.colorTheme": "Tokyo Night Storm",
   "npm.keybindingsChangedWarningShown": true,
   "editor.fontSize": 13,
   "editor.lineNumbers": "relative",

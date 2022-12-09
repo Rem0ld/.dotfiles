@@ -2,6 +2,7 @@
 -- All configuration changes should go inside of the table below
 
 -- You can think of a Lua "table" as a dictionary like data structure the
+
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
 local config = {
@@ -193,7 +194,7 @@ local config = {
 			["<C-u"] = { "<C-u>zz" },
 			["n"] = { "nzzzv" },
 			["N"] = { "Nzzzv" },
-			["gd"] = { "gd<cr><cmd>:norm zz" },
+			-- ["gd"] = { "gd<cr><cmd>:norm zz" },
 			["[q"] = { ":cp<cr><cr>", desc = "go previous item in quickfix list" },
 			["]q"] = { ":cn<cr><cr>", desc = "go next item in quickflix lst" },
 
@@ -288,6 +289,37 @@ local config = {
 			--   end,
 			-- },
 		},
+		["bufferline"] = function(config)
+			-- local bufferline = require("bufferline")
+
+			config.options = {
+				separator_style = "slant",
+				indicator = {
+					style = "underline",
+				},
+			}
+			config.highlights = {
+				buffer_selected = {
+					fg = "#FF80A0",
+					bg = "#1E2430",
+					sp = "#FF80A0",
+					bold = true,
+					italic = true,
+					underdouble = true,
+					underline = true,
+				},
+				indicator_selected = {
+					fg = "#F7CAB8",
+					bg = "#1E2430",
+					sp = "#FF80A0",
+					bold = true,
+					underdouble = true,
+					underline = true,
+				},
+			}
+
+			return config
+		end,
 		-- All other entries override the require("<key>").setup({...}) call for default plugins
 		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
 			-- config variable is the default configuration table for the setup functino call
@@ -297,7 +329,8 @@ local config = {
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 			config.sources = {
 				-- Set a formatter
-				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettierd,
+				null_ls.builtins.formatting.eslint_d,
 				null_ls.builtins.formatting.stylua,
 			}
 			-- set up null-ls's on_attach function
@@ -333,7 +366,7 @@ local config = {
 		},
 		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
-			ensure_installed = { "prettier", "stylua" },
+			ensure_installed = { "prettier", "eslint_d" },
 		},
 		packer = { -- overrides `require("packer").setup(...)`
 			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
