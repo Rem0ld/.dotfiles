@@ -118,6 +118,9 @@ local config = {
 
 	-- Extend LSP configuration
 	lsp = {
+		skip_setup = {
+			"tsserver",
+		},
 		-- enable servers that you already have installed without mason
 		servers = {
 			-- "pyright"
@@ -269,6 +272,26 @@ local config = {
 					})
 				end,
 			},
+			-- ["tzachar/cmp-tabnine"] = {
+			-- 	requires = "hrsh7th/nvim-cmp",
+			-- 	run = "./install.sh",
+			-- 	rtp = "~/.local/share/nvim/site/pack/packer/start/cmp-tabnine/lua/cmp_tabnine",
+			-- 	config = function()
+			-- 		require("cmp-tabnine").setup({
+			-- 			max_lines = 1000,
+			-- 			max_num_results = 20,
+			-- 			sort = true,
+			-- 			run_on_every_keystroke = true,
+			-- 			snippet_placeholder = "..",
+			-- 			ignored_file_types = {
+			-- 				-- default is not to ignore
+			-- 				-- uncomment to ignore in lua:
+			-- 				-- lua = true
+			-- 			},
+			-- 			show_prediction_strength = false,
+			-- 		})
+			-- 	end,
+			-- },
 
 			-- You can also add new plugins here as well:
 			-- Add plugins, the packer syntax without the "use"
@@ -288,10 +311,17 @@ local config = {
 			--     require("lsp_signature").setup()
 			--   end,
 			-- },
+			{
+				"jose-elias-alvarez/typescript.nvim",
+				after = "mason-lspconfig.nvim",
+				config = function()
+					require("typescript").setup({
+						server = astronvim.lsp.server_settings("tsserver"),
+					})
+				end,
+			},
 		},
 		["bufferline"] = function(config)
-			-- local bufferline = require("bufferline")
-
 			config.options = {
 				separator_style = "slant",
 				indicator = {
@@ -328,9 +358,9 @@ local config = {
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 			config.sources = {
-				-- Set a formatter
-				-- null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.eslint,
+				-- 	-- Set a formatter
+				null_ls.builtins.formatting.prettierd,
+				null_ls.builtins.formatting.eslint_d,
 				null_ls.builtins.formatting.stylua,
 			}
 			-- set up null-ls's on_attach function
@@ -362,9 +392,43 @@ local config = {
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua" },
+			ensure_installed = { "sumneko_lua", "tsserver" },
 		},
-		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
+		["mason-null-ls"] = {
+			setup_handlers = {
+				-- prettier = function()
+				-- 	require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
+				-- 		condition = function(utils)
+				-- 			return utils.root_has_file("package.json")
+				-- 					or utils.root_has_file(".prettierrc")
+				-- 					or utils.root_has_file(".prettierrc.json")
+				-- 					or utils.root_has_file(".prettierrc.js")
+				-- 		end,
+				-- 	}))
+				-- end,
+				-- For prettierd:
+				prettierd = function()
+					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+						condition = function(utils)
+							return utils.root_has_file("package.json")
+									or utils.root_has_file(".prettierrc")
+									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.js")
+						end,
+					}))
+				end,
+				-- For eslint_d:
+				eslint_d = function()
+					require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+						condition = function(utils)
+							return utils.root_has_file("package.json")
+									or utils.root_has_file(".eslintrc.json")
+									or utils.root_has_file(".eslintrc.js")
+						end,
+					}))
+				end,
+			},
+		}, -- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
 		-- 	ensure_installed = { "prettierd", "eslint" },
 		-- },
