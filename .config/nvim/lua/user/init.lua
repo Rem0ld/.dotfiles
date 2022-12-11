@@ -143,7 +143,7 @@ local config = {
 		-- Add overrides for LSP server settings, the keys are the name of the server
 		["server-settings"] = {
 			tsserver = {
-				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+				-- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
 				root_dir = function()
 					return vim.loop.cwd()
 				end,
@@ -329,8 +329,8 @@ local config = {
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 			config.sources = {
 				-- Set a formatter
-				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.eslint_d,
+				-- null_ls.builtins.formatting.prettierd,
+				null_ls.builtins.formatting.eslint,
 				null_ls.builtins.formatting.stylua,
 			}
 			-- set up null-ls's on_attach function
@@ -365,9 +365,9 @@ local config = {
 			ensure_installed = { "sumneko_lua" },
 		},
 		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
-		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
-			ensure_installed = { "prettier", "eslint_d" },
-		},
+		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
+		-- 	ensure_installed = { "prettierd", "eslint" },
+		-- },
 		packer = { -- overrides `require("packer").setup(...)`
 			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
 		},
