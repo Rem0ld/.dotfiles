@@ -188,21 +188,33 @@ local config = {
 			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
 			["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", desc = "go to next buffer" },
 			["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = " go to previous buffer" },
+
+			-- Move lines
 			["<leader>j"] = { ":m .+1<cr>==", desc = "Move 1 down" },
 			["<leader>k"] = { ":m .-2<cr>==", desc = "Move 1 up" },
+
+			-- Vimrc user
 			["<leader>vm"] = { ":vsp ~/.config/nvim/lua/user/init.lua<cr>", desc = "edit vimrc user" },
 			["<leader>sv"] = { ":source ~/.config/nvim/lua/user/init.lua<cr>", desc = "source vimrc user" },
+
 			-- Keep cursor at the center of the screen
 			["<C-d>"] = { "<C-d>zz" },
 			["<C-u"] = { "<C-u>zz" },
 			["n"] = { "nzzzv" },
 			["N"] = { "Nzzzv" },
-			-- ["gd"] = { "gd<cr><cmd>:norm zz" },
+
+			-- Quickfix list
 			["[q"] = { ":cp<cr><cr>", desc = "go previous item in quickfix list" },
 			["]q"] = { ":cn<cr><cr>", desc = "go next item in quickflix lst" },
 
 			-- Makes delete better
 			["<leader>d"] = { '"_d' },
+
+			-- Telescope
+			["<leader>fg"] = {
+				"<cmd>Telescope git_files<cr>",
+				desc = "Search Git files",
+			},
 
 			-- quick save
 			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
@@ -246,6 +258,8 @@ local config = {
 
 			-- Other plugins here
 
+			{ "gpanders/editorconfig.nvim" },
+
 			["kylechui/nvim-surround"] = {
 				tag = "*",
 				config = function()
@@ -253,6 +267,8 @@ local config = {
 				end,
 			},
 			{ "nvim-treesitter/nvim-treesitter-context" },
+			{ "nvim-treesitter/playground" },
+
 			["themaxmarchuk/tailwindcss-colors.nvim"] = {
 				config = function()
 					require("tailwindcss-colors").setup()
@@ -261,6 +277,7 @@ local config = {
 			["nvim-neo-tree/neo-tree.nvim"] = {
 				config = function()
 					require("neo-tree").setup({
+						close_if_last_window = true,
 						filesystem = {
 							filtered_items = {
 								visible = false, -- when true, they will just be displayed differently than normal items
@@ -268,14 +285,46 @@ local config = {
 								hide_gitignored = false,
 								hide_hidden = false, -- only works on Windows for hidden files/directories
 							},
+							follow_current_file = true,
 						},
 					})
 				end,
 			},
+			{ "MunifTanjim/prettier.nvim" },
+			["MunifTanjim/eslint.nvim"] = {
+				config = function()
+					require("eslint").setup({
+						bin = "eslint_d", -- or `eslint_d`
+						code_actions = {
+							enable = true,
+							apply_on_save = {
+								enable = true,
+								types = { "directive", "problem", "suggestion", "layout" },
+							},
+							disable_rule_comment = {
+								enable = true,
+								location = "separate_line", -- or `same_line`
+							},
+						},
+						diagnostics = {
+							enable = true,
+							report_unused_disable_directives = false,
+							run_on = "type", -- or `save`
+						},
+					})
+				end,
+			},
+			["phaazon/mind.nvim"] = {
+				branch = "v2.2",
+				requires = { "nvim-lua/plenary.nvim" },
+				config = function()
+					require("mind").setup()
+				end,
+			},
 			-- ["tzachar/cmp-tabnine"] = {
 			-- 	requires = "hrsh7th/nvim-cmp",
-			-- 	run = "./install.sh",
-			-- 	rtp = "~/.local/share/nvim/site/pack/packer/start/cmp-tabnine/lua/cmp_tabnine",
+			-- 	run = "./Users/pielov/.local/share/nvim/site/pack/packer/start/cmp-tabnine/install.sh",
+			-- 	rtp = "/Users/pielov/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
 			-- 	config = function()
 			-- 		require("cmp-tabnine").setup({
 			-- 			max_lines = 1000,
@@ -292,7 +341,16 @@ local config = {
 			-- 		})
 			-- 	end,
 			-- },
-
+			-- ["hrsh7th/nvim-cmp"] = {
+			-- 	config = function()
+			-- 		require("cmp").setup({
+			-- 			sources = {
+			-- 				{ name = "cmp_tabnine" },
+			-- 			},
+			-- 		})
+			-- 	end,
+			-- },
+			--
 			-- You can also add new plugins here as well:
 			-- Add plugins, the packer syntax without the "use"
 			-- { "andweeb/presence.nvim" },
@@ -354,6 +412,9 @@ local config = {
 		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
 			-- config variable is the default configuration table for the setup functino call
 			local null_ls = require("null-ls")
+			local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+			local event = "BufWritePre" -- or "BufWritePost"
+			local async = event == "BufWritePost"
 			-- Check supported formatters and linters
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
@@ -361,17 +422,46 @@ local config = {
 				-- 	-- Set a formatter
 				null_ls.builtins.formatting.prettierd,
 				null_ls.builtins.formatting.eslint_d,
+				null_ls.builtins.diagnostics.eslint_d.with({
+					diagnostics_format = "[eslint] #{m}\n(#{c})",
+				}),
+				null_ls.builtins.code_actions.eslint_d,
 				null_ls.builtins.formatting.stylua,
 			}
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
-			config.on_attach = function(client)
-				if client.server_capabilities.document_formatting then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						desc = "Auto format before save",
-						pattern = "<buffer>",
-						callback = vim.lsp.buf.format,
+			config.on_attach = function(client, bufnr)
+				-- if client.server_capabilities.document_formatting then
+				-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+				-- 		desc = "Auto format before save",
+				-- 		pattern = "<buffer>",
+				-- 		callback = vim.lsp.buf.format({ timeout_ms = 5000 }),
+				-- 	})
+				-- end
+				if client.name == "tsserver" then
+					client.resolved_capabilities.document_formatting = false
+				end
+				if client.supports_method("textDocument/formatting") then
+					vim.keymap.set("n", "<Leader>lf", function()
+						vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+					end, { buffer = bufnr, desc = "[lsp] format" })
+
+					-- format on save
+					vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+					vim.api.nvim_create_autocmd(event, {
+						buffer = bufnr,
+						group = group,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr, async = async })
+						end,
+						desc = "[lsp] format on save",
 					})
+				end
+
+				if client.supports_method("textDocument/rangeFormatting") then
+					vim.keymap.set("x", "<Leader>f", function()
+						vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+					end, { buffer = bufnr, desc = "[lsp] format" })
 				end
 			end
 			return config -- return final config table to use in require("null-ls").setup(config)
@@ -389,6 +479,24 @@ local config = {
 			autotag = {
 				enable = true,
 			},
+			playground = {
+				enable = true,
+				disable = {},
+				updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+				persist_queries = false, -- Whether the query persists across vim sessions
+				keybindings = {
+					toggle_query_editor = "o",
+					toggle_hl_groups = "i",
+					toggle_injected_languages = "t",
+					toggle_anonymous_nodes = "a",
+					toggle_language_display = "I",
+					focus_language = "f",
+					unfocus_language = "F",
+					update = "R",
+					goto_node = "<cr>",
+					show_help = "?",
+				},
+			},
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
@@ -396,16 +504,6 @@ local config = {
 		},
 		["mason-null-ls"] = {
 			setup_handlers = {
-				-- prettier = function()
-				-- 	require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
-				-- 		condition = function(utils)
-				-- 			return utils.root_has_file("package.json")
-				-- 					or utils.root_has_file(".prettierrc")
-				-- 					or utils.root_has_file(".prettierrc.json")
-				-- 					or utils.root_has_file(".prettierrc.js")
-				-- 		end,
-				-- 	}))
-				-- end,
 				-- For prettierd:
 				prettierd = function()
 					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
@@ -418,15 +516,15 @@ local config = {
 					}))
 				end,
 				-- For eslint_d:
-				eslint_d = function()
-					require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
-						condition = function(utils)
-							return utils.root_has_file("package.json")
-									or utils.root_has_file(".eslintrc.json")
-									or utils.root_has_file(".eslintrc.js")
-						end,
-					}))
-				end,
+				-- eslint_d = function()
+				-- 	require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+				-- 		condition = function(utils)
+				-- 			return utils.root_has_file("package.json")
+				-- 					or utils.root_has_file(".eslintrc.json")
+				-- 					or utils.root_has_file(".eslintrc.js")
+				-- 		end,
+				-- 	}))
+				-- end,
 			},
 		}, -- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
@@ -459,9 +557,13 @@ local config = {
 	cmp = {
 		source_priority = {
 			nvim_lsp = 1000,
+			cmp_tabnine = 900,
 			luasnip = 750,
 			buffer = 500,
 			path = 250,
+		},
+		sources = {
+			{ name = "cmp_tabnine" },
 		},
 	},
 
