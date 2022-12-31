@@ -163,7 +163,6 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.tabSize": 2,
   "eslint.run": "onSave",
-  "eslint.packageManager": "yarn",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -213,5 +212,9 @@
   "go.toolsManagement.autoUpdate": true,
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  }
+  },
+  "tabnine.experimentalAutoImports": true,
+  "prettier.requireConfig": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true
 }

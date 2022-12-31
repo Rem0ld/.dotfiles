@@ -132,12 +132,6 @@ local config = {
 			},
 		},
 		-- add to the global LSP on_attach function
-		on_attach = function(client, bufnr)
-			if client.name == "tailwindcss" then
-				require("tailwindcss-colors").buf_attach(bufnr)
-			end
-		end,
-
 		-- override the mason server-registration function
 		-- server_registration = function(server, opts)
 		--   require("lspconfig")[server].setup(opts)
@@ -146,7 +140,7 @@ local config = {
 		-- Add overrides for LSP server settings, the keys are the name of the server
 		["server-settings"] = {
 			tsserver = {
-				-- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
 				root_dir = function()
 					return vim.loop.cwd()
 				end,
@@ -202,6 +196,12 @@ local config = {
 			["<C-u"] = { "<C-u>zz" },
 			["n"] = { "nzzzv" },
 			["N"] = { "Nzzzv" },
+			["<leader>gg"] = {
+				function()
+					astronvim.toggle_term_cmd("gitui")
+				end,
+				desc = "ToggleTerm gitui",
+			},
 
 			-- Quickfix list
 			["[q"] = { ":cp<cr><cr>", desc = "go previous item in quickfix list" },
@@ -259,38 +259,7 @@ local config = {
 			-- Other plugins here
 
 			{ "gpanders/editorconfig.nvim" },
-
-			["kylechui/nvim-surround"] = {
-				tag = "*",
-				config = function()
-					require("nvim-surround").setup()
-				end,
-			},
-			{ "nvim-treesitter/nvim-treesitter-context" },
-			{ "nvim-treesitter/playground" },
-
-			["themaxmarchuk/tailwindcss-colors.nvim"] = {
-				config = function()
-					require("tailwindcss-colors").setup()
-				end,
-			},
-			["nvim-neo-tree/neo-tree.nvim"] = {
-				config = function()
-					require("neo-tree").setup({
-						close_if_last_window = true,
-						filesystem = {
-							filtered_items = {
-								visible = false, -- when true, they will just be displayed differently than normal items
-								hide_dotfiles = false,
-								hide_gitignored = false,
-								hide_hidden = false, -- only works on Windows for hidden files/directories
-							},
-							follow_current_file = true,
-						},
-					})
-				end,
-			},
-			{ "MunifTanjim/prettier.nvim" },
+			{ "tpope/vim-fugitive" },
 			["MunifTanjim/eslint.nvim"] = {
 				config = function()
 					require("eslint").setup({
@@ -311,64 +280,42 @@ local config = {
 							report_unused_disable_directives = false,
 							run_on = "type", -- or `save`
 						},
+						formatting = {
+							enable = true,
+							run_on = "save",
+						},
 					})
 				end,
 			},
-			["phaazon/mind.nvim"] = {
-				branch = "v2.2",
-				requires = { "nvim-lua/plenary.nvim" },
+
+			["kylechui/nvim-surround"] = {
+				tag = "*",
 				config = function()
-					require("mind").setup()
+					require("nvim-surround").setup()
 				end,
 			},
-			-- ["tzachar/cmp-tabnine"] = {
-			-- 	requires = "hrsh7th/nvim-cmp",
-			-- 	run = "./Users/pielov/.local/share/nvim/site/pack/packer/start/cmp-tabnine/install.sh",
-			-- 	rtp = "/Users/pielov/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
-			-- 	config = function()
-			-- 		require("cmp-tabnine").setup({
-			-- 			max_lines = 1000,
-			-- 			max_num_results = 20,
-			-- 			sort = true,
-			-- 			run_on_every_keystroke = true,
-			-- 			snippet_placeholder = "..",
-			-- 			ignored_file_types = {
-			-- 				-- default is not to ignore
-			-- 				-- uncomment to ignore in lua:
-			-- 				-- lua = true
-			-- 			},
-			-- 			show_prediction_strength = false,
-			-- 		})
-			-- 	end,
-			-- },
-			-- ["hrsh7th/nvim-cmp"] = {
-			-- 	config = function()
-			-- 		require("cmp").setup({
-			-- 			sources = {
-			-- 				{ name = "cmp_tabnine" },
-			-- 			},
-			-- 		})
-			-- 	end,
-			-- },
-			--
-			-- You can also add new plugins here as well:
-			-- Add plugins, the packer syntax without the "use"
-			-- { "andweeb/presence.nvim" },
-			-- {
-			--   "ray-x/lsp_signature.nvim",
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
 
-			-- We also support a key value style plugin definition similar to NvChad:
-			-- ["ray-x/lsp_signature.nvim"] = {
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
+			-- TREESITTER
+			{ "nvim-treesitter/nvim-treesitter-context" },
+			{ "nvim-treesitter/playground" },
+
+			["nvim-neo-tree/neo-tree.nvim"] = {
+				config = function()
+					require("neo-tree").setup({
+						close_if_last_window = true,
+						filesystem = {
+							filtered_items = {
+								visible = false, -- when true, they will just be displayed differently than normal items
+								hide_dotfiles = false,
+								hide_gitignored = false,
+								hide_hidden = false, -- only works on Windows for hidden files/directories
+							},
+							follow_current_file = true,
+						},
+					})
+				end,
+			},
+
 			{
 				"jose-elias-alvarez/typescript.nvim",
 				after = "mason-lspconfig.nvim",
@@ -412,57 +359,59 @@ local config = {
 		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
 			-- config variable is the default configuration table for the setup functino call
 			local null_ls = require("null-ls")
-			local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+			-- local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+			local group = vim.api.nvim_create_augroup("lsp_format_on_save", {})
 			local event = "BufWritePre" -- or "BufWritePost"
-			local async = event == "BufWritePost"
 			-- Check supported formatters and linters
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 			config.sources = {
 				-- 	-- Set a formatter
 				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.eslint_d,
-				null_ls.builtins.diagnostics.eslint_d.with({
-					diagnostics_format = "[eslint] #{m}\n(#{c})",
-				}),
-				null_ls.builtins.code_actions.eslint_d,
+				-- null_ls.builtins.formatting.eslint_d,
+				null_ls.builtins.formatting.markdownlint,
 				null_ls.builtins.formatting.stylua,
+
+				null_ls.builtins.diagnostics.markdownlint,
+				-- null_ls.builtins.diagnostics.eslint_d.with({
+				-- 	condition = function(utils)
+				-- 		return utils.root_has_file("package.json")
+				-- 				or utils.root_has_file(".eslintrc.json")
+				-- 				or utils.root_has_file(".eslintrc.js")
+				-- 	end,
+				-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
+				-- }),
+				--
+				-- null_ls.builtins.code_actions.eslint_d,
 			}
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
 			config.on_attach = function(client, bufnr)
-				-- if client.server_capabilities.document_formatting then
-				-- 	vim.api.nvim_create_autocmd("BufWritePre", {
-				-- 		desc = "Auto format before save",
-				-- 		pattern = "<buffer>",
-				-- 		callback = vim.lsp.buf.format({ timeout_ms = 5000 }),
-				-- 	})
-				-- end
 				if client.name == "tsserver" then
 					client.resolved_capabilities.document_formatting = false
 				end
-				if client.supports_method("textDocument/formatting") then
-					vim.keymap.set("n", "<Leader>lf", function()
-						vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-					end, { buffer = bufnr, desc = "[lsp] format" })
 
-					-- format on save
-					vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-					vim.api.nvim_create_autocmd(event, {
-						buffer = bufnr,
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = group,
+						buffer = bufnr,
 						callback = function()
-							vim.lsp.buf.format({ bufnr = bufnr, async = async })
+							vim.lsp.buf.format({
+								filter = function(cl)
+									return cl.name == "null-ls"
+								end,
+								bufnr = bufnr,
+							})
 						end,
-						desc = "[lsp] format on save",
 					})
 				end
 
-				if client.supports_method("textDocument/rangeFormatting") then
-					vim.keymap.set("x", "<Leader>f", function()
-						vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-					end, { buffer = bufnr, desc = "[lsp] format" })
-				end
+				-- if client.supports_method("textDocument/rangeFormatting") then
+				-- 	vim.keymap.set("x", "<Leader>f", function()
+				-- 		vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+				-- 	end, { buffer = bufnr, desc = "[lsp] format" })
+				-- end
 			end
 			return config -- return final config table to use in require("null-ls").setup(config)
 		end,
@@ -475,10 +424,25 @@ local config = {
 				enable = true,
 				disable = {},
 			},
-			ensure_installed = { "lua", "tsx", "json", "yaml", "css", "html" },
+			ensure_installed = {
+				"json",
+				"javascript",
+				"typescript",
+				"tsx",
+				"yaml",
+				"html",
+				"css",
+				"markdown",
+				"bash",
+				"lua",
+				"vim",
+				"dockerfile",
+				"gitignore",
+			},
 			autotag = {
 				enable = true,
 			},
+			auto_install = true,
 			playground = {
 				enable = true,
 				disable = {},
@@ -500,33 +464,38 @@ local config = {
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua", "tsserver" },
+			ensure_installed = { "sumneko_lua", "tsserver", "html", "cssls", "jsonls", "yamlls" },
+			automatic_installation = true,
 		},
+		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		["mason-null-ls"] = {
-			setup_handlers = {
-				-- For prettierd:
-				prettierd = function()
-					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
-						condition = function(utils)
-							return utils.root_has_file("package.json")
-									or utils.root_has_file(".prettierrc")
-									or utils.root_has_file(".prettierrc.json")
-									or utils.root_has_file(".prettierrc.js")
-						end,
-					}))
-				end,
-				-- For eslint_d:
-				-- eslint_d = function()
-				-- 	require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
-				-- 		condition = function(utils)
-				-- 			return utils.root_has_file("package.json")
-				-- 					or utils.root_has_file(".eslintrc.json")
-				-- 					or utils.root_has_file(".eslintrc.js")
-				-- 		end,
-				-- 	}))
-				-- end,
-			},
-		}, -- use mason-tool-installer to configure DAP/Formatters/Linter installation
+			ensure_installed = { "prettierd", "eslint_d", "stylua" },
+			automatic_installation = true,
+			-- setup_handlers = {
+			-- 	-- For prettierd:
+			-- 	prettierd = function()
+			-- 		require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+			-- 			condition = function(utils)
+			-- 				return utils.root_has_file("package.json")
+			-- 						or utils.root_has_file(".prettierrc")
+			-- 						or utils.root_has_file(".prettierrc.json")
+			-- 						or utils.root_has_file(".prettierrc.js")
+			-- 			end,
+			-- 		}))
+			-- 	end,
+			-- 	-- For eslint_d:
+			-- 	eslint_d = function()
+			-- 		require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+			-- 			condition = function(utils)
+			-- 				return utils.root_has_file("package.json")
+			-- 						or utils.root_has_file(".eslintrc.json")
+			-- 						or utils.root_has_file(".eslintrc.js")
+			-- 			end,
+			-- 		}))
+			-- 	end,
+			-- },
+		},
+
 		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
 		-- 	ensure_installed = { "prettierd", "eslint" },
 		-- },
