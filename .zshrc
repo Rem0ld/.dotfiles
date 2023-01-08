@@ -107,7 +107,7 @@ export PATH="/usr/local/sbin:$PATH"
 # ==============
 if [[ $OSTYPE == *"darwin"* ]]; then
 #alias docker='sudo /usr/local/bin/docker'
-alias docker-compose='sudo /usr/local/bin/docker-compose'
+# alias docker-compose='sudo /usr/local/bin/docker-compose'
 alias python=/opt/homebrew/opt/python@3.8/bin/python3
 
 export NVM_DIR="$HOME/.nvm"
