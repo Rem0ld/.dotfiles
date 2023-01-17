@@ -140,12 +140,12 @@ local config = {
 
 		-- Add overrides for LSP server settings, the keys are the name of the server
 		["server-settings"] = {
-			tsserver = {
-				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
-				root_dir = function()
-					return vim.loop.cwd()
-				end,
-			},
+			-- tsserver = {
+			-- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+			-- 	root_dir = function()
+			-- 		return vim.loop.cwd()
+			-- 	end,
+			-- },
 			-- example for addings schemas to yamlls
 			-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
 			--   settings = {
@@ -265,7 +265,6 @@ local config = {
 			-- Other plugins here
 
 			{ "gpanders/editorconfig.nvim" },
-			{ "tpope/vim-fugitive" },
 
 			["kylechui/nvim-surround"] = {
 				tag = "*",
@@ -497,34 +496,34 @@ local config = {
 		["mason-null-ls"] = {
 			ensure_installed = { "prettierd", "eslint_d", "stylua" },
 			automatic_installation = true,
-			-- setup_handlers = {
-			-- 	-- For prettierd:
-			-- 	prettierd = function()
-			-- 		require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
-			-- 			condition = function(utils)
-			-- 				return utils.root_has_file("package.json")
-			-- 						or utils.root_has_file(".prettierrc")
-			-- 						or utils.root_has_file(".prettierrc.json")
-			-- 						or utils.root_has_file(".prettierrc.js")
-			-- 			end,
-			-- 		}))
-			-- 	end,
-			-- 	-- For eslint_d:
-			-- 	eslint_d = function()
-			-- 		require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
-			-- 			condition = function(utils)
-			-- 				return utils.root_has_file("package.json")
-			-- 						or utils.root_has_file(".eslintrc.json")
-			-- 						or utils.root_has_file(".eslintrc.js")
-			-- 			end,
-			-- 		}))
-			-- 	end,
-			-- },
+			setup_handlers = {
+				-- 	-- For prettierd:
+				prettierd = function()
+					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+						condition = function(utils)
+							return utils.root_has_file("package.json")
+									or utils.root_has_file(".prettierrc")
+									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.js")
+						end,
+					}))
+				end,
+				-- 	-- For eslint_d:
+				eslint_d = function()
+					require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+						condition = function(utils)
+							return utils.root_has_file("package.json")
+									or utils.root_has_file(".eslintrc.json")
+									or utils.root_has_file(".eslintrc.js")
+						end,
+					}))
+				end,
+			},
 		},
 
-		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
-		-- 	ensure_installed = { "prettierd", "eslint" },
-		-- },
+		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
+			ensure_installed = { "prettierd", "eslint" },
+		},
 		packer = { -- overrides `require("packer").setup(...)`
 			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
 		},
