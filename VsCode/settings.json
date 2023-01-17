@@ -93,6 +93,27 @@
   "vim.leader": "<space>",
   "vim.normalModeKeyBindings": [
     {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+
+    },
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["d", "]"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["d", "["],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
       "before": ["<leader>", "m"],
       "commands": ["bookmarks.toggle"]
     },
@@ -187,7 +208,6 @@
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
   "git.inputValidationLength": 180,
-  "workbench.colorTheme": "Tokyo Night Storm",
   "npm.keybindingsChangedWarningShown": true,
   "editor.fontSize": 13,
   "editor.lineNumbers": "relative",
@@ -216,5 +236,6 @@
   "tabnine.experimentalAutoImports": true,
   "prettier.requireConfig": true,
   "prettier.semi": false,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "workbench.colorTheme": "Nightfox"
 }

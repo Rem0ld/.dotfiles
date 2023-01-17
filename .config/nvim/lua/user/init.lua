@@ -120,6 +120,7 @@ local config = {
 	lsp = {
 		skip_setup = {
 			"tsserver",
+			"rust_analyzer",
 		},
 		-- enable servers that you already have installed without mason
 		servers = {
@@ -222,6 +223,7 @@ local config = {
 		i = {
 			["kj"] = { "<esc>", desc = "Back to normal mode" },
 			["jj"] = { "<esc>", desc = "Back to normal mode" },
+			["kk"] = { "<esc>", desc = "Back to normal mode" },
 			["jk"] = { "<esc>", desc = "Back to normal mode" },
 			["C-k"] = { "<esc>:m .-2<cr>==gi", desc = "Move 1 up" },
 			["C-j"] = { "<esc>:m .+1<cr>==gi", desc = "Move 1 down" },
@@ -247,6 +249,9 @@ local config = {
 			-- ["lewis6991/gitsigns.nvim"] = { disable = true },
 			["declancm/cinnamon.nvim"] = { disable = true },
 
+			-- Pin version here
+			["rebelot/heirline.nvim"] = { commit = "556666a" },
+
 			-- Theme here
 
 			["folke/tokyonight.nvim"] = {
@@ -255,38 +260,12 @@ local config = {
 				end,
 			},
 			{ "EdenEast/nightfox.nvim" },
+			-- { "ludovicchabant/vim-gutentags" }, eat too much ram
 
 			-- Other plugins here
 
 			{ "gpanders/editorconfig.nvim" },
 			{ "tpope/vim-fugitive" },
-			["MunifTanjim/eslint.nvim"] = {
-				config = function()
-					require("eslint").setup({
-						bin = "eslint_d", -- or `eslint_d`
-						code_actions = {
-							enable = true,
-							apply_on_save = {
-								enable = true,
-								types = { "directive", "problem", "suggestion", "layout" },
-							},
-							disable_rule_comment = {
-								enable = true,
-								location = "separate_line", -- or `same_line`
-							},
-						},
-						diagnostics = {
-							enable = true,
-							report_unused_disable_directives = false,
-							run_on = "type", -- or `save`
-						},
-						formatting = {
-							enable = true,
-							run_on = "save",
-						},
-					})
-				end,
-			},
 
 			["kylechui/nvim-surround"] = {
 				tag = "*",
@@ -295,7 +274,51 @@ local config = {
 				end,
 			},
 
+			-- SPECIFIC LSP SERVER
+
+			{
+				"simrat39/rust-tools.nvim",
+				after = "mason-lspconfig.nvim",
+				config = function()
+					require("rust-tools").setup({
+						server = astronvim.lsp.server_settings("rust_analyzer"),
+					})
+				end,
+			},
+			-- {
+			-- 	"MunifTanjim/eslint.nvim",
+			-- 	after = { "mason-lspconfig.nvim" },
+			-- 	config = function()
+			-- 		require("eslint").setup({
+			-- 			bin = "eslint_d", -- or `eslint_d`
+			-- 			server = astronvim.lsp.server_settings("tsserver"),
+			-- 			code_actions = {
+			-- 				enable = true,
+			-- 				apply_on_save = {
+			-- 					enable = true,
+			-- 					types = { "directive", "problem", "suggestion", "layout" },
+			-- 				},
+			-- 				disable_rule_comment = {
+			-- 					enable = true,
+			-- 					location = "separate_line", -- or `same_line`
+			-- 				},
+			-- 			},
+			-- 			diagnostics = {
+			-- 				enable = true,
+			-- 				report_unused_disable_directives = false,
+			-- 				run_on = "type", -- or `save`
+			-- 			},
+			-- 			formatting = {
+			-- 				enable = false,
+			-- 			},
+			-- 		})
+			-- 	end,
+			-- },
+			--
+			-- SPECIFIC LSP SERVER END
+
 			-- TREESITTER
+
 			{ "nvim-treesitter/nvim-treesitter-context" },
 			{ "nvim-treesitter/playground" },
 
@@ -325,6 +348,19 @@ local config = {
 					})
 				end,
 			},
+			-- TREESITTER END
+
+			-- AUTOCOMPLETION IA
+
+			{ "github/copilot.vim" },
+
+			-- AUTOCOMPLETION IA END
+			-- {
+			-- 	"tzachar/cmp-tabnine",
+			-- 	setup = function()
+			-- 		require("user.plugins.tabnine").config()
+			-- 	end,
+			-- },
 		},
 		["bufferline"] = function(config)
 			config.options = {
@@ -368,21 +404,10 @@ local config = {
 			config.sources = {
 				-- 	-- Set a formatter
 				null_ls.builtins.formatting.prettierd,
-				-- null_ls.builtins.formatting.eslint_d,
 				null_ls.builtins.formatting.markdownlint,
 				null_ls.builtins.formatting.stylua,
 
-				null_ls.builtins.diagnostics.markdownlint,
-				-- null_ls.builtins.diagnostics.eslint_d.with({
-				-- 	condition = function(utils)
-				-- 		return utils.root_has_file("package.json")
-				-- 				or utils.root_has_file(".eslintrc.json")
-				-- 				or utils.root_has_file(".eslintrc.js")
-				-- 	end,
-				-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
-				-- }),
-				--
-				-- null_ls.builtins.code_actions.eslint_d,
+				-- null_ls.builtins.diagnostics.markdownlint,
 			}
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
@@ -438,6 +463,7 @@ local config = {
 				"vim",
 				"dockerfile",
 				"gitignore",
+				"rust",
 			},
 			autotag = {
 				enable = true,
@@ -464,7 +490,7 @@ local config = {
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua", "tsserver", "html", "cssls", "jsonls", "yamlls" },
+			ensure_installed = { "sumneko_lua", "tsserver", "html", "cssls", "jsonls", "yamlls", "rust_analyzer" },
 			automatic_installation = true,
 		},
 		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
