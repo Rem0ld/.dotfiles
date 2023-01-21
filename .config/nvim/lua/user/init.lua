@@ -119,7 +119,7 @@ local config = {
 	-- Extend LSP configuration
 	lsp = {
 		skip_setup = {
-			"tsserver",
+			"tsserver", "rust_analyzer"
 		},
 		-- enable servers that you already have installed without mason
 		servers = {
@@ -182,7 +182,6 @@ local config = {
 		n = {
 			-- second key is the lefthand side of the map
 			-- mappings seen under group name "Buffer"
-			["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
 			["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
 			["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
 			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
@@ -211,8 +210,8 @@ local config = {
 			["kj"] = { "<esc>", desc = "Back to normal mode" },
 			["jj"] = { "<esc>", desc = "Back to normal mode" },
 			["jk"] = { "<esc>", desc = "Back to normal mode" },
-			["C-k"] = { "<esc>:m .-2<cr>==gi", desc = "Move 1 up" },
-			["C-j"] = { "<esc>:m .+1<cr>==gi", desc = "Move 1 down" },
+			-- ["C-k"] = { "<esc>:m .-2<cr>==gi", desc = "Move 1 up" },
+			-- ["C-j"] = { "<esc>:m .+1<cr>==gi", desc = "Move 1 down" },
 		},
 		v = {
 			["J"] = { ":m '>+1<cr>gv=gv", desc = "Move line 1 down" },
@@ -246,6 +245,8 @@ local config = {
 
 			-- Other plugins here
 
+			["rebelot/heirline.nvim"] = { commit = "556666a" },
+
 			["kylechui/nvim-surround"] = {
 				tag = "*",
 				config = function()
@@ -272,6 +273,7 @@ local config = {
 					})
 				end,
 			},
+			{ "github/copilot.vim" },
 			-- ["tzachar/cmp-tabnine"] = {
 			-- 	requires = "hrsh7th/nvim-cmp",
 			-- 	run = "./install.sh",
@@ -311,6 +313,23 @@ local config = {
 			--     require("lsp_signature").setup()
 			--   end,
 			-- },
+			{ "simrat39/inlay-hints.nvim" },
+			{
+				"simrat39/rust-tools.nvim",
+				after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+				config = function()
+					require("rust-tools").setup {
+						tools = {
+							inlay_hints = {
+								auto = false,
+								only_current_line = true
+							}
+
+						},
+						server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
+					}
+				end,
+			},
 			{
 				"jose-elias-alvarez/typescript.nvim",
 				after = "mason-lspconfig.nvim",
@@ -385,50 +404,41 @@ local config = {
 				enable = true,
 				disable = {},
 			},
-			ensure_installed = { "lua", "tsx", "json", "yaml", "css", "html" },
+			ensure_installed = { "lua", "tsx", "json", "yaml", "css", "html", "rust" },
 			autotag = {
 				enable = true,
 			},
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua", "tsserver" },
+			ensure_installed = { "sumneko_lua", "tsserver", "rust_analyzer" },
 		},
-		["mason-null-ls"] = {
-			setup_handlers = {
-				-- prettier = function()
-				-- 	require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
-				-- 		condition = function(utils)
-				-- 			return utils.root_has_file("package.json")
-				-- 					or utils.root_has_file(".prettierrc")
-				-- 					or utils.root_has_file(".prettierrc.json")
-				-- 					or utils.root_has_file(".prettierrc.js")
-				-- 		end,
-				-- 	}))
-				-- end,
-				-- For prettierd:
-				prettierd = function()
-					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
-						condition = function(utils)
-							return utils.root_has_file("package.json")
-									or utils.root_has_file(".prettierrc")
-									or utils.root_has_file(".prettierrc.json")
-									or utils.root_has_file(".prettierrc.js")
-						end,
-					}))
-				end,
-				-- For eslint_d:
-				eslint_d = function()
-					require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
-						condition = function(utils)
-							return utils.root_has_file("package.json")
-									or utils.root_has_file(".eslintrc.json")
-									or utils.root_has_file(".eslintrc.js")
-						end,
-					}))
-				end,
-			},
-		}, -- use mason-tool-installer to configure DAP/Formatters/Linter installation
+		-- ["mason-null-ls"] = {
+		-- setup_handlers = {
+		-- 	-- For prettierd:
+		-- 	prettierd = function()
+		-- 		require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+		-- 			condition = function(utils)
+		-- 				return utils.root_has_file("package.json")
+		-- 						or utils.root_has_file(".prettierrc")
+		-- 						or utils.root_has_file(".prettierrc.json")
+		-- 						or utils.root_has_file(".prettierrc.js")
+		-- 			end,
+		-- 		}))
+		-- 	end,
+		-- 	-- For eslint_d:
+		-- 	eslint_d = function()
+		-- 		require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+		-- 			condition = function(utils)
+		-- 				return utils.root_has_file("package.json")
+		-- 						or utils.root_has_file(".eslintrc.json")
+		-- 						or utils.root_has_file(".eslintrc.js")
+		-- 			end,
+		-- 		}))
+		-- 	end,
+		-- },
+		-- },
+		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		-- ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
 		-- 	ensure_installed = { "prettierd", "eslint" },
 		-- },
