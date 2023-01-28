@@ -1,7 +1,6 @@
 local _ = {}
 
 _.setup = function(on_attach, capabilities)
-	require("neodev").setup()
 	require("lspconfig").sumneko_lua.setup({
 		on_attach = on_attach,
 		settings = {

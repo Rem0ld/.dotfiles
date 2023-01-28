@@ -23,6 +23,7 @@ return {
       },
       ["<leader>p"] = {
         name = "Packages & Lazy & Mason",
+        ["m"] = "Mason"
       },
       ["<leader>s"] = {
         name = "Search",
