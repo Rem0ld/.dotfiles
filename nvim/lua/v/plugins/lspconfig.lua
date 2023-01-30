@@ -116,10 +116,10 @@ return {
 			"yamlls",
 			"dockerls",
 			"sumneko_lua",
-			"tsserver",
 			"eslint",
 			"rust_analyzer",
 			"null_ls",
+			"tsserver",
 		}
 		for _, server in ipairs(servers) do
 			require("v.plugins.lsp." .. server).setup(on_attach, capabilities)

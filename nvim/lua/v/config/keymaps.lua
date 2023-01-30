@@ -1,10 +1,10 @@
 -- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- NORMAL
@@ -42,6 +42,9 @@ map("n", "<leader>d", '"_d', { silent = true })
 -- Comment line
 map("n", "<leader>/", "gcc", { desc = "Comment line" })
 
+-- Logsitter
+map("n", "<leader>gl", "<cmd>Logsitter<cr>", { desc = "Log line" })
+
 -- floating terminal
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
@@ -58,20 +61,20 @@ map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 -- Telescope
 map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "Find files" })
 map(
-  "n",
-  "<leader>fF",
-  "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
-  { desc = "Find all files" }
+	"n",
+	"<leader>fF",
+	"<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
+	{ desc = "Find all files" }
 )
 map("n", "<leader>fb", "<cmd>lua require('telescope.builtin').find_buffers()<cr>", { desc = "Find buffers" })
 map("n", "<leader>fm", "<cmd>lua require('telescope.builtin').find_marks()<cr>", { desc = "Find marks" })
 map("n", "<leader>fo", "<cmd>lua require('telescope.builtin').find_oldfiles()<cr>", { desc = "Find old files" })
 map("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", { desc = "Live grep" })
 map(
-  "n",
-  "<leader>fW",
-  "<cmd>lua require('telescope.builtin').live_grep({hidden = true, no_ignore = true})<cr>",
-  { desc = "Live grep" }
+	"n",
+	"<leader>fW",
+	"<cmd>lua require('telescope.builtin').live_grep({hidden = true, no_ignore = true})<cr>",
+	{ desc = "Live grep" }
 )
 map("n", "<leader>sb", "<cmd>lua require('telescope.builtin').git_branches()<cr>", { desc = "Git branches" })
 map("n", "<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", { desc = "help tags" })
