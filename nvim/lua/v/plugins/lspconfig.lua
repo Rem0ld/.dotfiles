@@ -40,10 +40,10 @@ return {
 
 		-- add to your shared on_attach callback
 		local on_attach = function(client, bufnr)
-			if client.name == "tsserver" then
-				client.resolved_capabilities.document_formatting = false -- 0.7 and earlier
-				client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
-			end
+			-- if client.name == "tsserver" then
+			-- 	client.resolved_capabilities.document_formatting = false -- 0.7 and earlier
+			-- 	client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+			-- end
 
 			if client.supports_method("textDocument/formatting") then
 				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

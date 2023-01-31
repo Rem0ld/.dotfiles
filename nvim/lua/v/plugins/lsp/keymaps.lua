@@ -5,7 +5,7 @@ M._keys = nil
 
 ---@return (LazyKeys|{has?:string})[]
 function M.get()
-    local format = require("lazyvim.plugins.lsp.format").format
+	local format = global.format
     ---@class PluginLspKeys
     -- stylua: ignore
     M._keys = M._keys or {
@@ -29,7 +29,7 @@ function M.get()
         { "<leader>lcf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
         { "<leader>lcr", M.rename, expr = true, desc = "Rename", has = "rename" },
     }
-  return M._keys
+	return M._keys
 end
 
 return M
