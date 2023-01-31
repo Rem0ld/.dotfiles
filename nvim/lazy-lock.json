@@ -35,6 +35,7 @@
   "nvim-ts-rainbow": { "branch": "master", "commit": "aa83e4967bf78f85ffd9a11e159900c7ea7e423b" },
   "nvim-web-devicons": { "branch": "master", "commit": "a421d183ef37dfa13f51a5805bed2381aebf9080" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
+  "prettier.nvim": { "branch": "main", "commit": "918b99f5ddd7a56395fd393767ab6a3c15a50789" },
   "schemastore.nvim": { "branch": "main", "commit": "d98828169af99624031d8535785a099cdf60d4c3" },
   "simple-react-snippets": { "branch": "master", "commit": "2d48fc0392fe3c5f04d26197f2f96e5e00f109f4" },
   "telescope.nvim": { "branch": "master", "commit": "c1a2af0af69e80e14e6b226d3957a064cd080805" },
