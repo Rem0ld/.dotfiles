@@ -42,8 +42,11 @@ map("n", "<leader>d", '"_d', { silent = true })
 -- Comment line
 map("n", "<leader>/", "gcc", { desc = "Comment line" })
 
+-- Format Json
+map("n", "<leader>jq", "<cmd>%!jq .<cr>", { desc = "Format json current file" })
+
 -- Logsitter
-map("n", "<leader>gl", "<cmd>Logsitter<cr>", { desc = "Log line" })
+map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
 
 -- floating terminal
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
