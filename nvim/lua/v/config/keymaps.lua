@@ -16,6 +16,10 @@ map("n", "|", "<cmd>vsplit<cr>")
 map("n", "\\", "<cmd>split<cr>")
 map("n", "<leader>h", "<cmd>nohl<cr>")
 
+-- Change mapping record macro
+map("n", "m", "q")
+map("n", "q", "<nop>")
+
 -- Move lines
 map("n", "<leader>j", ":m .+1<cr>==", { silent = true })
 map("n", "<leader>k", ":m .-2<cr>==", { silent = true })
@@ -47,6 +51,14 @@ map("n", "<leader>jq", "<cmd>%!jq .<cr>", { desc = "Format json current file" })
 
 -- Logsitter
 map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
+
+-- Reload Treesitter highlighting
+map(
+	"n",
+	"<leader>rt",
+	"<cmd>write | edit | TSBufEnable highlight<cr>",
+	{ desc = "Reload treesitter for current buffer" }
+)
 
 -- floating terminal
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
