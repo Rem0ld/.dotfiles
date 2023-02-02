@@ -103,16 +103,23 @@ map("n", "<leader>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>"
 
 -- Gitsigns
 map("n", "<leader>gj", "<cmd>lua require('gitsigns').next_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gk", "<cmd>lua require('gitsigns').prev_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gl", "<cmd>lua require('gitsigns').blame_line()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gp", "<cmd>lua require('gitsigns').preview_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gh", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gr", "<cmd>lua require('gitsigns').reset_buffer()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gs", "<cmd>lua require('gitsigns').stage_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gu", "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gd", "<cmd>lua require('gitsigns').diffthis()<cr>", { desc = "Next Git hunk" })
+map("n", "<leader>gk", "<cmd>lua require('gitsigns').prev_hunk()<cr>", { desc = "Prev Git hunk" })
+map("n", "<leader>gl", "<cmd>lua require('gitsigns').blame_line()<cr>", { desc = "Blame" })
+map("n", "<leader>gp", "<cmd>lua require('gitsigns').preview_hunk()<cr>", { desc = "Preview hunk" })
+map("n", "<leader>gh", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset hunk" })
+map("n", "<leader>gr", "<cmd>lua require('gitsigns').reset_buffer()<cr>", { desc = "Reset buffer" })
+map("n", "<leader>gs", "<cmd>lua require('gitsigns').stage_hunk()<cr>", { desc = "Stage hunk" })
+map("n", "<leader>gu", "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Undo stage hun" })
+map("n", "<leader>gdd", "<cmd>lua require('gitsigns').diffthis()<cr>", { desc = "Diff this" })
 -- Gitui
 map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
+
+-- Diffview Git
+map("n", "<leader>gdo", "<cmd>DiffviewOpen<cr>", { desc = "Diffview open" })
+map("n", "<leader>gD", "<cmd>DiffviewClose<cr>", { desc = "Diffview close" })
+map("n", "<leader>gde", "<cmd>DiffviewToggleFiles<cr>", { desc = "Diffview toggle files" })
+map("n", "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", { desc = "Diffview branch history" })
+map("n", "<leader>gdc", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffview file history" })
 
 -- Lazy menu
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
