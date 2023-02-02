@@ -1,9 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
-	opts = function(plugin)
-		-- local icons = require("lazyvim.config").icons
-
+	opts = function()
 		local function fg(name)
 			return function()
 				---@type {foreground?:number}?
@@ -37,7 +35,7 @@ return {
 					},
 					{ "searchcount" },
 				},
-				lualine_x = { "encoding", "filetype" },
+				lualine_x = { "copilot", "encoding", "filetype" },
 				lualine_y = {
                     -- stylua: ignore
                     {
