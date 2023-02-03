@@ -6,17 +6,12 @@ _.setup = function(on_attach, capabilities)
 		settings = {
 			prefer_null_ls = true,
 			Lua = {
-				workspace = {
-					checkThirdParty = false,
-				},
 				completion = {
 					workspaceWord = true,
 					callSnippet = "Both",
 				},
-				misc = {
-					parameters = {
-						"--log-level=trace",
-					},
+				format = {
+					enable = true,
 				},
 				diagnostics = {
 					groupSeverity = {
@@ -39,8 +34,14 @@ _.setup = function(on_attach, capabilities)
 					},
 					unusedLocalExclude = { "_*" },
 				},
-				format = {
-					enable = true,
+				misc = {
+					parameters = {
+						"--log-level=trace",
+					},
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+					checkThirdParty = false,
 				},
 			},
 		},
@@ -49,4 +50,3 @@ _.setup = function(on_attach, capabilities)
 end
 
 return _
-

@@ -85,6 +85,7 @@ map("n", "<leader>fb", "<cmd>lua require('telescope.builtin').find_buffers()<cr>
 map("n", "<leader>fm", "<cmd>lua require('telescope.builtin').find_marks()<cr>", { desc = "Find marks" })
 map("n", "<leader>fo", "<cmd>lua require('telescope.builtin').find_oldfiles()<cr>", { desc = "Find old files" })
 map("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", { desc = "Live grep" })
+map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", { desc = "Find references" })
 map(
 	"n",
 	"<leader>fW",

@@ -40,23 +40,20 @@ return {
 
 		-- add to your shared on_attach callback
 		local on_attach = function(client, bufnr)
-			-- if client.name == "tsserver" then
-			-- 	client.resolved_capabilities.document_formatting = false -- 0.7 and earlier
-			-- 	client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+			-- if client.supports_method("textDocument/formatting") then
+			-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+			-- 		group = augroup,
+			-- 		buffer = bufnr,
+			-- 		callback = function()
+			-- 			lsp_formatting(bufnr)
+			-- 		end,
+			-- 	})
 			-- end
 
-			if client.supports_method("textDocument/formatting") then
-				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = augroup,
-					buffer = bufnr,
-					callback = function()
-						lsp_formatting(bufnr)
-					end,
-				})
-			end
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { table.unpack(bufopts), desc = "Go to Declaration" })
 			vim.keymap.set(
 				"n",
@@ -99,27 +96,44 @@ return {
 			vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { table.unpack(bufopts), desc = "Lsp Info" })
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { table.unpack(bufopts), desc = "Next Diagnostic" })
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { table.unpack(bufopts), desc = "Previous Diagnostic" })
+
+			if client.name ~= "null-ls" then
+				-- client.server_capabilities.documentFormattingProvider = false
+				-- client.server_capabilities.documentRangeFormattingProvider = false
+				client.server_capabilities.document_formatting = false
+				client.server_capabilities.document_range_formatting = false
+			end
+
+			if client.server_capabilities.documentRangeFormattingProvider then
+				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = augroup,
+					buffer = bufnr,
+					callback = function()
+						lsp_formatting(bufnr)
+					end,
+				})
+				-- vim.cmd("autcmd BufWritePre <buffer> lua vim.lsp.buf.format({timeout_ms = 4000})")
+			end
 		end
 
-		local _cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-		local capabilities = _cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities()
-			or vim.lsp.protocol.make_client_capabilities()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		local servers = {
 			"bashls",
-			"sumneko_lua",
 			"cssls",
-			"html",
 			"emmet_ls",
-			"jsonls",
-			"yamlls",
-			"dockerls",
-			"sumneko_lua",
 			"eslint",
-			"rust_analyzer",
+			"dockerls",
+			"html",
+			"jsonls",
 			"null_ls",
+			"rust_analyzer",
+			"sumneko_lua",
 			"tsserver",
+			"yamlls",
 		}
 		for _, server in ipairs(servers) do
 			require("v.plugins.lsp." .. server).setup(on_attach, capabilities)
