@@ -134,7 +134,6 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 fi
 
 alias vim='nvim'
-alias sudo vim='sudo nvim'
 alias dot='cd ~/.dotfiles'
 alias pnr='pnpm nx run'
 alias dlvimbak="rm -rf ~/.config/nvim_bak && rm -rf ~/.local/share/nvim_bak && rm -rf ~/.local/state/nvim_bak && rm -rf ~/.cache/nvim_bak"
@@ -143,6 +142,7 @@ alias mvvim="mv ~/.config/nvim ~/.config/nvim_bak && mv ~/.local/share/nvim ~/.l
 alias mvvimbak="mv ~/.config/nvim_bak ~/.config/nvim && mv ~/.local/share/nvim_bak ~/.local/share/nvim && mv ~/.local/state/nvim_bak ~/.local/state/nvim && mv ~/.cache/nvim_bak ~/.cache/nvim"
 alias resetvim="dlvim && mvvimbak"
 alias revo="cd ~/workspace/revolugo-repos"
+alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency=0 --cache-artifacts=true --cleanup=true --no-prune=true --digest-source=tag --status-check=false "
 
 # load starship - prompt command line manager
 eval "$(starship init zsh)"

@@ -237,5 +237,8 @@
   "prettier.requireConfig": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "workbench.colorTheme": "Nightfox"
+  "workbench.colorTheme": "Nightfox",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
 }
