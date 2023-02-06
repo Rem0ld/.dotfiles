@@ -35,8 +35,8 @@ function global.get_short_file_path(path)
 	end
 
 	local n = #dirs
-	if n > 3 then
-		return "../" .. dirs[n - 2] .. "/" .. dirs[n - 1] .. "/" .. dirs[n]
+	if n > 4 then
+		return "../" .. dirs[n - 3] .. "/" .. dirs[n - 2] .. "/" .. dirs[n - 1] .. "/" .. dirs[n]
 	end
 
 	return path
