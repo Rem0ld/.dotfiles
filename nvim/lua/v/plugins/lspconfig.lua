@@ -81,7 +81,7 @@ return {
 				{ table.unpack(bufopts), desc = "Go to type definition" }
 			)
 			vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { table.unpack(bufopts), desc = "Rename" })
-			vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, { table.unpack(bufopts), desc = "Code action" })
+			vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { table.unpack(bufopts), desc = "Code action" })
 			vim.keymap.set(
 				"n",
 				"gr",
@@ -98,8 +98,6 @@ return {
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { table.unpack(bufopts), desc = "Previous Diagnostic" })
 
 			if client.name ~= "null-ls" then
-				-- client.server_capabilities.documentFormattingProvider = false
-				-- client.server_capabilities.documentRangeFormattingProvider = false
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
 			end
