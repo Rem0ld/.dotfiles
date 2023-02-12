@@ -129,7 +129,7 @@ return {
 			"jsonls",
 			"null_ls",
 			"rust_analyzer",
-			"sumneko_lua",
+			"lua_ls",
 			"tsserver",
 			"yamlls",
 		}
