@@ -140,8 +140,15 @@ alias dlvim="rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.lo
 alias mvvim="mv ~/.config/nvim ~/.config/nvim_bak && mv ~/.local/share/nvim ~/.local/share/nvim_bak && mv ~/.local/state/nvim ~/.local/state/nvim_bak && mv ~/.cache/nvim ~/.cache/nvim_bak"
 alias mvvimbak="mv ~/.config/nvim_bak ~/.config/nvim && mv ~/.local/share/nvim_bak ~/.local/share/nvim && mv ~/.local/state/nvim_bak ~/.local/state/nvim && mv ~/.cache/nvim_bak ~/.cache/nvim"
 alias resetvim="dlvim && mvvimbak"
+
+# == REVOLUGO START ==
+
 alias revo="cd ~/workspace/revolugo-repos"
 alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency=0 --cache-artifacts=true --cleanup=true --no-prune=true --digest-source=tag --status-check=false "
+alias pnba="pnpm nx run-many --targets=build"
+alias pnbsa="pnpm nx run-many --targets=storybook-build"
+
+# == REVOLUGO END ==
 
 # load starship - prompt command line manager
 eval "$(starship init zsh)"

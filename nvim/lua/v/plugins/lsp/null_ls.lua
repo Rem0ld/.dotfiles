@@ -31,15 +31,12 @@ _.setup = function(on_attach)
 			diagnostics.hadolint,
 			diagnostics.markdownlint,
 			-- diagnostics.shellcheck,
-			diagnostics.eslint_d.with({
-				condition = include_root_file({
-					".eslintrc.json",
-				}),
-			}),
+			-- diagnostics.eslint_d.with({
+			-- 	condition = include_root_file({
+			-- 		".eslintrc.json",
+			-- 	}),
+			-- }),
 
-			formatting.prettierd.with({
-				condition = include_root_file({ ".prettierrc", ".prettierrc.json" }),
-			}),
 			formatting.eslint_d.with({
 				condition = include_root_file({ ".eslintrc.json" }),
 			}),
@@ -50,7 +47,7 @@ _.setup = function(on_attach)
 			formatting.rustfmt,
 
 			-- code_actions.shellcheck,
-			code_actions.eslint_d,
+			-- code_actions.eslint_d,
 		},
 		on_attach = on_attach,
 	})

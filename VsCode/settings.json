@@ -3,7 +3,6 @@
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "vscode-icons",
-  "editor.renderControlCharacters": false,
   "editor.renderWhitespace": "all",
   "vsicons.dontShowNewVersionMessage": true,
   "[elixir]": {
@@ -112,6 +111,10 @@
     {
       "before": ["d", "["],
       "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["g", "l"],
+      "commands": ["editor.action.showHover"]
     },
     {
       "before": ["<leader>", "m"],
@@ -228,7 +231,6 @@
     "javascript": "javascript",
     "css": "css"
   },
-  "window.zoomLevel": -1,
   "go.toolsManagement.autoUpdate": true,
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
@@ -237,8 +239,9 @@
   "prettier.requireConfig": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "workbench.colorTheme": "Nightfox",
+  "workbench.colorTheme": "Tokyo Night Storm",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "window.zoomLevel": -1
 }

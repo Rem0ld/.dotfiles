@@ -2,8 +2,8 @@ return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	dependencies = {
-		-- { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-		-- { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+		{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+		{ "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
 		"mason.nvim",
 		"jose-elias-alvarez/typescript.nvim",
 		"folke/neodev.nvim",
@@ -41,17 +41,6 @@ return {
 		-- add to your shared on_attach callback
 		local on_attach = function(client, bufnr)
 			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-			-- if client.supports_method("textDocument/formatting") then
-			-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			-- 	vim.api.nvim_create_autocmd("BufWritePre", {
-			-- 		group = augroup,
-			-- 		buffer = bufnr,
-			-- 		callback = function()
-			-- 			lsp_formatting(bufnr)
-			-- 		end,
-			-- 	})
-			-- end
 
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { table.unpack(bufopts), desc = "Go to Declaration" })
@@ -97,6 +86,24 @@ return {
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { table.unpack(bufopts), desc = "Next Diagnostic" })
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { table.unpack(bufopts), desc = "Previous Diagnostic" })
 
+			if client.name == "tsserver" then
+				local ns = vim.lsp.diagnostic.get_namespace(client.id)
+				vim.diagnostic.disable(nil, ns)
+
+				vim.keymap.set(
+					"n",
+					"<leader>lR",
+					"<cmd>TSLspRenameFile<cr>",
+					{ table.unpack(bufopts), desc = "Rename file" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>lA",
+					"<cmd>TSLspImportAll<cr>",
+					{ table.unpack(bufopts), desc = "Import all" }
+				)
+			end
+
 			if client.name ~= "null-ls" then
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
@@ -111,7 +118,6 @@ return {
 						lsp_formatting(bufnr)
 					end,
 				})
-				-- vim.cmd("autcmd BufWritePre <buffer> lua vim.lsp.buf.format({timeout_ms = 4000})")
 			end
 		end
 
