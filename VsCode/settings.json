@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "\"Fira code\", Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "\"FiraCode Nerd Font\"",
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "vscode-icons",
@@ -30,7 +30,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": ["javascript"],
+  "eslint.validate": ["javascript", "typescript"],
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -49,6 +49,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
   "vim.surround": true,
   "vim.commentary": true,
   "vim.replaceWithRegister": true,
@@ -235,7 +236,6 @@
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
-  "tabnine.experimentalAutoImports": true,
   "prettier.requireConfig": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
@@ -243,5 +243,10 @@
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
   },
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
 }
