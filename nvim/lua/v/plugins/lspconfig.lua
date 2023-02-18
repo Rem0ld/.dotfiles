@@ -147,20 +147,5 @@ return {
 		vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn", numhl = "" })
 		vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint", numhl = "" })
 		vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo", numhl = "" })
-
-		-- vim.diagnostic.config({
-		-- 	virtual_text = {
-		-- 		source = "always",
-		-- 		prefix = "▎",
-		-- 		spacing = 6,
-		-- 	},
-		-- 	float = {
-		-- 		source = "always",
-		-- 	},
-		-- 	signs = true,
-		-- 	underline = true,
-		-- 	update_in_insert = false,
-		-- 	severity_sort = true,
-		-- })
 	end,
 }

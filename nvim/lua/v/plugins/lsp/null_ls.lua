@@ -20,7 +20,7 @@ end
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-local code_actions = null_ls.builtins.code_actions
+-- local code_actions = null_ls.builtins.code_actions
 
 local _ = {}
 
@@ -30,13 +30,10 @@ _.setup = function(on_attach)
 		sources = {
 			diagnostics.hadolint,
 			diagnostics.markdownlint,
-			-- diagnostics.shellcheck,
-			-- diagnostics.eslint_d.with({
-			-- 	condition = include_root_file({
-			-- 		".eslintrc.json",
-			-- 	}),
-			-- }),
 
+			formatting.prettierd.with({
+				condition = include_root_file({ ".eslintrc.json" }),
+			}),
 			formatting.eslint_d.with({
 				condition = include_root_file({ ".eslintrc.json" }),
 			}),
@@ -45,9 +42,6 @@ _.setup = function(on_attach)
 				filetypes = { "sh", "bash", "zsh" },
 			}),
 			formatting.rustfmt,
-
-			-- code_actions.shellcheck,
-			-- code_actions.eslint_d,
 		},
 		on_attach = on_attach,
 	})
