@@ -106,16 +106,20 @@
       "commands": ["workbench.action.closeActiveEditor"]
     },
     {
-      "before": ["d", "]"],
+      "before": ["]", "d"],
       "commands": ["editor.action.marker.next"]
     },
     {
-      "before": ["d", "["],
+      "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"]
     },
     {
       "before": ["g", "l"],
       "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"]
     },
     {
       "before": ["<leader>", "m"],

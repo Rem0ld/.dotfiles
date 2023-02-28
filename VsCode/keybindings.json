@@ -109,5 +109,5 @@
     "key": "k",
     "when": "neovim.mode == insert && editorTextFocus",
     "args": "k"
-  }  
+  }
 ]
