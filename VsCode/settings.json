@@ -30,7 +30,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": [
+  "javascript", "typescript"],
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -253,4 +254,6 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
+  "errorLens.enabled": true,
+  "turboConsoleLog.quote": "'",
 }

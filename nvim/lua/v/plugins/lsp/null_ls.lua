@@ -42,6 +42,7 @@ _.setup = function(on_attach)
 				filetypes = { "sh", "bash", "zsh" },
 			}),
 			formatting.rustfmt,
+			formatting.jq,
 		},
 		on_attach = on_attach,
 	})
