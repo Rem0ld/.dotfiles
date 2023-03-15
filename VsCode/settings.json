@@ -256,4 +256,10 @@
   },
   "errorLens.enabled": true,
   "turboConsoleLog.quote": "'",
+  "github.copilot.enable": {
+    "*": false,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  },
 }
