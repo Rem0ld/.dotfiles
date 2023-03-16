@@ -96,6 +96,7 @@ return {
 				enable = true,
 				enable_autocmd = false,
 			},
+      use_languagetree = true,
 		})
 	end,
 }

@@ -34,7 +34,7 @@ _.setup = function(on_attach)
 			formatting.prettierd.with({
 				condition = include_root_file({ ".eslintrc.json" }),
 			}),
-			formatting.eslint_d.with({
+			formatting.eslint.with({
 				condition = include_root_file({ ".eslintrc.json" }),
 			}),
 			formatting.stylua,
