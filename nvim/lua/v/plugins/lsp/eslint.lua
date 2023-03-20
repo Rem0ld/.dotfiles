@@ -9,7 +9,7 @@ _.setup = function(on_attach, capabilities)
 		capabilities = capabilities,
 		settings = {
 			format = {
-				enable = false,
+				enable = true,
 			},
 		},
 		handlers = {

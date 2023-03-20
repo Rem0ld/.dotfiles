@@ -248,7 +248,6 @@
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
   },
-  "window.zoomLevel": -1,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
@@ -262,4 +261,5 @@
     "plaintext": false,
     "markdown": false
   },
+  "window.zoomLevel": -1,
 }

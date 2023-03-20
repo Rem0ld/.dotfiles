@@ -31,11 +31,11 @@ _.setup = function(on_attach)
 			diagnostics.hadolint,
 			diagnostics.markdownlint,
 
-			formatting.prettierd.with({
-				condition = include_root_file({ ".eslintrc.json" }),
+			formatting.prettier.with({
+				condition = include_root_file({ ".eslintrc.json", ".eslintrc.js", ".eslintrc" }),
 			}),
 			formatting.eslint.with({
-				condition = include_root_file({ ".eslintrc.json" }),
+				condition = include_root_file({ ".eslintrc.json", ".eslintrc.js", ".eslintrc" }),
 			}),
 			formatting.stylua,
 			formatting.shfmt.with({
