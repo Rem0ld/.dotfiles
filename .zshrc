@@ -126,7 +126,7 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-	~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
+	# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
 
 	# quick way to go in current personal project
 	alias quick='cd ~/workspace/quickFlix'
