@@ -36,6 +36,7 @@ _.setup = function(on_attach)
 			}),
 			formatting.eslint.with({
 				condition = include_root_file({ ".eslintrc.json", ".eslintrc.js", ".eslintrc" }),
+				diagnostics_format = "[eslint] #{m}\n(#{c})",
 			}),
 			formatting.stylua,
 			formatting.shfmt.with({
