@@ -1,40 +1,42 @@
-local field_arrangement = {
-  atom = { "kind", "abbr", "menu" },
-  atom_colored = { "kind", "abbr", "menu" },
-}
-
-local formatting_style = {
-  -- default fields order i.e completion word + item.kind + item.kind icons
-  fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
-
-  format = function(_, item)
-    local icons = require("nvchad_ui.icons").lspkind
-    local icon = (cmp_ui.icons and icons[item.kind]) or ""
-
-    if cmp_style == "atom" or cmp_style == "atom_colored" then
-      icon = " " .. icon .. " "
-      item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-      item.kind = icon
-    else
-      icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
-      item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
-    end
-
-    return item
-  end,
+local kinds = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "ﰕ",
+	Field = "ﰠ",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "塞",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "פּ",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
 }
 
 local function border(hl_name)
-  return {
-    { "╭", hl_name },
-    { "─", hl_name },
-    { "╮", hl_name },
-    { "│", hl_name },
-    { "╯", hl_name },
-    { "─", hl_name },
-    { "╰", hl_name },
-    { "│", hl_name },
-  }
+	return {
+		{ "╭", hl_name },
+		{ "─", hl_name },
+		{ "╮", hl_name },
+		{ "│", hl_name },
+		{ "╯", hl_name },
+		{ "─", hl_name },
+		{ "╰", hl_name },
+		{ "│", hl_name },
+	}
 end
 
 return {
@@ -48,54 +50,17 @@ return {
 
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
-
+		"onsails/lspkind.nvim",
 		-- "rafamadriz/friendly-snippets",
 		-- "kitagry/vs-snippets",
 		-- "burkeholland/simple-react-snippets",
 	},
 	config = function()
 		local cmp = require("cmp")
+		local lspkind = require("lspkind")
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-		local has_words_before = function()
-			unpack = unpack or table.unpack
-			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-		end
-
-		local feedkey = function(key, mode)
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-		end
-
-		local kinds = {
-			Text = "",
-			Method = "",
-			Function = "",
-			Constructor = "ﰕ",
-			Field = "ﰠ",
-			Variable = "",
-			Class = "ﴯ",
-			Interface = "",
-			Module = "",
-			Property = "",
-			Unit = "塞",
-			Value = "",
-			Enum = "",
-			Keyword = "",
-			Snippet = "",
-			Color = "",
-			File = "",
-			Reference = "",
-			Folder = "",
-			EnumMember = "",
-			Constant = "",
-			Struct = "פּ",
-			Event = "",
-			Operator = "",
-			TypeParameter = "",
-		}
 
 		cmp.setup({
 			enabled = function()
@@ -106,39 +71,30 @@ return {
 				local context = require("cmp.config.context")
 				return not (context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
 			end,
-			experimental = {
-				ghost_text = true,
-			},
-			confirmation = {
-				get_commit_characters = function()
-					return {}
-				end,
-			},
-			view = {
-				entries = "custom",
-			},
-			completion = {
-				completeopt = "longest,menuone",
-				keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-				keyword_length = 1,
-			},
 			window = {
 				completion = {
 					winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
 					col_offset = -3,
 					side_padding = 0,
 				},
-        documentation = {
-          border = border "CmpDocBorder",
-          winhighlight = "Normal:CmpDoc"
-        }
+				documentation = {
+					border = border("CmpDocBorder"),
+					winhighlight = "Normal:CmpDoc",
+				},
 			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
-				format = function(_, vim_item)
-					vim_item.menu = vim_item.kind
-					vim_item.kind = " " .. kinds[vim_item.kind] .. " "
-
+				format = function(entry, vim_item)
+					-- Kind icons
+					vim_item.kind = string.format("%s %s", kinds[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+					-- Source
+					vim_item.menu = ({
+						buffer = "[Buffer]",
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						nvim_lua = "[Lua]",
+						latex_symbols = "[LaTeX]",
+					})[entry.source.name]
 					return vim_item
 				end,
 			},
@@ -156,10 +112,6 @@ return {
 				["<C-j>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif vim.fn["vsnip#available"](1) == 1 then
-						feedkey("<Plug>(vsnip-expand-or-jump)", "")
-					elseif has_words_before() then
-						cmp.complete()
 					else
 						fallback()
 					end
@@ -167,17 +119,11 @@ return {
 				["<C-k>"] = cmp.mapping(function()
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-						feedkey("<Plug>(vsnip-jump-prev)", "")
 					end
 				end, { "i", "s" }),
 				["<Down>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif vim.fn["vsnip#available"](1) == 1 then
-						feedkey("<Plug>(vsnip-expand-or-jump)", "")
-					elseif has_words_before() then
-						cmp.complete()
 					else
 						fallback()
 					end
@@ -185,8 +131,6 @@ return {
 				["<Up>"] = cmp.mapping(function()
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-						feedkey("<Plug>(vsnip-jump-prev)", "")
 					end
 				end, { "i", "s" }),
 			},
@@ -197,7 +141,6 @@ return {
 				{ name = "buffer", keyword_length = 2 },
 				{ name = "vsnip" },
 			},
-			preselect = cmp.PreselectMode.None,
 		})
 	end,
 }
