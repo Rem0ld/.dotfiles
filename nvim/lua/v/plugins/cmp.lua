@@ -1,4 +1,4 @@
-local kinds = {
+local kind_icons = {
 	Text = "",
 	Method = "",
 	Function = "",
@@ -57,7 +57,6 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
-		local lspkind = require("lspkind")
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -85,17 +84,12 @@ return {
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
-					-- Kind icons
-					vim_item.kind = string.format("%s %s", kinds[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-					-- Source
-					vim_item.menu = ({
-						buffer = "[Buffer]",
-						nvim_lsp = "[LSP]",
-						luasnip = "[LuaSnip]",
-						nvim_lua = "[Lua]",
-						latex_symbols = "[LaTeX]",
-					})[entry.source.name]
-					return vim_item
+					local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+					kind.kind = " " .. (strings[1] or "") .. " "
+					kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+					return kind
 				end,
 			},
 			snippet = {
@@ -135,10 +129,10 @@ return {
 				end, { "i", "s" }),
 			},
 			sources = {
-				{ name = "nvim_lsp", keyword_length = 2 },
-				{ name = "nvim_lua", keyword_length = 2 },
+				{ name = "nvim_lsp" },
+				{ name = "nvim_lua" },
 				{ name = "path" },
-				{ name = "buffer", keyword_length = 2 },
+				{ name = "buffer" },
 				{ name = "vsnip" },
 			},
 		})
