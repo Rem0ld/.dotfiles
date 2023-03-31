@@ -136,10 +136,10 @@ return {
             },
             sources = {
                 { name = "nvim_lsp" },
-                -- { name = "nvim_lua" },
+                { name = "nvim_lua" },
                 { name = "path" },
-                { name = "buffer" },
-                -- { name = "vsnip" },
+                { name = "buffer", },
+                { name = "vsnip" },
             },
         })
     end,
