@@ -3,29 +3,29 @@ return {
     branch = "v1.x",
     dependencies = {
         -- LSP Support
-        { "neovim/nvim-lspconfig" }, -- Required
-        { "williamboman/mason.nvim" }, -- Optional
+        { "neovim/nvim-lspconfig" },             -- Required
+        { "williamboman/mason.nvim" },           -- Optional
         { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
         -- Autocompletion
-        { "hrsh7th/nvim-cmp" }, -- Required
-        { "hrsh7th/cmp-nvim-lsp" }, -- Required
-        { "hrsh7th/cmp-buffer" }, -- Optional
-        { "hrsh7th/cmp-path" }, -- Optional
+        { "hrsh7th/nvim-cmp" },         -- Required
+        { "hrsh7th/cmp-nvim-lsp" },     -- Required
+        { "hrsh7th/cmp-buffer" },       -- Optional
+        { "hrsh7th/cmp-path" },         -- Optional
         { "saadparwaiz1/cmp_luasnip" }, -- Optional
-        { "hrsh7th/cmp-nvim-lua" }, -- Optional
+        { "hrsh7th/cmp-nvim-lua" },     -- Optional
 
         -- Snippets
-        { "L3MON4D3/LuaSnip" }, -- Required
+        { "L3MON4D3/LuaSnip" },             -- Required
         { "rafamadriz/friendly-snippets" }, -- Optional
     },
     config = function()
         local lsp_formatting = function(bufnr)
             vim.lsp.buf.format({
-                -- filter = function(client)
-                -- 	-- apply whatever logic you want (in this example, we'll only use null-ls)
-                -- 	return client.name == "null-ls"
-                -- end,
+                filter = function(client)
+                    -- apply whatever logic you want (in this example, we'll only use null-ls)
+                    return client.name == "null-ls"
+                end,
                 bufnr = bufnr,
             })
         end
@@ -60,7 +60,6 @@ return {
             bind("n", "<leader>lr", vim.lsp.buf.rename, table.insert(opts, { desc = "Rename" }))
 
             if client.server_capabilities.documentRangeFormattingProvider then
-
                 vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
                 vim.api.nvim_create_autocmd("BufWritePre", {
                     group = augroup,
