@@ -1,7 +1,7 @@
 local _ = {}
 
 _.setup = function(on_attach, capabilities)
-	require("typescript").setup({
+	require("lspconfig").tsserver.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 		init_options = {
