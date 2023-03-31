@@ -22,11 +22,13 @@ return {
     config = function()
         local lsp_formatting = function(bufnr)
             vim.lsp.buf.format({
-                filter = function(client)
-                    -- apply whatever logic you want (in this example, we'll only use null-ls)
-                    return client.name == "null-ls"
-                end,
+                -- filter = function(client)
+                --     -- apply whatever logic you want (in this example, we'll only use null-ls)
+                --     return client.name == "null-ls"
+                -- end,
+                async = false,
                 bufnr = bufnr,
+                timeout_ms = 10000,
             })
         end
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -37,10 +39,10 @@ return {
             "bashls",
             "cssls",
             "dockerls",
+            "eslint-lsp",
             "html",
             "jsonls",
             "rust_analyzer",
-            "sumneko_lua",
             "tsserver",
             "yamlls",
         })
@@ -55,9 +57,9 @@ return {
             local opts = { noremap = true, silent = true, buffer = bufnr }
             local bind = vim.keymap.set
 
-            bind("n", "<leader>lc", vim.lsp.buf.code_action, table.insert(opts, { desc = "Code action" }))
-            bind("n", "<leader>lf", "<cmd>LspZeroFormat<cr>", table.insert(opts, { desc = "Format" }))
-            bind("n", "<leader>lr", vim.lsp.buf.rename, table.insert(opts, { desc = "Rename" }))
+            bind("n", "<leader>lc", vim.lsp.buf.code_action, { table.unpack(opts), desc = "Code action" })
+            bind("n", "<leader>lf", "<cmd>LspZeroFormat<cr>", { table.unpack(opts), desc = "Format" })
+            bind("n", "<leader>lr", vim.lsp.buf.rename, { table.unpack(opts), desc = "Rename" })
 
             if client.server_capabilities.documentRangeFormattingProvider then
                 vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -72,6 +74,13 @@ return {
             end
         end)
 
+        lsp_zero.format_on_save({
+            servers = {
+                ['stylua'] = { "lua" },
+                ['eslint-lsp'] = { "javascript", "typescript" },
+                ['rust_analyzer'] = { 'rust' },
+            }
+        })
         lsp_zero.setup()
 
         vim.diagnostic.config({
