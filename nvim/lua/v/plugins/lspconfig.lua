@@ -80,7 +80,8 @@ return {
 				{ table.unpack(bufopts), desc = "Go to references" }
 			)
 			vim.keymap.set("n", "<leader>lf", function()
-				vim.lsp.buf.format({ async = true })
+				lsp_formatting(bufnr)
+				-- vim.lsp.buf.format({ async = true })
 			end, { table.unpack(bufopts), desc = "Format" })
 
 			vim.keymap.set("n", "gl", vim.diagnostic.open_float, { table.unpack(bufopts), desc = "Line diagnostics" })
@@ -88,23 +89,23 @@ return {
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { table.unpack(bufopts), desc = "Next Diagnostic" })
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { table.unpack(bufopts), desc = "Previous Diagnostic" })
 
-			if client.name == "tsserver" then
-				local ns = vim.lsp.diagnostic.get_namespace(client.id)
-				vim.diagnostic.disable(nil, ns)
-
-				vim.keymap.set(
-					"n",
-					"<leader>lR",
-					"<cmd>TSLspRenameFile<cr>",
-					{ table.unpack(bufopts), desc = "Rename file" }
-				)
-				vim.keymap.set(
-					"n",
-					"<leader>lA",
-					"<cmd>TSLspImportAll<cr>",
-					{ table.unpack(bufopts), desc = "Import all" }
-				)
-			end
+			-- if client.name == "tsserver" then
+			-- 	local ns = vim.lsp.diagnostic.get_namespace(client.id)
+			-- 	vim.diagnostic.disable(nil, ns)
+			--
+			-- 	vim.keymap.set(
+			-- 		"n",
+			-- 		"<leader>lR",
+			-- 		"<cmd>TSLspRenameFile<cr>",
+			-- 		{ table.unpack(bufopts), desc = "Rename file" }
+			-- 	)
+			-- 	vim.keymap.set(
+			-- 		"n",
+			-- 		"<leader>lA",
+			-- 		"<cmd>TSLspImportAll<cr>",
+			-- 		{ table.unpack(bufopts), desc = "Import all" }
+			-- 	)
+			-- end
 
 			if client.server_capabilities.documentRangeFormattingProvider then
 				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
