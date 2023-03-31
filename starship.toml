@@ -10,7 +10,7 @@
 # $shell\
 # $character"""
 format = """
-(bold green)$env_var$character $directory$git_branch$git_status$nodejs$package$cmd_duration
+(bold green)$env_var$character $directory$git_branch$git_commit$git_status$git_state$nodejs$package$cmd_duration
  
 """
 
@@ -34,6 +34,10 @@ truncation_length = 0
 truncate_to_repo = false
 
 [git_branch]
+
+[git_commit]
+
+[git_state]
 
 [nodejs]
 

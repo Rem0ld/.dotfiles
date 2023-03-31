@@ -3,20 +3,20 @@ return {
     branch = "v1.x",
     dependencies = {
         -- LSP Support
-        { "neovim/nvim-lspconfig" },             -- Required
-        { "williamboman/mason.nvim" },           -- Optional
+        { "neovim/nvim-lspconfig" },         -- Required
+        { "williamboman/mason.nvim" },       -- Optional
         { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
         -- Autocompletion
-        { "hrsh7th/nvim-cmp" },         -- Required
-        { "hrsh7th/cmp-nvim-lsp" },     -- Required
-        { "hrsh7th/cmp-buffer" },       -- Optional
-        { "hrsh7th/cmp-path" },         -- Optional
+        { "hrsh7th/nvim-cmp" },     -- Required
+        { "hrsh7th/cmp-nvim-lsp" }, -- Required
+        { "hrsh7th/cmp-buffer" },   -- Optional
+        { "hrsh7th/cmp-path" },     -- Optional
         { "saadparwaiz1/cmp_luasnip" }, -- Optional
-        { "hrsh7th/cmp-nvim-lua" },     -- Optional
+        { "hrsh7th/cmp-nvim-lua" }, -- Optional
 
         -- Snippets
-        { "L3MON4D3/LuaSnip" },             -- Required
+        { "L3MON4D3/LuaSnip" },         -- Required
         { "rafamadriz/friendly-snippets" }, -- Optional
     },
     config = function()
@@ -49,7 +49,7 @@ return {
         lsp_zero.nvim_workspace()
 
         lsp_zero.set_preferences({
-            set_lsp_keymaps = { omit = { "<F2>", "<F4>" } }
+            set_lsp_keymaps = { omit = { "<F2>", "<F4>" } },
         })
 
         lsp_zero.on_attach(function(client, bufnr)
@@ -57,9 +57,48 @@ return {
             local opts = { noremap = true, silent = true, buffer = bufnr }
             local bind = vim.keymap.set
 
-            bind("n", "<leader>lc", vim.lsp.buf.code_action, { table.unpack(opts), desc = "Code action" })
-            bind("n", "<leader>lf", "<cmd>LspZeroFormat<cr>", { table.unpack(opts), desc = "Format" })
-            bind("n", "<leader>lr", vim.lsp.buf.rename, { table.unpack(opts), desc = "Rename" })
+            bind(
+                "n",
+                "<leader>lc",
+                vim.lsp.buf.code_action,
+                { table.unpack(opts), desc = "Code action" }
+            )
+            bind(
+                "n",
+                "<leader>lf",
+                "<cmd>LspZeroFormat<cr>",
+                { table.unpack(opts), desc = "Format" }
+            )
+            bind(
+                "n",
+                "<leader>lr",
+                vim.lsp.buf.rename,
+                { table.unpack(opts), desc = "Rename" }
+            )
+            bind(
+                "n",
+                "gl",
+                vim.diagnostic.open_float,
+                { table.unpack(opts), desc = "Line diagnostics" }
+            )
+            bind(
+                "n",
+                "<leader>li",
+                "<cmd>LspInfo<cr>",
+                { table.unpack(opts), desc = "Lsp Info" }
+            )
+            bind(
+                "n",
+                "]d",
+                vim.diagnostic.goto_next,
+                { table.unpack(opts), desc = "Next Diagnostic" }
+            )
+            bind(
+                "n",
+                "[d",
+                vim.diagnostic.goto_prev,
+                { table.unpack(opts), desc = "Previous Diagnostic" }
+            )
 
             if client.server_capabilities.documentRangeFormattingProvider then
                 vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -76,10 +115,10 @@ return {
 
         lsp_zero.format_on_save({
             servers = {
-                ['stylua'] = { "lua" },
-                ['eslint-lsp'] = { "javascript", "typescript" },
-                ['rust_analyzer'] = { 'rust' },
-            }
+                ["stylua"] = { "lua" },
+                ["eslint-lsp"] = { "javascript", "typescript" },
+                ["rust_analyzer"] = { "rust" },
+            },
         })
         lsp_zero.setup()
 

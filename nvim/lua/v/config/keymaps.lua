@@ -17,7 +17,7 @@ map("n", "\\", "<cmd>split<cr>")
 map("n", "<leader>h", "<cmd>nohl<cr>")
 
 -- Change mapping record macro
-map("n", "m", "q")
+-- map("n", "m", "q")
 map("n", "q", "<nop>")
 
 -- Move lines

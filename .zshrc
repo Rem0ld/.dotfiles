@@ -1,4 +1,3 @@
-
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -64,7 +63,7 @@ export UPDATE_ZSH_DAYS=15
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 if [[ $OSTYPE == *"linux"* ]]; then
-ZSH_CUSTOM=/usr/share/zsh
+	ZSH_CUSTOM=/usr/share/zsh
 fi
 
 # Which plugins would you like to load?
@@ -84,11 +83,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='nvim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+	export EDITOR='nvim'
+else
+	export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -106,64 +105,75 @@ export PATH="/usr/local/sbin:$PATH"
 # MacOs specifics
 # ==============
 if [[ $OSTYPE == *"darwin"* ]]; then
-#alias docker='sudo /usr/local/bin/docker'
-alias docker-compose='/usr/local/bin/docker-compose'
-alias python=/opt/homebrew/opt/python@3.8/bin/python3
+	# alias docker-compose='/usr/local/bin/docker-compose'
+	alias python=/opt/homebrew/opt/python@3.8/bin/python3
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm
+	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]
 
-# alias pip=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin/pip
-export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+	# alias pip=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin/pip
+	export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
 
-#determines search program for fzf
-if type ag &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+	#determines search program for fzf
+	if type ag &>/dev/null; then
+		export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+	fi
+	#refer rg over ag
+	if type rg &>/dev/null; then
+		export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore'
+	fi
+
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+	# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
+
+	# quick way to go in current personal project
+	alias quick='cd ~/workspace/quickFlix'
 fi
-#refer rg over ag
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore' 
-fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
-
-# quick way to go in current personal project
-alias quick='cd ~/workspace/quickFlix'
-fi
-
+# == VIM ==
 alias vim='nvim'
 alias dot='cd ~/.dotfiles'
-alias pnr='pnpm nx run'
 alias dlvimbak="rm -rf ~/.config/nvim_bak && rm -rf ~/.local/share/nvim_bak && rm -rf ~/.local/state/nvim_bak && rm -rf ~/.cache/nvim_bak"
 alias dlvim="rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim"
 alias mvvim="mv ~/.config/nvim ~/.config/nvim_bak && mv ~/.local/share/nvim ~/.local/share/nvim_bak && mv ~/.local/state/nvim ~/.local/state/nvim_bak && mv ~/.cache/nvim ~/.cache/nvim_bak"
 alias mvvimbak="mv ~/.config/nvim_bak ~/.config/nvim && mv ~/.local/share/nvim_bak ~/.local/share/nvim && mv ~/.local/state/nvim_bak ~/.local/state/nvim && mv ~/.cache/nvim_bak ~/.cache/nvim"
 alias resetvim="dlvim && mvvimbak"
+
+# == Kitty DIFF ==
+alias d="kitty +kitten diff"
+
+# == REVOLUGO START ==
+
+alias pnr='pnpm nx run'
 alias revo="cd ~/workspace/revolugo-repos"
+alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency=0 --cache-artifacts=true --cleanup=true --no-prune=true --digest-source=tag --status-check=false "
+alias pnba="pnpm nx run-many --targets=build"
+alias pnbsa="pnpm nx run-many --targets=storybook-build"
+
+# == REVOLUGO END ==
 
 # load starship - prompt command line manager
 eval "$(starship init zsh)"
 
 autoload -U add-zsh-hook
 load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+	local node_version="$(nvm version)"
+	local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+	if [ -n "$nvmrc_path" ]; then
+		local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
+		if [ "$nvmrc_node_version" = "N/A" ]; then
+			nvm install
+		elif [ "$nvmrc_node_version" != "$node_version" ]; then
+			nvm use
+		fi
+	elif [ "$node_version" != "$(nvm version default)" ]; then
+		echo "Reverting to nvm default version"
+		nvm use default
+	fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc

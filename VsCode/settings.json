@@ -1,9 +1,8 @@
 {
-  "editor.fontFamily": "\"Fira code\", Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "\"FiraCode Nerd Font\"",
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "vscode-icons",
-  "editor.renderControlCharacters": false,
   "editor.renderWhitespace": "all",
   "vsicons.dontShowNewVersionMessage": true,
   "[elixir]": {
@@ -31,7 +30,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": ["javascript"],
+  "eslint.validate": [
+  "javascript", "typescript"],
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -50,6 +50,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
   "vim.surround": true,
   "vim.commentary": true,
   "vim.replaceWithRegister": true,
@@ -106,12 +107,20 @@
       "commands": ["workbench.action.closeActiveEditor"]
     },
     {
-      "before": ["d", "]"],
+      "before": ["]", "d"],
       "commands": ["editor.action.marker.next"]
     },
     {
-      "before": ["d", "["],
+      "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["g", "l"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"]
     },
     {
       "before": ["<leader>", "m"],
@@ -228,14 +237,29 @@
     "javascript": "javascript",
     "css": "css"
   },
-  "window.zoomLevel": -1,
   "go.toolsManagement.autoUpdate": true,
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
-  "tabnine.experimentalAutoImports": true,
   "prettier.requireConfig": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "workbench.colorTheme": "Nightfox"
+  "workbench.colorTheme": "Tokyo Night Storm",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "errorLens.enabled": true,
+  "turboConsoleLog.quote": "'",
+  "github.copilot.enable": {
+    "*": false,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  },
+  "window.zoomLevel": -1,
 }
