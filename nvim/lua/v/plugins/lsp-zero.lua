@@ -6,6 +6,7 @@ return {
         { "neovim/nvim-lspconfig" },             -- Required
         { "williamboman/mason.nvim" },           -- Optional
         { "williamboman/mason-lspconfig.nvim" }, -- Optional
+        { "jose-elias-alvarez/null-ls.nvim" },
 
         -- Autocompletion
         { "hrsh7th/nvim-cmp" },         -- Required
@@ -35,7 +36,7 @@ return {
             "bashls",
             "cssls",
             "dockerls",
-            "eslint-lsp",
+            "eslint",
             "html",
             "jsonls",
             "rust_analyzer",
@@ -64,6 +65,12 @@ return {
                 "<leader>lf",
                 "<cmd>LspZeroFormat<cr>",
                 { table.unpack(opts), desc = "Format" }
+            )
+            bind(
+                "n",
+                "<leader>lef",
+                "<cmd>EslintFixAll<cr>",
+                { table.unpack(opts), desc = "Eslint fix all" }
             )
             bind(
                 "n",
@@ -111,11 +118,24 @@ return {
         lsp_zero.format_on_save({
             servers = {
                 ["stylua"] = { "lua" },
-                ["eslint-lsp"] = { "javascript", "typescript" },
+                ["eslint"] = { "javascript", "typescript" },
                 ["rust_analyzer"] = { "rust" },
             },
         })
         lsp_zero.setup()
+
+        local _, null_ls = pcall(require, "null-ls")
+        local null_opts = lsp_zero.build_options("null_ls", {})
+
+        null_ls.setup({
+            on_attach = function(client, bufnr)
+                null_opts.on_attach(client, bufnr)
+            end,
+            sources = {
+                null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.stylua,
+            }
+        })
 
         vim.diagnostic.config({
             virtual_text = true,
