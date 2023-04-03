@@ -126,6 +126,15 @@ return {
         ["rust_analyzer"] = { "rust" },
       },
     })
+
+    -- require("lspconfig").tailwindcss.setup({
+    --   -- cmd = { "tailwindcss-language-server --stdio" },
+    --   -- filetypes = { "javascript", "typescript" },
+    --   root_dir = require("lspconfig.util").root_pattern({
+    --     "tailwind.config.js",
+    --   }),
+    -- })
+
     lsp_zero.setup()
 
     local _, null_ls = pcall(require, "null-ls")
