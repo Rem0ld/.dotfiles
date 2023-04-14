@@ -64,6 +64,8 @@ export UPDATE_ZSH_DAYS=15
 
 if [[ $OSTYPE == *"linux"* ]]; then
 	ZSH_CUSTOM=/usr/share/zsh
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 fi
 
 # Which plugins would you like to load?
@@ -128,6 +130,9 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
 	# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
 
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
 	# quick way to go in current personal project
 	alias quick='cd ~/workspace/quickFlix'
 fi
@@ -184,5 +189,4 @@ if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
