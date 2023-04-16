@@ -262,4 +262,5 @@
     "markdown": false
   },
   "window.zoomLevel": -1,
+  "volar.inlayHints.eventArgumentInInlineHandlers": false
 }
