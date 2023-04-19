@@ -66,6 +66,7 @@ if [[ $OSTYPE == *"linux"* ]]; then
 	ZSH_CUSTOM=/usr/share/zsh
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 # Which plugins would you like to load?
@@ -189,4 +190,4 @@ if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export HOMEBREW_GITHUB_API_TOKEN=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
