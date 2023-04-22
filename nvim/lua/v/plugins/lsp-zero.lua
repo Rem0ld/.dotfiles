@@ -96,7 +96,7 @@ return {
       )
       bind(
         "n",
-        "<leader>lef",
+        "<leader>ler",
         "<cmd>LspRestart eslint<cr>",
         { table.unpack(opts), desc = "Lsp Restart Eslint" }
       )
