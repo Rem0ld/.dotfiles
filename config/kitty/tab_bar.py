@@ -240,11 +240,11 @@ def draw_tab(
         draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
     )
     if is_last:
-        draw_right_status(draw_data, screen)
+        draw_right_status(draw_data, screen, index)
     return screen.cursor.x
 
 
-def draw_right_status(draw_data: DrawData, screen: Screen) -> None:
+def draw_right_status(draw_data: DrawData, screen: Screen, index: int) -> None:
     # The tabs may have left some formats enabled. Disable them now.
     draw_attributed_string(Formatter.reset, screen)
     cells = create_cells()
@@ -252,7 +252,8 @@ def draw_right_status(draw_data: DrawData, screen: Screen) -> None:
     while True:
         if not cells:
             return
-        padding = screen.columns - screen.cursor.x - sum(len(c) + 3 for c in cells)
+        padding = screen.columns - screen.cursor.x - \
+            sum(len(c) + 3 for c in cells)
         if padding >= 0:
             break
         cells = cells[1:]
@@ -274,7 +275,7 @@ def draw_right_status(draw_data: DrawData, screen: Screen) -> None:
             screen.draw("")
         screen.cursor.fg = tab_fg
         screen.cursor.bg = tab_bg
-        screen.draw(f" {cell} ")
+        screen.draw(f" {index}:{cell} ")
 
 
 def create_cells() -> list[str]:

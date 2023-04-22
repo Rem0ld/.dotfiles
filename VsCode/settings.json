@@ -30,11 +30,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "mdx"
-  ],
+  "eslint.validate": ["javascript", "typescript", "mdx"],
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -60,260 +56,115 @@
   "vim.history": 500,
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     },
     {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     },
     {
-      "before": [
-        "k",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["k", "k"],
+      "after": ["<Esc>"]
     },
     {
-      "before": [
-        "k",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
     }
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        ","
-      ],
-      "after": [
-        ",",
-        "<c-g>",
-        "u"
-      ]
+      "before": [","],
+      "after": [",", "<c-g>", "u"]
     },
     {
-      "before": [
-        "."
-      ],
-      "after": [
-        ".",
-        "<c-g>",
-        "u"
-      ]
+      "before": ["."],
+      "after": [".", "<c-g>", "u"]
     },
     {
-      "before": [
-        "!"
-      ],
-      "after": [
-        "!",
-        "<c-g>",
-        "u"
-      ]
+      "before": ["!"],
+      "after": ["!", "<c-g>", "u"]
     },
     {
-      "before": [
-        "?"
-      ],
-      "after": [
-        "?",
-        "<c-g>",
-        "u"
-      ]
+      "before": ["?"],
+      "after": ["?", "<c-g>", "u"]
     }
   ],
   "vim.leader": "<space>",
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "<leader>",
-        "f",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ]
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": [
-        "<leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ]
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
     },
     {
-      "before": [
-        "<leader>",
-        "c"
-      ],
-      "commands": [
-        "workbench.action.closeActiveEditor"
-      ]
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.closeActiveEditor"]
     },
     {
-      "before": [
-        "]",
-        "d"
-      ],
-      "commands": [
-        "editor.action.marker.next"
-      ]
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
     },
     {
-      "before": [
-        "[",
-        "d"
-      ],
-      "commands": [
-        "editor.action.marker.prev"
-      ]
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
     },
     {
-      "before": [
-        "g",
-        "l"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
+      "before": ["g", "l"],
+      "commands": ["editor.action.showHover"]
     },
     {
-      "before": [
-        "<leader>",
-        "l",
-        "r"
-      ],
-      "commands": [
-        "editor.action.rename"
-      ]
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"]
     },
     {
-      "before": [
-        "<leader>",
-        "m"
-      ],
-      "commands": [
-        "bookmarks.toggle"
-      ]
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.toggle"]
     },
     {
-      "before": [
-        "<leader>",
-        "b"
-      ],
-      "commands": [
-        "bookmarks.list"
-      ]
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.list"]
     },
     {
-      "before": [
-        "n"
-      ],
-      "after": [
-        "N",
-        "z",
-        "z",
-        "z",
-        "v"
-      ]
+      "before": ["n"],
+      "after": ["N", "z", "z", "z", "v"]
     },
     {
-      "before": [
-        "N"
-      ],
-      "after": [
-        "N",
-        "z",
-        "z",
-        "z",
-        "v"
-      ]
+      "before": ["N"],
+      "after": ["N", "z", "z", "z", "v"]
     },
     {
-      "before": [
-        "J"
-      ],
-      "after": [
-        "m",
-        "z",
-        "J",
-        "`",
-        "z"
-      ]
+      "before": ["J"],
+      "after": ["m", "z", "J", "`", "z"]
     },
     {
-      "before": [
-        "<c-d>"
-      ],
-      "after": [
-        "<c-d>",
-        "z",
-        "z"
-      ]
+      "before": ["<c-d>"],
+      "after": ["<c-d>", "z", "z"]
     },
     {
-      "before": [
-        "<c-u>"
-      ],
-      "after": [
-        "<c-u>",
-        "z",
-        "z"
-      ]
+      "before": ["<c-u>"],
+      "after": ["<c-u>", "z", "z"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "Y"
-      ],
-      "after": [
-        "y",
-        "$"
-      ]
+      "before": ["Y"],
+      "after": ["y", "$"]
     },
     {
-      "before": [
-        "<leader>",
-        "n"
-      ],
-      "commands": [
-        ":bN"
-      ]
+      "before": ["<leader>", "n"],
+      "commands": [":bN"]
     },
     {
-      "before": [
-        "<leader>",
-        "p"
-      ],
-      "commands": [
-        ":bp"
-      ]
+      "before": ["<leader>", "p"],
+      "commands": [":bp"]
     }
   ],
   "vim.statusBarColorControl": true,
-  "vim.statusBarColors.normal": [
-    "#8FBCBB",
-    "#434C5E"
-  ],
+  "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
   "vim.statusBarColors.insert": "#BF616A",
   "vim.statusBarColors.visual": "#B48EAD",
   "vim.statusBarColors.visualline": "#B48EAD",
@@ -330,9 +181,7 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [
-      80
-    ],
+    "editor.rulers": [80],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
@@ -410,6 +259,7 @@
     "plaintext": false,
     "markdown": false
   },
+  "volar.inlayHints.eventArgumentInInlineHandlers": false,
   "window.zoomLevel": -1,
-  "volar.inlayHints.eventArgumentInInlineHandlers": false
+  "vue.features.codeActions.savingTimeLimit": 1500
 }

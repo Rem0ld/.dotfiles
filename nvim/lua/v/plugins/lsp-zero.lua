@@ -96,6 +96,12 @@ return {
       )
       bind(
         "n",
+        "<leader>lef",
+        "<cmd>LspRestart eslint<cr>",
+        { table.unpack(opts), desc = "Lsp Restart Eslint" }
+      )
+      bind(
+        "n",
         "]d",
         vim.diagnostic.goto_next,
         { table.unpack(opts), desc = "Next Diagnostic" }
