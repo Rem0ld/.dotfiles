@@ -5,18 +5,6 @@
   "workbench.iconTheme": "vscode-icons",
   "editor.renderWhitespace": "all",
   "vsicons.dontShowNewVersionMessage": true,
-  "[elixir]": {
-    "editor.formatOnSave": true
-  },
-  "[HTML (Eex)]": {
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2
-  },
-  "files.associations": {
-    ".dmn": "xml",
-    // ".leex": "html"
-    ".leex": "html-eex"
-  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
@@ -26,19 +14,15 @@
   },
   "editor.tabCompletion": "on",
   "editor.quickSuggestionsDelay": 200,
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+  "editor.formatOnSave": false,
   "eslint.validate": ["javascript", "typescript", "mdx"],
+  "eslint.codeActionsOnSave.rules": null,
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.dragAndDrop": false,
-  "editor.inlineHints.enabled": false,
   "editor.hover.delay": 400,
-  "liveServer.settings.donotVerifyTags": true,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -51,7 +35,6 @@
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
   "vim.surround": true,
-  "vim.commentary": true,
   "vim.replaceWithRegister": true,
   "vim.history": 500,
   "vim.insertModeKeyBindings": [
@@ -175,19 +158,8 @@
   "vim.statusBarColors.easymotionmode": "#007ACC",
   "vim.statusBarColors.easymotioninputmode": "#007ACC",
   "vim.statusBarColors.surroundinputmode": "#007ACC",
-  "workbench.startupEditor": "none",
   "window.newWindowDimensions": "maximized",
   "workbench.editor.untitled.hint": "hidden",
-  "[dart]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.rulers": [80],
-    "editor.selectionHighlight": false,
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
-  },
   "editor.bracketPairColorization.enabled": true,
   "editor.tabSize": 2,
   "eslint.run": "onSave",
@@ -215,7 +187,6 @@
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
   "git.inputValidationLength": 180,
-  "npm.keybindingsChangedWarningShown": true,
   "editor.fontSize": 13,
   "editor.lineNumbers": "relative",
   "workbench.colorCustomizations": {
@@ -227,17 +198,14 @@
   },
   "telemetry.telemetryLevel": "off",
   "editor.stickyScroll.enabled": true,
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
-  },
   "tailwindCSS.includeLanguages": {
     "html": "html",
     "javascript": "javascript",
     "css": "css"
   },
-  "go.toolsManagement.autoUpdate": true,
   "[vue]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
   },
   "prettier.requireConfig": true,
   "prettier.semi": false,
@@ -261,5 +229,4 @@
   },
   "volar.inlayHints.eventArgumentInInlineHandlers": false,
   "window.zoomLevel": -1,
-  "vue.features.codeActions.savingTimeLimit": 1500
 }

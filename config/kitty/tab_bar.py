@@ -202,7 +202,7 @@
 
 # ====== different tab bar
 
-import datetime
+from datetime import datetime
 import json
 import subprocess
 from collections import defaultdict
@@ -237,7 +237,8 @@ def draw_tab(
     # if timer_id is None:
     #     timer_id = add_timer(_redraw_tab_bar, 2.0, True)
     draw_tab_with_powerline(
-        draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
+        draw_data, screen, tab, before, max_title_length,
+        index, is_last, extra_data
     )
     if is_last:
         draw_right_status(draw_data, screen, index)
@@ -265,6 +266,7 @@ def draw_right_status(draw_data: DrawData, screen: Screen, index: int) -> None:
     tab_fg = as_rgb(int(draw_data.inactive_fg))
     default_bg = as_rgb(int(draw_data.default_bg))
     for cell in cells:
+        print(cell)
         # Draw the separator
         if cell == cells[0]:
             screen.cursor.fg = tab_bg
@@ -279,7 +281,7 @@ def draw_right_status(draw_data: DrawData, screen: Screen, index: int) -> None:
 
 
 def create_cells() -> list[str]:
-    now = datetime.datetime.now()
+    now = datetime.now()
     return [
         # currently_playing(),
         # get_headphone_battery_status(),
