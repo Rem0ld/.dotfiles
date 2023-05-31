@@ -229,4 +229,5 @@
   },
   "volar.inlayHints.eventArgumentInInlineHandlers": false,
   "window.zoomLevel": -1,
+  "vue.codeActions.savingTimeLimit": 5000,
 }
