@@ -150,6 +150,7 @@ alias d="kitty +kitten diff"
 
 # == REVOLUGO START ==
 alias p='pnpm'
+alias pi='pnpm install'
 alias pnr='pnpm nx run'
 alias revo="cd ~/workspace/revolugo-repos"
 alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency=1 --cache-artifacts=true --cleanup=true --no-prune=true --digest-source=tag --status-check=false "
