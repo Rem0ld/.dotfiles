@@ -1,10 +1,10 @@
 -- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- NORMAL
@@ -54,73 +54,223 @@ map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
 
 -- Reload Treesitter highlighting
 map(
-	"n",
-	"<leader>rt",
-	"<cmd>write | edit | TSBufEnable highlight<cr>",
-	{ desc = "Reload treesitter for current buffer" }
+  "n",
+  "<leader>rt",
+  "<cmd>write | edit | TSBufEnable highlight<cr>",
+  { desc = "Reload treesitter for current buffer" }
 )
 
 -- floating terminal
-map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
+map(
+  "n",
+  "<leader>tf",
+  "<cmd>ToggleTerm direction=float<cr>",
+  { desc = "Floating Terminal (cwd)" }
+)
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- Bufferline & Bufdelete
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "Close current buffer" })
+map(
+  "n",
+  "<S-Tab>",
+  "<cmd>BufferLineCyclePrev<cr>",
+  { desc = "Previous buffer tab" }
+)
+map("n", "<leader>c", "<cmd>:bd<cr>", { desc = "Close current buffer" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
 map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
 -- Telescope
-map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "Find files" })
 map(
-	"n",
-	"<leader>fF",
-	"<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
-	{ desc = "Find all files" }
+  "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files()<cr>",
+  { desc = "Find files" }
 )
-map("n", "<leader>fb", "<cmd>lua require('telescope.builtin').find_buffers()<cr>", { desc = "Find buffers" })
-map("n", "<leader>fm", "<cmd>lua require('telescope.builtin').find_marks()<cr>", { desc = "Find marks" })
-map("n", "<leader>fo", "<cmd>lua require('telescope.builtin').find_oldfiles()<cr>", { desc = "Find old files" })
-map("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", { desc = "Live grep" })
-map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", { desc = "Find references" })
 map(
-	"n",
-	"<leader>fW",
-	"<cmd>lua require('telescope.builtin').live_grep({hidden = true, no_ignore = true})<cr>",
-	{ desc = "Live grep" }
+  "n",
+  "<leader>fF",
+  "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
+  { desc = "Find all files" }
 )
-map("n", "<leader>sb", "<cmd>lua require('telescope.builtin').git_branches()<cr>", { desc = "Git branches" })
-map("n", "<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", { desc = "help tags" })
-map("n", "<leader>sm", "<cmd>lua require('telescope.builtin').man_pages()<cr>", { desc = "man pages" })
-map("n", "<leader>sr", "<cmd>lua require('telescope.builtin').registers()<cr>", { desc = "Registers" })
-map("n", "<leader>sk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", { desc = "Keymaps" })
-map("n", "<leader>sc", "<cmd>lua require('telescope.builtin').commands()<cr>", { desc = "Commands" })
-map("n", "<leader>sn", "<cmd>lua require('telescope').extensions.notify.notify()<cr>", { desc = "Notify" })
-map("n", "<leader>ls", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", { desc = "Aerial" })
-map("n", "<leader>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", { desc = "Diagnostics" })
+map(
+  "n",
+  "<leader>fb",
+  "<cmd>lua require('telescope.builtin').find_buffers()<cr>",
+  { desc = "Find buffers" }
+)
+map(
+  "n",
+  "<leader>fm",
+  "<cmd>lua require('telescope.builtin').find_marks()<cr>",
+  { desc = "Find marks" }
+)
+map(
+  "n",
+  "<leader>fo",
+  "<cmd>lua require('telescope.builtin').find_oldfiles()<cr>",
+  { desc = "Find old files" }
+)
+map(
+  "n",
+  "<leader>fw",
+  "<cmd>lua require('telescope.builtin').live_grep()<cr>",
+  { desc = "Live grep" }
+)
+map(
+  "n",
+  "<leader>fr",
+  "<cmd>lua require('telescope.builtin').lsp_references()<cr>",
+  { desc = "Find references" }
+)
+map(
+  "n",
+  "<leader>fW",
+  "<cmd>lua require('telescope.builtin').live_grep({hidden = true, no_ignore = true})<cr>",
+  { desc = "Live grep" }
+)
+map(
+  "n",
+  "<leader>sb",
+  "<cmd>lua require('telescope.builtin').git_branches()<cr>",
+  { desc = "Git branches" }
+)
+map(
+  "n",
+  "<leader>sh",
+  "<cmd>lua require('telescope.builtin').help_tags()<cr>",
+  { desc = "help tags" }
+)
+map(
+  "n",
+  "<leader>sm",
+  "<cmd>lua require('telescope.builtin').man_pages()<cr>",
+  { desc = "man pages" }
+)
+map(
+  "n",
+  "<leader>sr",
+  "<cmd>lua require('telescope.builtin').registers()<cr>",
+  { desc = "Registers" }
+)
+map(
+  "n",
+  "<leader>sk",
+  "<cmd>lua require('telescope.builtin').keymaps()<cr>",
+  { desc = "Keymaps" }
+)
+map(
+  "n",
+  "<leader>sc",
+  "<cmd>lua require('telescope.builtin').commands()<cr>",
+  { desc = "Commands" }
+)
+map(
+  "n",
+  "<leader>sn",
+  "<cmd>lua require('telescope').extensions.notify.notify()<cr>",
+  { desc = "Notify" }
+)
+map(
+  "n",
+  "<leader>ls",
+  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
+  { desc = "Aerial" }
+)
+map(
+  "n",
+  "<leader>lD",
+  "<cmd>lua require('telescope.builtin').diagnostics()<cr>",
+  { desc = "Diagnostics" }
+)
 
 -- Gitsigns
-map("n", "<leader>gj", "<cmd>lua require('gitsigns').next_hunk()<cr>", { desc = "Next Git hunk" })
-map("n", "<leader>gk", "<cmd>lua require('gitsigns').prev_hunk()<cr>", { desc = "Prev Git hunk" })
-map("n", "<leader>gl", "<cmd>lua require('gitsigns').blame_line()<cr>", { desc = "Blame" })
-map("n", "<leader>gp", "<cmd>lua require('gitsigns').preview_hunk()<cr>", { desc = "Preview hunk" })
-map("n", "<leader>gh", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset hunk" })
-map("n", "<leader>gr", "<cmd>lua require('gitsigns').reset_buffer()<cr>", { desc = "Reset buffer" })
-map("n", "<leader>gs", "<cmd>lua require('gitsigns').stage_hunk()<cr>", { desc = "Stage hunk" })
-map("n", "<leader>gu", "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Undo stage hun" })
-map("n", "<leader>gdd", "<cmd>lua require('gitsigns').diffthis()<cr>", { desc = "Diff this" })
+map(
+  "n",
+  "<leader>gj",
+  "<cmd>lua require('gitsigns').next_hunk()<cr>",
+  { desc = "Next Git hunk" }
+)
+map(
+  "n",
+  "<leader>gk",
+  "<cmd>lua require('gitsigns').prev_hunk()<cr>",
+  { desc = "Prev Git hunk" }
+)
+map(
+  "n",
+  "<leader>gl",
+  "<cmd>lua require('gitsigns').blame_line()<cr>",
+  { desc = "Blame" }
+)
+map(
+  "n",
+  "<leader>gp",
+  "<cmd>lua require('gitsigns').preview_hunk()<cr>",
+  { desc = "Preview hunk" }
+)
+map(
+  "n",
+  "<leader>gh",
+  "<cmd>lua require('gitsigns').reset_hunk()<cr>",
+  { desc = "Reset hunk" }
+)
+map(
+  "n",
+  "<leader>gr",
+  "<cmd>lua require('gitsigns').reset_buffer()<cr>",
+  { desc = "Reset buffer" }
+)
+map(
+  "n",
+  "<leader>gs",
+  "<cmd>lua require('gitsigns').stage_hunk()<cr>",
+  { desc = "Stage hunk" }
+)
+map(
+  "n",
+  "<leader>gu",
+  "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>",
+  { desc = "Undo stage hun" }
+)
+map(
+  "n",
+  "<leader>gdd",
+  "<cmd>lua require('gitsigns').diffthis()<cr>",
+  { desc = "Diff this" }
+)
 -- Gitui
-map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
+map(
+  "n",
+  "<leader>gg",
+  "<cmd>lua global.toggle_term_cmd('gitui')<cr>",
+  { desc = "gitui (cwd)" }
+)
 
 -- Diffview Git
 map("n", "<leader>gdo", "<cmd>DiffviewOpen<cr>", { desc = "Diffview open" })
 map("n", "<leader>gD", "<cmd>DiffviewClose<cr>", { desc = "Diffview close" })
-map("n", "<leader>gde", "<cmd>DiffviewToggleFiles<cr>", { desc = "Diffview toggle files" })
-map("n", "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", { desc = "Diffview branch history" })
-map("n", "<leader>gdc", "<cmd>DiffviewFileHistory %<cr>", { desc = "Diffview file history" })
+map(
+  "n",
+  "<leader>gde",
+  "<cmd>DiffviewToggleFiles<cr>",
+  { desc = "Diffview toggle files" }
+)
+map(
+  "n",
+  "<leader>gdh",
+  "<cmd>DiffviewFileHistory<cr>",
+  { desc = "Diffview branch history" }
+)
+map(
+  "n",
+  "<leader>gdc",
+  "<cmd>DiffviewFileHistory %<cr>",
+  { desc = "Diffview file history" }
+)
 
 -- Lazy menu
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
