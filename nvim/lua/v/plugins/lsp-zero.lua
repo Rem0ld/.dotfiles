@@ -36,11 +36,10 @@ return {
       "bashls",
       "cssls",
       "dockerls",
-      "eslint",
+      "eslint_d",
       "html",
       "jsonls",
       "rust_analyzer",
-      "tsserver",
       "yamlls",
     })
     lsp_zero.nvim_workspace()
@@ -128,18 +127,10 @@ return {
     lsp_zero.format_on_save({
       servers = {
         ["stylua"] = { "lua" },
-        ["eslint-lsp"] = { "javascript", "typescript" },
+        ["eslint_d"] = { "javascript", "typescript" },
         ["rust_analyzer"] = { "rust" },
       },
     })
-
-    -- require("lspconfig").tailwindcss.setup({
-    --   -- cmd = { "tailwindcss-language-server --stdio" },
-    --   -- filetypes = { "javascript", "typescript" },
-    --   root_dir = require("lspconfig.util").root_pattern({
-    --     "tailwind.config.js",
-    --   }),
-    -- })
 
     lsp_zero.setup()
 
@@ -152,6 +143,9 @@ return {
       end,
       sources = {
         null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.eslint_d,
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.formatting.stylua,
       },
     })
