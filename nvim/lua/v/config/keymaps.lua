@@ -1,5 +1,5 @@
 -- Functional wrapper for mapping custom keybindings
-function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -77,7 +77,7 @@ map(
   "<cmd>BufferLineCyclePrev<cr>",
   { desc = "Previous buffer tab" }
 )
-map("n", "<leader>c", "<cmd>:bd<cr>", { desc = "Close current buffer" })
+map("n", "<leader>c", "<cmd>:Bdelete<cr>", { desc = "Close current buffer" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
