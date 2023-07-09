@@ -1,6 +1,5 @@
 return {
   "VonHeikemen/lsp-zero.nvim",
-  branch = "v1.x",
   dependencies = {
     -- LSP Support
     { "neovim/nvim-lspconfig" }, -- Required
@@ -126,7 +125,7 @@ return {
     lsp_zero.format_on_save({
       servers = {
         ["stylua"] = { "lua" },
-        ["eslint"] = { "javascript", "typescript" },
+        -- ["eslint"] = { "javascript", "typescript" },
         ["rust_analyzer"] = { "rust" },
       },
     })
