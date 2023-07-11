@@ -77,7 +77,7 @@ map(
   "<cmd>BufferLineCyclePrev<cr>",
   { desc = "Previous buffer tab" }
 )
-map("n", "<leader>c", "<cmd>:Bdelete<cr>", { desc = "Close current buffer" })
+map("n", "<leader>c",  "<CMD>:lua MiniBufremove.delete()<CR>", { desc = "Close current buffer" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
