@@ -4,27 +4,38 @@ return {
   dependencies = {
     "L3MON4D3/LuaSnip", -- Snippets engine
     "hrsh7th/cmp-nvim-lsp", -- LSP completion
+    "hrsh7th/cmp-buffer", -- LSP completion
+    "hrsh7th/cmp-path", -- LSP completion
     "saadparwaiz1/cmp_luasnip", -- Snippets completion
+    "onsails/lspkind.nvim",
   },
 
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
 
     cmp.setup({
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = "text_symbol",
+        }),
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
       },
       mapping = cmp.mapping.preset.insert({
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<C-j>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expand_or_jumpable() then
@@ -33,7 +44,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        ["<C-k>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
@@ -46,6 +57,8 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
       }),
     })
   end,
