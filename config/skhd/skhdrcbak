@@ -1,3 +1,13 @@
+# prevents skhd from monitoring events for listed processes.
+.blacklist [
+    "terminal"
+    "iterm2"
+    "qutebrowser"
+    "kitty"
+    "google chrome"
+    "brave browser"
+]
+
 # Focus spaces 
 alt - 0x21 : yabai -m space --focus prev # ALT + [
 alt - 0x1E : yabai -m space --focus next # ALT + ]
@@ -53,7 +63,7 @@ shift + alt - 7 : yabai -m window --space 7
 shift + alt - 8 : yabai -m window --space 8
 
 # Apps shortcut
-meta - t : open "/Applications/kitty.app"
+hyper - t : open "/Applications/kitty.app"
 meta - b : open "/Applications/Arc.app"
 meta - f : open "/Applications/firefox.app"
 meta - d : open "/Applications/discord.app"
