@@ -276,7 +276,7 @@ map(
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
 -- Mason
 map("n", "<leader>pmi", "<cmd>Mason<cr>", { desc = "Mason installer" })
-map("n", "<leader>pmu", "<cmd>Mason<cr>", { desc = "Mason update" })
+map("n", "<leader>pmu", "<cmd>MasonUpdate<cr>", { desc = "Mason update" })
 
 -- INSERT
 -- Better escape

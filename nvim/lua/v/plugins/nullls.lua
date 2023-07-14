@@ -9,14 +9,17 @@ return {
     end
 
     local check_prettier_config = function(utils)
-      return utils.root_has_file({ ".prettierrc" })
+      return utils.root_has_file({ ".prettierrc", ".prettierrc.json" })
     end
 
     local sources = {
       null_ls.builtins.formatting.prettier.with({
         condition = check_prettier_config,
       }),
-      null_ls.builtins.formatting.eslint_d.with({
+      null_ls.builtins.formatting.eslint.with({
+        condition = check_eslint_config,
+      }),
+      null_ls.builtins.code_actions.eslint.with({
         condition = check_eslint_config,
       }),
       null_ls.builtins.formatting.stylua,

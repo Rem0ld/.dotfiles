@@ -40,15 +40,14 @@ return {
       "svelte",
       "tsserver",
       "yamlls",
-      "pyright",
       "jsonls",
+      "eslint-lsp",
       "html",
       "cssls",
       "lua_ls",
       "dockerls",
       -- "tailwindcss",
       "taplo",
-      "astro",
     }
 
     local server_settings = {

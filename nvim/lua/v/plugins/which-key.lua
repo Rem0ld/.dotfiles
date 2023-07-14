@@ -20,10 +20,15 @@ return {
       },
       ["<leader>l"] = {
         name = "Lsp",
+        ["f"] = "format"
       },
       ["<leader>p"] = {
         name = "Packages & Lazy & Mason",
-        ["m"] = "Mason"
+        ["m"] = {
+          name = "Mason",
+          ["i"] = "installer",
+          ["u"] = "update"
+        }
       },
       ["<leader>s"] = {
         name = "Search",
