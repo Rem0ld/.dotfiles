@@ -184,7 +184,7 @@
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "html.format.wrapLineLength": 100,
   "window.confirmBeforeClose": "always",
   "window.restoreWindows": "preserve",
@@ -215,9 +215,6 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "workbench.colorTheme": "Tokyo Night Storm",
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
-  },
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
@@ -235,4 +232,6 @@
   "vue.codeActions.savingTimeLimit": 5000,
   "workbench.startupEditor": "none",
   "window.zoomLevel": -1,
+  "git.openRepositoryInParentFolders": "never",
+  "eslint.debug": true,
 }
