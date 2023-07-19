@@ -24,6 +24,7 @@ return {
       ensure_installed = {
         "bash",
         "lua",
+        "javascript",
         "markdown",
         "markdown_inline",
         "query",

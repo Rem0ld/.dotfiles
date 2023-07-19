@@ -41,7 +41,6 @@ return {
       "tsserver",
       "yamlls",
       "jsonls",
-      "eslint-lsp",
       "html",
       "cssls",
       "lua_ls",
