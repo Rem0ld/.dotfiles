@@ -20,7 +20,8 @@ return {
       },
       ["<leader>l"] = {
         name = "Lsp",
-        ["f"] = "format"
+        ["f"] = "format",
+        ["r"] = "rename"
       },
       ["<leader>p"] = {
         name = "Packages & Lazy & Mason",
