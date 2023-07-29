@@ -15,7 +15,7 @@
   "editor.tabCompletion": "on",
   "editor.quickSuggestionsDelay": 200,
   "editor.formatOnSave": false,
-  "eslint.validate": ["javascript", "typescript", "mdx"],
+  "eslint.validate": ["javascript", "typescript", "mdx", "svelte"],
   "eslint.codeActionsOnSave.rules": null,
   "editor.accessibilitySupport": "off",
   "[json]": {
@@ -234,4 +234,8 @@
   "window.zoomLevel": -1,
   "git.openRepositoryInParentFolders": "never",
   "eslint.debug": true,
+  "svelte.enable-ts-plugin": true,
+  "[svelte]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
 }

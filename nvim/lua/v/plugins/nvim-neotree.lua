@@ -19,7 +19,9 @@ return {
       },
     },
     filesystem = {
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true
+      },
       filtered_items = {
         visible = false, -- when true, they will just be displayed differently than normal items
         hide_dotfiles = false,
