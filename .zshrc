@@ -135,6 +135,7 @@ fi
 # For a full list of active aliases, run `alias`.
 
 alias '?'=duck
+alias '??'=gpt
 
 alias dot='cd ~/.dotfiles'
 
