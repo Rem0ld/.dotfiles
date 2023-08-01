@@ -19,9 +19,6 @@ return {
       null_ls.builtins.formatting.eslint.with({
         condition = check_eslint_config,
       }),
-      null_ls.builtins.code_actions.eslint.with({
-        condition = check_eslint_config,
-      }),
       null_ls.builtins.formatting.stylua,
     }
 

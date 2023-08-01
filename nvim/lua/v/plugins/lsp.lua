@@ -1,13 +1,11 @@
 return {
   "neovim/nvim-lspconfig", -- LSP config
-
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "simrat39/rust-tools.nvim", -- Rust Custom LSP
     "hrsh7th/cmp-nvim-lsp", -- LSP completion
   },
-
   config = function()
     -- Base
     local mason = require("mason")
@@ -20,12 +18,7 @@ return {
     -- Tools
     local cmp_lsp = require("cmp_nvim_lsp")
 
-    local signs = {
-      Error = " ",
-      Warn = " ",
-      Hint = " ",
-      Info = " ",
-    }
+    local signs = { Error = ' ', Warn = ' ', Hint = ' ', Information = ' ' }
 
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
