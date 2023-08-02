@@ -10,13 +10,13 @@ config=(
   "config/skhd"
   "config/nvim"
   "config/kitty"
-  "config/bin"
 )
 home=(
   ".zshrc"
   "Iterm"
   ".tmux.conf"
   ".xinitrc"
+  "bin"
 )
 linux_config=(
   "config/i3"
