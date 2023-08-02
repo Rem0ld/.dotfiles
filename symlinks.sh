@@ -7,5 +7,5 @@ ln -s ~/.dotfiles/config/skhd ~/.config
 ln -s ~/.dotfiles/.zshrc ~/
 ln -s ~/.dotfiles/Iterm ~/
 ln -s ~/.dotfiles/.tmux.conf ~/
-ln -s ~/.dotfiles/VsCode/settings.json /Users/pielov/Library/Application\ Support/Code/User
-ln -s ~/.dotfiles/VsCode/keybindings.json /Users/pielov/Library/Application\ Support/Code/User
+ln -s ~/.dotfiles/VsCode/settings.json ~/Library/Application\ Support/Code/User
+ln -s ~/.dotfiles/VsCode/keybindings.json ~/Library/Application\ Support/Code/User

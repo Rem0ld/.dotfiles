@@ -16,7 +16,6 @@
   "editor.quickSuggestionsDelay": 200,
   "editor.formatOnSave": false,
   "eslint.validate": ["javascript", "typescript", "mdx", "svelte"],
-  "eslint.codeActionsOnSave.rules": null,
   "editor.accessibilitySupport": "off",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -233,9 +232,12 @@
   "workbench.startupEditor": "none",
   "window.zoomLevel": -1,
   "git.openRepositoryInParentFolders": "never",
-  "eslint.debug": true,
+  "eslint.debug": false,
   "svelte.enable-ts-plugin": true,
   "[svelte]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
+  "eslint.execArgv": [
+    "--max_old_space_size=8162"
+  ],
 }
