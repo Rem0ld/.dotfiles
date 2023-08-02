@@ -4,13 +4,13 @@ set -o pipefail -o noclobber -o nounset
 
 prompt_theme=".oh-my-zsh/themes/robbyrussell.zsh-theme"
 config=(
-  ".config/starship.toml"
-  ".config/gitui"
-  ".config/yabai"
-  ".config/skhd"
-  ".config/nvim"
-  ".config/kitty"
-  ".config/bin"
+  "config/starship.toml"
+  "config/gitui"
+  "config/yabai"
+  "config/skhd"
+  "config/nvim"
+  "config/kitty"
+  "config/bin"
 )
 home=(
   ".zshrc"
@@ -19,8 +19,8 @@ home=(
   ".xinitrc"
 )
 linux_config=(
-  ".config/i3"
-  ".config/polybar"
+  "config/i3"
+  "config/polybar"
 )
 
 env=$1
