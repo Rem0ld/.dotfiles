@@ -1,13 +1,27 @@
 #!/bin/bash
 
-# Making a script to clear symbolic links or create them for a given environments
-# no need to fuss here
-# I pass 2 arguments 
-# first the env mac or linux (lower, upper we don't care we can handle that)
-# second the action clear of link 
-# no need for long or short options
-# it can be done in a second time in case I forgot how to use it
 set -o pipefail -o noclobber -o nounset
+
+prompt_theme=".oh-my-zsh/themes/robbyrussell.zsh-theme"
+config=(
+  ".config/starship.toml"
+  ".config/gitui"
+  ".config/yabai"
+  ".config/skhd"
+  ".config/nvim"
+  ".config/kitty"
+  ".config/bin"
+)
+home=(
+  ".zshrc"
+  "Iterm"
+  ".tmux.conf"
+  ".xinitrc"
+)
+linux_config=(
+  ".config/i3"
+  ".config/polybar"
+)
 
 env=$1
 action=${2:-link}
@@ -24,30 +38,54 @@ if [[ ! $action =~ $regex_action ]]; then
   exit 1
 fi
 
-echo "Will perform $action in env $env"
-other="/Users/pielov/Library/Application\ Support/Code/User"
+if [[ $action == 'clear' ]]; then
+  for i in "${config[@]}"; do
+    unlink ~/$i
+  done
+  for i in "${home[@]}"; do
+    unlink ~/$i
+  done
+  for i in "${linux_config[@]}"; do
+    unlink ~/$i
+  done
 
-mac_config=(
-  "starship.toml"
-  "gitui"
-  "yabai"
-  "skhd"
-)
+  echo "unlinked"
+  exit 0
+fi
 
-mac_home=(
-  ".zshrc"
-  "Iterm"
-  ".tmux.conf"
-)
+case $env in
+  mac)
+    for i in "${config[@]}"; do
+      echo "linking $i..."
+      ln -sf ~/.dotfiles/$i ~/.config
+    done
 
-pathVsCode="Library/Application\ Support/Code/User"
-vscode=(
-  "VsCode/settings.json"
-  "VsCode/keybindings.json"
-)
+    for i in "${home[@]}"; do
+      echo "linking $i..."
+      ln -sf ~/.dotfiles/$i ~
+    done
 
-for i in "${mac_config[@]}"; do
-  echo "linking $i..."
-  ln -s "~/.dotfiles/$i" ~/.config
-done
+    ln -sf ~/.dotfiles/"$prompt_theme" ~/.oh-my-zsh/themes
+    ln -sf ~/.dotfiles/Code/settings.json ~/Library/Application\ Support/Code/User
+    ln -sf ~/.dotfiles/Code/keybindings.json ~/Library/Application\ Support/Code/User
+  ;;
+  linux)
+    for i in "${config[@]}"; do
+      echo "linking $i..."
+      ln -sf ~/.dotfiles/$i ~/.config
+    done
+
+    for i in "${home[@]}"; do
+      echo "linking $i..."
+      ln -sf ~/.dotfiles/$i ~
+    done
+
+    for i in "${linux_config[@]}"; do
+      echo "linking $i..."
+      ln -sf ~/.dotfiles/$i ~/.config
+    done
+
+    ln -sf ~/.dotfiles/$prompt_theme ~/"$prompt_theme"
+  ;;
+esac
 
