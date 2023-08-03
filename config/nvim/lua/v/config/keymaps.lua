@@ -46,6 +46,8 @@ map("n", "<leader>d", '"_d', { silent = true })
 -- Comment line
 map("n", "<leader>/", "gcc", { desc = "Comment line" })
 
+-- Format
+map("n", "<leader>lf", "<cmd>FormatWrite<cr>", {desc = "Format file"})
 -- Format Json
 map("n", "<leader>jq", "<cmd>%!jq .<cr>", { desc = "Format json current file" })
 

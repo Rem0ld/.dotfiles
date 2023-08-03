@@ -1,4 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 local function set_indent_size(size)
   vim.api.nvim_buf_set_option(0, "shiftwidth", size)
@@ -44,4 +45,12 @@ autocmd("FileType", {
     set_indent_size(4)
     vim.api.nvim_buf_set_option(0, "expandtab", false)
   end,
+})
+
+autocmd("BufWritePost", {
+  pattern = "*",
+  callback = function ()
+    vim.cmd([[FormatWrite]])
+  end,
+  group = augroup("FormatAutogroup", {clear = true})
 })
