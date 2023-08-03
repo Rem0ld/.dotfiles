@@ -67,22 +67,6 @@ return {
       ["cssls"] = true,
     }
 
-    local use_formatter = {
-      ["tsserver"] = true,
-      ["lua_ls"] = true,
-      ["cssls"] = true,
-    }
-
-    local null_ls_format = function(bufnr)
-      vim.lsp.buf.format({
-        async = true,
-        filter = function(client)
-          return client.name == "null-ls"
-        end,
-      })
-      bufnr = bufnr
-    end
-
     mason.setup()
     mason_lsp.setup({ ensure_installed = servers })
 
@@ -106,18 +90,8 @@ return {
       if server_with_disabled_formatting[client.name] then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
-
-        if use_formatter[client.name] then
-          vim.keymap.set("n", "<leader>lf", null_ls_format, bufopts)
-        end
-      else
-        vim.keymap.set(
-          "n",
-          "<leader>lf",
-          ":lua vim.lsp.buf.format({ async = true })<CR>",
-          bufopts
-        )
       end
+
     end
 
     for _, server in pairs(servers) do

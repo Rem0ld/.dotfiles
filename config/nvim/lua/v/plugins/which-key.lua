@@ -20,7 +20,6 @@ return {
       },
       ["<leader>l"] = {
         name = "Lsp",
-        ["f"] = "format",
         ["r"] = "rename"
       },
       ["<leader>p"] = {
