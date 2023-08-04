@@ -18,7 +18,8 @@ return {
     -- Tools
     local cmp_lsp = require("cmp_nvim_lsp")
 
-    local signs = { Error = ' ', Warn = ' ', Hint = ' ', Information = ' ' }
+    local signs =
+      { Error = " ", Warn = " ", Hint = " ", Information = " " }
 
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
@@ -29,17 +30,18 @@ return {
       vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
     local servers = {
+      "cssls",
+      "dockerls",
+      "gopls",
+      "html",
+      "jsonls",
+      "lua_ls",
       "rust_analyzer",
       "svelte",
-      "tsserver",
-      "yamlls",
-      "jsonls",
-      "html",
-      "cssls",
-      "lua_ls",
-      "dockerls",
       -- "tailwindcss",
       "taplo",
+      "tsserver",
+      "yamlls",
     }
 
     local server_settings = {
@@ -86,12 +88,12 @@ return {
       vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
       vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics<CR>", bufopts)
       vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
+      vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, bufopts)
 
       if server_with_disabled_formatting[client.name] then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
       end
-
     end
 
     for _, server in pairs(servers) do

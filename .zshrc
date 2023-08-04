@@ -194,3 +194,4 @@ export HOMEBREW_GITHUB_API_TOKEN=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
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/opt/homebrew/opt/go@1.19/bin:$PATH"
