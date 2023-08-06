@@ -2,7 +2,7 @@ return {
   "mhartington/formatter.nvim",
   config = function()
     require("formatter").setup({
-      logging = true,
+      logging = false,
       log_level = vim.log.levels.DEBUG,
       filetype = {
         lua = {
