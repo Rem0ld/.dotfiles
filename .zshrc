@@ -126,6 +126,18 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
   export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+  # The next line updates PATH for the Google Cloud SDK.
+  if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+  # The next line enables shell command completion for gcloud.
+  if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+  export HOMEBREW_GITHUB_API_TOKEN=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
+
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  export PATH="$PATH:$HOME/.rvm/bin"
+  export PATH="/opt/homebrew/opt/go@1.19/bin:$PATH"
 fi
 
 # ALIAS
@@ -163,35 +175,28 @@ alias pnbsa="pnpm nx run-many --targets=storybook-build"
 # load starship - prompt command line manager
 eval "$(starship init zsh)"
 
-autoload -U add-zsh-hook
 load-nvmrc() {
-	local node_version="$(nvm version)"
-	local nvmrc_path="$(nvm_find_nvmrc)"
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
 
-	if [ -n "$nvmrc_path" ]; then
-		local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-		if [ "$nvmrc_node_version" = "N/A" ]; then
-			nvm install
-		elif [ "$nvmrc_node_version" != "$node_version" ]; then
-			nvm use
-		fi
-	elif [ "$node_version" != "$(nvm version default)" ]; then
-		echo "Reverting to nvm default version"
-		nvm use default
-	fi
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if command -v nvm &> /dev/null; then
+  autoload -U add-zsh-hook
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export HOMEBREW_GITHUB_API_TOKEN=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
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/opt/homebrew/opt/go@1.19/bin:$PATH"
