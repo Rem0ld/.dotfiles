@@ -6,3 +6,4 @@ nvim/lazy-lock.json
 # So to avoid keeping them in my dotfiles I ignore them
 bin/docker*
 bin/orb*
+nvim/lazy-lock.json
