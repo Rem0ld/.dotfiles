@@ -1,9 +1,8 @@
 ./**/.DS_Store
 .DS_Store
 nvim/.DS_Store
-nvim/lazy-lock.json
+**/lazy-lock.json
 # Orbstack created some binaries in ~/bin which is linked to my dotfiles
 # So to avoid keeping them in my dotfiles I ignore them
 bin/docker*
 bin/orb*
-nvim/lazy-lock.json
