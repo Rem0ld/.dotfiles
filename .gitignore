@@ -6,4 +6,3 @@ nvim/.DS_Store
 # So to avoid keeping them in my dotfiles I ignore them
 bin/docker*
 bin/orb*
-
