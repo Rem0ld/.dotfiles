@@ -27,6 +27,7 @@ return {
         "javascript",
         "markdown",
         "markdown_inline",
+        "go",
         "query",
         "rust",
         "regex",

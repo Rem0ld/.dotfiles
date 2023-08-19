@@ -220,6 +220,9 @@
     "asvetliakov.vscode-neovim": 1
   },
   "errorLens.enabled": true,
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+  ],
   "turboConsoleLog.quote": "'",
   "github.copilot.enable": {
     "*": false,
