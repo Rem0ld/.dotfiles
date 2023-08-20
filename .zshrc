@@ -137,7 +137,6 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
   # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
   export PATH="$PATH:$HOME/.rvm/bin"
-  export PATH="/opt/homebrew/opt/go@1.19/bin:$PATH"
 fi
 
 # ALIAS
@@ -171,6 +170,10 @@ alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency
 alias pnba="pnpm nx run-many --targets=build"
 alias pnbsa="pnpm nx run-many --targets=storybook-build"
 # == REVOLUGO END ==
+
+if command -v go &> /dev/null; then
+  alias air='~/go/bin/air'
+fi
 
 # load starship - prompt command line manager
 eval "$(starship init zsh)"
