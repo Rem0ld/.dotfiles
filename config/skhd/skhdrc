@@ -3,9 +3,6 @@
     "terminal"
     "iterm2"
     "qutebrowser"
-    "kitty"
-    "google chrome"
-    "brave browser"
 ]
 
 # Focus spaces 
@@ -17,8 +14,8 @@ alt - g: yabai -m display --focus prev
 alt - s: yabai -m display --focus next
 
 # Resize window
-meta - q: yabai -m window --resize left:20:0 || yabai -m window --resize right:20:0
-meta - w: yabai -m window --resize left:-20:0 || yabai -m window --resize right:-20:0
+# meta - q: yabai -m window --resize left:20:0 || yabai -m window --resize right:20:0
+# meta - w: yabai -m window --resize left:-20:0 || yabai -m window --resize right:-20:0
 
 # Reorganize windows
 alt - r : yabai -m space --rotate 90
@@ -62,10 +59,9 @@ shift + alt - 6 : yabai -m window --space 6
 shift + alt - 7 : yabai -m window --space 7
 shift + alt - 8 : yabai -m window --space 8
 
-cmd + alt + ctrl - g : open "/Applications/Obsidian.app"
+# Special command
+cmd + shift - return : open obsidian://quick-capture
 
 # Apps shortcut
-hyper - t : open "/Applications/kitty.app"
-meta - b : open "/Applications/Arc.app"
-meta - f : open "/Applications/firefox.app"
-meta - d : open "/Applications/discord.app"
+meh - o : open -a "Obsidian"
+cmd - return : open -na "Kitty"
