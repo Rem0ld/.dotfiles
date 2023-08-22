@@ -33,7 +33,7 @@ return {
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
+          select = false,
         }),
         ["<C-j>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -60,6 +60,10 @@ return {
         { name = "buffer" },
         { name = "path" },
       }),
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
     })
   end,
 }
