@@ -3,6 +3,7 @@
     "terminal"
     "iterm2"
     "qutebrowser"
+    "code"
 ]
 
 # Focus spaces 
@@ -64,4 +65,4 @@ cmd + shift - return : open obsidian://quick-capture
 
 # Apps shortcut
 meh - o : open -a "Obsidian"
-cmd - return : open -na "Kitty"
+# cmd - return : open -na "Kitty"
