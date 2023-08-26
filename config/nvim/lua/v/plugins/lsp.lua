@@ -36,12 +36,10 @@ return {
       "html",
       "jsonls",
       "lua_ls",
-      "rust_analyzer",
       "svelte",
       -- "tailwindcss",
       "taplo",
       "tsserver",
-      "yamlls",
     }
 
     local server_settings = {
