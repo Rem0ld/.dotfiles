@@ -137,6 +137,10 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
   # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
   export PATH="$PATH:$HOME/.rvm/bin"
+
+  # check if file is present and add on path
+  # [ -f ~/.tmux/plugins/tmux-fzf/main.tmux ] && 
+  export PATH="$PATH:$HOME/.tmux/plugins/tmux-fzf/main.tmux"
 fi
 
 # ALIAS

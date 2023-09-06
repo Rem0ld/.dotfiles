@@ -10,7 +10,7 @@
 # $shell\
 # $character"""
 format = """
-(bold green)$env_var$character $directory$git_branch$git_commit$git_status$git_state$nodejs$package$cmd_duration
+(bold green)$hostname$env_var$character $directory$git_branch$git_commit$git_status$git_state$nodejs$package$cmd_duration
  
 """
 
@@ -44,3 +44,8 @@ truncate_to_repo = false
 [env_var.USER]
 symbol = ""
 format = "[$env_value](bold #bf6069) "
+
+[hostname]
+ssh_only = true
+ssh_symbol = "🌐 "
+
