@@ -48,5 +48,5 @@ format = "[$env_value](bold #bf6069) "
 [hostname]
 ssh_only = true
 ssh_symbol = " 🌍 "
-format = "[ssh_symbolhostname](style) with "
+format = "[$ssh_symbol$hostname](style) with "
 
