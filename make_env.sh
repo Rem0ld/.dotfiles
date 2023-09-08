@@ -10,6 +10,7 @@ config=(
   "config/skhd"
   "config/nvim"
   "config/kitty"
+  "config/wezterm"
 )
 home=(
   ".zshrc"
