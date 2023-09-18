@@ -207,3 +207,10 @@ if command -v nvm &> /dev/null; then
 fi
 
 
+
+# bun completions
+[ -s "/Users/pielov/.bun/_bun" ] && source "/Users/pielov/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
