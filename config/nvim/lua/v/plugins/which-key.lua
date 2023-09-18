@@ -9,9 +9,15 @@ return {
       ["<leader>f"] = {
         name = "Telescope",
         ["f"] = { "<CMD>Telescope find_files<CR>", "Find File" },
-        ["F"] = { "<CMD>Telescope find_files hidden=true no_ignore=true<CR>", "Find all File" },
+        ["F"] = {
+          "<CMD>Telescope find_files hidden=true no_ignore=true<CR>",
+          "Find all File",
+        },
         ["w"] = { "<CMD>Telescope live_grep<CR>", " Find File by grep" },
-        ["W"] = { "<CMD>Telescope live_grep hidden=true no_ignore=true<CR>", " Find File by grep" },
+        ["W"] = {
+          "<CMD>Telescope live_grep hidden=true no_ignore=true<CR>",
+          " Find File by grep",
+        },
         ["b"] = { "<CMD>Telescope buffers<CR>", " Find buffers" },
         ["d"] = { "<CMD>Telescope diagnostics<CR>", " Diagnostics" },
       },
@@ -20,21 +26,22 @@ return {
       },
       ["<leader>l"] = {
         name = "Lsp",
-        ["r"] = "rename"
+        ["r"] = "rename",
       },
       ["<leader>p"] = {
         name = "Packages & Lazy & Mason",
         ["m"] = {
           name = "Mason",
           ["i"] = "installer",
-          ["u"] = "update"
-        }
+          ["u"] = "update",
+        },
       },
       ["<leader>s"] = {
         name = "Search",
       },
       ["<leader>t"] = {
         name = "Terminal",
+        ["t"] = "toggle transparent",
       },
       ["<leader>d"] = "which_key_ignore",
       ["<leader>q"] = "which_key_ignore",

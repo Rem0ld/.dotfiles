@@ -26,7 +26,7 @@ require("lazy").setup({
   },
   install = {
     missing = true,
-    colorscheme = { "nightfox" },
+    colorscheme = { "tokyonight" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {

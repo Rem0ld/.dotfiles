@@ -44,10 +44,10 @@ map("n", "]q", ":cn<cr><cr>", { silent = true })
 map("n", "<leader>d", '"_d', { silent = true })
 
 -- Comment line
-map("n", "<leader>/", "gcc", { desc = "Comment line" })
+-- map("n", "<leader>/", "gcc", { desc = "Comment line" })
 
 -- Format
-map("n", "<leader>lf", "<cmd>FormatWrite<cr>", {desc = "Format file"})
+map("n", "<leader>lf", "<cmd>FormatWrite<cr>", { desc = "Format file" })
 -- Format Json
 map("n", "<leader>jq", "<cmd>%!jq .<cr>", { desc = "Format json current file" })
 
@@ -79,7 +79,12 @@ map(
   "<cmd>BufferLineCyclePrev<cr>",
   { desc = "Previous buffer tab" }
 )
-map("n", "<leader>c",  "<CMD>:lua MiniBufremove.delete()<CR>", { desc = "Close current buffer" })
+map(
+  "n",
+  "<leader>c",
+  "<CMD>:lua MiniBufremove.delete()<CR>",
+  { desc = "Close current buffer" }
+)
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
@@ -279,6 +284,13 @@ map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
 -- Mason
 map("n", "<leader>pmi", "<cmd>Mason<cr>", { desc = "Mason installer" })
 map("n", "<leader>pmu", "<cmd>MasonUpdate<cr>", { desc = "Mason update" })
+
+map(
+  "n",
+  "<leader>tt",
+  "<cmd>TransparentToggle<cr>",
+  { desc = "Toggle transparent" }
+)
 
 -- INSERT
 -- Better escape

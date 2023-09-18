@@ -20,7 +20,7 @@ return {
     },
     filesystem = {
       follow_current_file = {
-        enabled = true
+        enabled = true,
       },
       filtered_items = {
         visible = false, -- when true, they will just be displayed differently than normal items
