@@ -13,7 +13,8 @@ map("n", "<leader>w", "<cmd>w<cr>")
 map("n", "<leader>q", "<cmd>q<cr>")
 map("n", "<leader>/", ":nohlsearch<CR>", { silent = true })
 map("n", "|", "<cmd>vsplit<cr>")
-map("n", "\\", "<cmd>split<cr>")
+-- I never use it, the split is weird and with tmux it's not that important
+-- map("n", "\\", "<cmd>split<cr>")
 map("n", "<leader>h", "<cmd>nohl<cr>")
 
 -- Change mapping record macro
@@ -186,12 +187,6 @@ map(
   "<leader>ls",
   "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
   { desc = "Aerial" }
-)
-map(
-  "n",
-  "<leader>lD",
-  "<cmd>lua require('telescope.builtin').diagnostics()<cr>",
-  { desc = "Diagnostics" }
 )
 
 -- Gitsigns

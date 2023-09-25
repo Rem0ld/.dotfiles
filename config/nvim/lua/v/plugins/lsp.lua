@@ -86,7 +86,7 @@ return {
       vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
       vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics<CR>", bufopts)
       vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
-      vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, bufopts)
+      vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, bufopts)
 
       if server_with_disabled_formatting[client.name] then
         client.server_capabilities.documentFormattingProvider = false

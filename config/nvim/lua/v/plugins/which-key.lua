@@ -24,9 +24,13 @@ return {
       ["<leader>g"] = {
         name = "Git",
       },
+      ["<leader>j"] = {
+        name = "JQ",
+      },
       ["<leader>l"] = {
         name = "Lsp",
         ["r"] = "rename",
+        ["c"] = "code actions",
       },
       ["<leader>p"] = {
         name = "Packages & Lazy & Mason",
@@ -35,6 +39,9 @@ return {
           ["i"] = "installer",
           ["u"] = "update",
         },
+      },
+      ["<leader>r"] = {
+        name = "Reload",
       },
       ["<leader>s"] = {
         name = "Search",
@@ -46,7 +53,6 @@ return {
       ["<leader>d"] = "which_key_ignore",
       ["<leader>q"] = "which_key_ignore",
       ["<leader>w"] = "which_key_ignore",
-      ["<leader>j"] = "which_key_ignore",
       ["<leader>k"] = "which_key_ignore",
     })
   end,
