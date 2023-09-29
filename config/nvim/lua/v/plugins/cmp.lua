@@ -1,6 +1,6 @@
 return {
   "hrsh7th/nvim-cmp", -- Completion engine
-
+  event = "InsertEnter",
   dependencies = {
     "L3MON4D3/LuaSnip", -- Snippets engine
     "hrsh7th/cmp-nvim-lsp", -- LSP completion
@@ -9,7 +9,6 @@ return {
     "saadparwaiz1/cmp_luasnip", -- Snippets completion
     "onsails/lspkind.nvim",
   },
-
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
