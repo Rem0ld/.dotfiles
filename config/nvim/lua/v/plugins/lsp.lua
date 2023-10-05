@@ -1,9 +1,9 @@
 return {
   "neovim/nvim-lspconfig", -- LSP config
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "simrat39/rust-tools.nvim", -- Rust Custom LSP
     "hrsh7th/cmp-nvim-lsp", -- LSP completion
   },
   config = function()
@@ -11,9 +11,6 @@ return {
     local mason = require("mason")
     local mason_lsp = require("mason-lspconfig")
     local lsp = require("lspconfig")
-
-    -- Language specific
-    local rust_tools = require("rust-tools")
 
     -- Tools
     local cmp_lsp = require("cmp_nvim_lsp")
@@ -43,6 +40,15 @@ return {
     }
 
     local server_settings = {
+      ["graphql"] = {
+        filetypes = {
+          "graphql",
+          "gql",
+          "svelte",
+          "typescriptreact",
+          "javascriptreact",
+        },
+      },
       ["lua_ls"] = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -77,15 +83,31 @@ return {
     local on_attach = function(client, bufnr)
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-      -- vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+      bufopts.desc = "Go to definition"
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+
+      bufopts.desc = "Go to type definition"
       vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
+
+      bufopts.desc = "Go to implementation"
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+
+      bufopts.desc = "Show diagnostics"
       vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
+
+      bufopts.desc = "Go to next diagnostics"
       vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
+
+      bufopts.desc = "Go to prev diagnostics"
       vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
+
+      bufopts.desc = "Telescope diagnostics"
       vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics<CR>", bufopts)
+
+      bufopts.desc = "Rename"
       vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
+
+      bufopts.desc = "Code action"
       vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, bufopts)
 
       if server_with_disabled_formatting[client.name] then
@@ -95,15 +117,11 @@ return {
     end
 
     for _, server in pairs(servers) do
-      if server == "rust_analyzer" then
-        rust_tools.setup({ tools = { on_initialized = on_attach } })
-      else
-        lsp[server].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = server_settings[server],
-        })
-      end
+      lsp[server].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = server_settings[server],
+      })
     end
   end,
 }
