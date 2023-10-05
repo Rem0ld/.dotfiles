@@ -47,13 +47,14 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("BufWritePost", {
-  pattern = "*",
-  callback = function()
-    vim.cmd([[FormatWrite]])
-  end,
-  group = augroup("FormatAutogroup", { clear = true }),
-})
+-- Legacy code for formatter.nvim
+-- autocmd("BufWritePost", {
+--   pattern = "*",
+--   callback = function()
+--     vim.cmd([[FormatWrite]])
+--   end,
+--   group = augroup("FormatAutogroup", { clear = true }),
+-- })
 
 local function goimports(timeout_ms)
   local context = { source = { organizeImports = true } }
