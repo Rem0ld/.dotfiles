@@ -20,7 +20,7 @@ end
 
 -- For example, changing the color scheme:
 config.color_scheme = "Tokyo Night Storm"
-config.window_background_image = "/Users/pielov/Iterm/Images/Nord-Wallpapers/wallpapers/10.png"
+-- config.window_background_image = "/Users/pielov/Iterm/Images/Nord-Wallpapers/wallpapers/10.png"
 config.window_background_image_hsb = {
 	brightness = 0.125,
 	saturation = 1.0,
