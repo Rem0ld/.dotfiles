@@ -112,6 +112,12 @@ map(
 )
 map(
   "n",
+  "<leader>fc",
+  "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
+  { desc = "Change colorscheme" }
+)
+map(
+  "n",
   "<leader>fm",
   "<cmd>lua require('telescope.builtin').find_marks()<cr>",
   { desc = "Find marks" }
