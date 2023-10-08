@@ -7,6 +7,21 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
+local function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Dark"
+end
+
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "Tokyo Night Storm"
+	else
+		return "Tokyo Night Day"
+	end
+end
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -19,7 +34,7 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "Tokyo Night Storm"
+config.color_scheme = scheme_for_appearance(get_appearance())
 -- config.window_background_image = "/Users/pielov/Iterm/Images/Nord-Wallpapers/wallpapers/10.png"
 config.window_background_image_hsb = {
 	brightness = 0.125,
