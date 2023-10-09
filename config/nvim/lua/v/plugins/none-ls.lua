@@ -16,7 +16,6 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "eslint_d", -- js linter
       },
     })
 
@@ -45,7 +44,7 @@ return {
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
         formatting.isort,
-        diagnostics.eslint_d.with({ -- js/ts linter
+        diagnostics.eslint.with({ -- js/ts linter
           condition = function(utils)
             return utils.root_has_file({
               ".eslintrc.json",

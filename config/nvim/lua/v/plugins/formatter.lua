@@ -10,11 +10,11 @@ return {
         },
         javacript = {
           require("formatter.filetypes.javascript").prettier,
-          require("formatter.filetypes.javascript").eslint_d,
+          require("formatter.filetypes.javascript").eslint,
         },
         typescript = {
           require("formatter.filetypes.javascript").prettier,
-          require("formatter.filetypes.typescript").eslint_d,
+          require("formatter.filetypes.typescript").eslint,
         },
         go = {
           require("formatter.filetypes.go").gofmt,
