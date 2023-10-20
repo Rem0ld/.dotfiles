@@ -1,7 +1,11 @@
 return {
   "tummetott/reticle.nvim",
   event = "VeryLazy",
-  opts = {
-    -- on_startup = true,
-  },
+  config = function()
+    require("reticle").setup({
+      on_startup = {
+        cursorline = true,
+      },
+    })
+  end,
 }
