@@ -1,4 +1,7 @@
 return {
-	"tummetott/reticle.nvim",
-	opts = {},
+  "tummetott/reticle.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- on_startup = true,
+  },
 }

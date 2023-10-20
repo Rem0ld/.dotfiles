@@ -177,6 +177,7 @@ alias pnbsa="pnpm nx run-many --targets=storybook-build"
 
 if command -v go &> /dev/null; then
   alias air='~/go/bin/air'
+  alias bb='~/go/bin/bombardier'
 fi
 
 # load starship - prompt command line manager

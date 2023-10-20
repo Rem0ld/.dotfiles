@@ -55,12 +55,21 @@ map("n", "<leader>jq", "<cmd>%!jq .<cr>", { desc = "Format json current file" })
 -- Logsitter
 map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
 
+-- Reloads
 -- Reload Treesitter highlighting
 map(
   "n",
   "<leader>rt",
   "<cmd>write | edit | TSBufEnable highlight<cr>",
   { desc = "Reload treesitter for current buffer" }
+)
+
+-- Reload Treesitter highlighting
+map(
+  "n",
+  "<leader>rr",
+  "<cmd>ReticleToggleCursorline<cr>",
+  { desc = "Reload reticle highlight" }
 )
 
 -- floating terminal
@@ -94,18 +103,6 @@ map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 -- Telescope
 map(
   "n",
-  "<leader>ff",
-  "<cmd>lua require('telescope.builtin').find_files()<cr>",
-  { desc = "Find files" }
-)
-map(
-  "n",
-  "<leader>fF",
-  "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
-  { desc = "Find all files" }
-)
-map(
-  "n",
   "<leader>fb",
   "<cmd>lua require('telescope.builtin').find_buffers()<cr>",
   { desc = "Find buffers" }
@@ -118,6 +115,18 @@ map(
 )
 map(
   "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files()<cr>",
+  { desc = "Find files" }
+)
+map(
+  "n",
+  "<leader>fF",
+  "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
+  { desc = "Find all files" }
+)
+map(
+  "n",
   "<leader>fm",
   "<cmd>lua require('telescope.builtin').find_marks()<cr>",
   { desc = "Find marks" }
@@ -127,6 +136,12 @@ map(
   "<leader>fo",
   "<cmd>lua require('telescope.builtin').find_oldfiles()<cr>",
   { desc = "Find old files" }
+)
+map(
+  "n",
+  "<leader>fq",
+  "<cmd>lua require('telescope.builtin').quickfix()<cr>",
+  { desc = "Find quickfix" }
 )
 map(
   "n",
