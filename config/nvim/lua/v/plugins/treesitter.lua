@@ -5,31 +5,23 @@ return {
   end,
   event = "BufReadPost",
   dependencies = {
-    "windwp/nvim-ts-autotag",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
-    "mrjones2014/nvim-ts-rainbow",
   },
   config = function()
     local MAX_FILE_LINES = 3000
     local MAX_FILE_SIZE = 1048576 * 2 -- 1MB
 
     require("nvim-treesitter.configs").setup({
-      autotag = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
       ensure_installed = {
         "bash",
-        "lua",
+        "elixir",
+        "go",
         "javascript",
+        "lua",
         "markdown",
         "markdown_inline",
-        "go",
         "query",
-        "rust",
         "regex",
         "tsx",
         "typescript",
@@ -45,11 +37,6 @@ return {
             return true
           end
         end,
-      },
-      rainbow = {
-        enable = true,
-        extended_mode = false,
-        max_file_lines = MAX_FILE_LINES,
       },
       incremental_selection = {
         enable = true,
