@@ -10,6 +10,7 @@ return {
     close_if_last_window = true,
     enable_diagnostics = false,
     window = {
+      position = "float",
       width = 30,
       mappings = {
         ["<space>"] = false, -- disable space until we figure out which-key disabling
