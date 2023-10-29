@@ -29,6 +29,7 @@ return {
     local servers = {
       "cssls",
       "dockerls",
+      "elixirls",
       "gopls",
       "html",
       "jsonls",
@@ -40,6 +41,11 @@ return {
     }
 
     local server_settings = {
+      ["elixirls"] = {
+        elixirLS = {
+          fetchDeps = true,
+        },
+      },
       ["graphql"] = {
         filetypes = {
           "graphql",

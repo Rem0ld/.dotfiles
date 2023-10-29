@@ -19,6 +19,9 @@ return {
         go = {
           require("formatter.filetypes.go").gofmt,
         },
+        elixir = {
+          require("formatter.filetypes.elixir").mixformat,
+        },
       },
     })
   end,
