@@ -8,6 +8,9 @@ return {
     local telescope = require("telescope")
     telescope.setup({
       defaults = {
+        file_ignore_patterns = {
+          "assets",
+        },
         path_display = { "truncate" },
         sorting_strategy = "ascending",
         layout_config = {
