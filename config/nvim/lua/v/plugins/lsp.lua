@@ -11,6 +11,7 @@ return {
     local mason = require("mason")
     local mason_lsp = require("mason-lspconfig")
     local lsp = require("lspconfig")
+    local null_ls_utils = require("null-ls.utils")
 
     -- Tools
     local cmp_lsp = require("cmp_nvim_lsp")
@@ -41,20 +42,6 @@ return {
     }
 
     local server_settings = {
-      ["elixirls"] = {
-        elixirLS = {
-          fetchDeps = true,
-        },
-      },
-      ["graphql"] = {
-        filetypes = {
-          "graphql",
-          "gql",
-          "svelte",
-          "typescriptreact",
-          "javascriptreact",
-        },
-      },
       ["lua_ls"] = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -64,7 +51,6 @@ return {
           },
         },
       },
-      -- yamlls lsp configuration for neovim
       ["yamlls"] = {
         yaml = {
           keyOrdering = false,
@@ -129,5 +115,39 @@ return {
         settings = server_settings[server],
       })
     end
+    lsp.elixirls.setup({
+      filetypes = { "elixir", "eelixir", "heex", "surface" },
+      capabilities = capabilities,
+      cmd = {
+        "/Users/pielov/.local/share/nvim/mason/packages/elixir-ls/language_server.sh",
+      },
+      on_attach = on_attach,
+      root_dir = null_ls_utils.root_pattern("mix.exs", ".git")
+        or vim.loop.os_homedir(),
+      settings = {
+        elixirLS = {
+          fetchDeps = true,
+        },
+      },
+    })
+    lsp.graphql.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = {
+        "graphql",
+        "gql",
+        "svelte",
+        "typescriptreact",
+        "javascriptreact",
+      },
+    })
+    lsp.html.setup({
+      filetypes = {
+        "html",
+        "heex",
+      },
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
   end,
 }
