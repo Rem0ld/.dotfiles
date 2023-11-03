@@ -89,3 +89,7 @@ map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer ta
 
 -- Logsitter
 map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
+
+-- floating terminal
+map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
