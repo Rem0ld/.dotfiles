@@ -55,6 +55,7 @@ return {
       ["<leader>`"] = nil,
       ["<leader>c"] = nil,
       ["<leader>K"] = nil,
+      ["y"] = nil,
       -- ["<leader>d"] = "which_key_ignore",
       -- ["<leader>q"] = "which_key_ignore",
       -- ["<leader>w"] = "which_key_ignore",

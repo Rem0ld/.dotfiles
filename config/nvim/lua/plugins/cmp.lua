@@ -57,6 +57,7 @@ return {
       },
       sorting = defaults.sorting,
       window = {
+        width = 300,
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },

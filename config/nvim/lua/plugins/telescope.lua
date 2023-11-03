@@ -33,12 +33,20 @@ return {
 
     return {
       defaults = {
+        file_ignore_patterns = {
+          "assets",
+        },
+        layout_config = {
+          prompt_position = "top",
+        },
         mappings = {
           n = {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
           },
         },
+        path_display = { "truncate" },
+        sorting_strategy = "ascending",
       },
     }
   end,

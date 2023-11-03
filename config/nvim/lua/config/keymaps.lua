@@ -13,12 +13,13 @@ end
 local Util = require("lazyvim.util")
 
 -- Remove keymaps
-vim.keymap.del("n", "<leader>qq")
 vim.keymap.del("n", "<leader>l")
 vim.keymap.del("n", "<leader>fn")
 vim.keymap.del("n", "<leader>gG")
 vim.keymap.del("n", "<leader>cf")
 vim.keymap.del("n", "<leader>cd")
+map("n", "<leader>co", "<nop>")
+map("n", "<leader>cR", "<nop>")
 -- Windows
 vim.keymap.del("n", "<leader>ww")
 vim.keymap.del("n", "<leader>wd")
@@ -42,7 +43,6 @@ map("i", "kj", "<esc>", { silent = true })
 -- NORMAL
 -- Standard
 map("n", "<leader>w", "<cmd>w<cr>")
-map("n", "<leader>q", "<cmd>q<cr>")
 map("n", "|", "<cmd>vsplit<cr>")
 -- I never use it, the split is weird and with tmux it's not that important
 -- map("n", "\\", "<cmd>split<cr>")
@@ -86,3 +86,6 @@ map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- Bufferline & Bufdelete
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+
+-- Logsitter
+map("n", "<leader>lg", "<cmd>Logsitter<cr>", { desc = "Log line" })
