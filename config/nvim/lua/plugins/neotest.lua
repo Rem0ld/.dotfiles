@@ -1,9 +1,12 @@
 return {
   "nvim-neotest/neotest",
-  opts = {
-    adapters = {
-      "jfpedroza/neotest-elixir",
-      "marilari88/neotest-vitest",
-    },
-  },
+  config = function()
+    require("neotest").setup({
+      log_level = "Debug",
+      adapters = {
+        require("neotest-vitest"),
+        require("neotest-elixir"),
+      },
+    })
+  end,
 }
