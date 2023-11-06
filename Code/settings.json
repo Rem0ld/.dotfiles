@@ -162,7 +162,6 @@
   "vim.statusBarColors.easymotioninputmode": "#007ACC",
   "vim.statusBarColors.surroundinputmode": "#007ACC",
   "window.newWindowDimensions": "maximized",
-  "workbench.editor.untitled.hint": "hidden",
   "editor.bracketPairColorization.enabled": true,
   "editor.tabSize": 2,
   "eslint.run": "onSave",
