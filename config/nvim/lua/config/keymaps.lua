@@ -83,7 +83,7 @@ map("n", "<leader>gg", function()
 end)
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- Bufferline & Bufdelete
+-- Bufferline
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
 
