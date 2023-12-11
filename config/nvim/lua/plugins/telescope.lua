@@ -26,9 +26,9 @@ return {
         "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
         desc = "Find Files - no hidden",
       },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
 
+      { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
       { "<leader>sg", false },
       { "<leader>fw", Util.telescope("live_grep"), desc = "Grep (root dir)" },
       {

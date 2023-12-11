@@ -9,15 +9,20 @@ return {
     { "<leader>be", false },
   },
   opts = {
+    buffers = {
+      follow_current_file = {
+        enabled = true,
+      },
+    },
     close_if_last_window = true,
     filesystem = {
       follow_current_file = {
         enabled = true,
       },
     },
-    window = {
-      position = "float",
-      width = 30,
-    },
+    -- window = {
+    --   position = "float",
+    --   width = 30,
+    -- },
   },
 }
