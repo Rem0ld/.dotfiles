@@ -20,9 +20,9 @@ return {
         enabled = true,
       },
     },
-    -- window = {
-    --   position = "float",
-    --   width = 30,
-    -- },
+    window = {
+      position = "float",
+      width = 30,
+    },
   },
 }
