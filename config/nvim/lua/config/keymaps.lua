@@ -53,7 +53,7 @@ map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
 -- Change mapping record macro
 -- map("n", "m", "q")
-map("n", "q", "<nop>")
+-- map("n", "q", "<nop>")
 
 -- Better vertical navigation
 map("n", "<C-d>", "<C-d>zz", { silent = true })
