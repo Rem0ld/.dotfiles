@@ -15,6 +15,7 @@ return {
       { "<leader>fT", false },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       -- find
+      { "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File browser" },
       { "<leader>fc", Util.telescope.config_files(), desc = "Find Config File" },
       {
         "<leader>ff",
