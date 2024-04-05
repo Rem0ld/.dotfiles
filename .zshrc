@@ -86,15 +86,13 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
 	export EDITOR='nvim'
-else
-	export EDITOR='nvim'
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+export PATH="$N_PREFIX/bin:$PATH"
+export PATH="$N_PREFIX/bin/node:$PATH"
 
 export PATH="/usr/local/sbin:$PATH"
 
@@ -111,11 +109,7 @@ function ya() {
 # ==============
 if [[ $OSTYPE == *"darwin"* ]]; then
 	# alias docker-compose='/usr/local/bin/docker-compose'
-	alias python=/opt/homebrew/opt/python@3.8/bin/python3
-
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm
-	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]
+	# alias python=/opt/homebrew/opt/python@3.8/bin/python3
 
 	# alias pip=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin/pip
 	export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
@@ -165,11 +159,6 @@ alias dot='cd ~/.dotfiles'
 
 # == VIM ==
 alias vim='nvim'
-alias dlvimbak="rm -rf ~/.config/nvim_bak && rm -rf ~/.local/share/nvim_bak && rm -rf ~/.local/state/nvim_bak && rm -rf ~/.cache/nvim_bak"
-alias dlvim="rm -rf ~/.config/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.cache/nvim"
-alias mvvim="mv ~/.config/nvim ~/.config/nvim_bak && mv ~/.local/share/nvim ~/.local/share/nvim_bak && mv ~/.local/state/nvim ~/.local/state/nvim_bak && mv ~/.cache/nvim ~/.cache/nvim_bak"
-alias mvvimbak="mv ~/.config/nvim_bak ~/.config/nvim && mv ~/.local/share/nvim_bak ~/.local/share/nvim && mv ~/.local/state/nvim_bak ~/.local/state/nvim && mv ~/.cache/nvim_bak ~/.cache/nvim"
-alias resetvim="dlvim && mvvimbak"
 
 # == Kitty DIFF ==
 alias d="kitty +kitten diff"
@@ -188,6 +177,20 @@ if command -v go &> /dev/null; then
   alias air='~/go/bin/air'
   alias bb='~/go/bin/bombardier'
 fi
+
+if command -v bun &> /dev/null; then
+# bun completions
+[ -s "/Users/pielov/.bun/_bun" ] && source "/Users/pielov/.bun/_bun"
+
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+
+fi
+
+if command -v turso &> /dev/null; then
+  export PATH="/Users/pielov/.turso:$PATH"
+fi
+
 
 # load starship - prompt command line manager
 eval "$(starship init zsh)"
@@ -215,15 +218,3 @@ if command -v nvm &> /dev/null; then
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi
-
-
-
-# bun completions
-[ -s "/Users/pielov/.bun/_bun" ] && source "/Users/pielov/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Turso
-export PATH="/Users/pielov/.turso:$PATH"
