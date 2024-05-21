@@ -108,11 +108,28 @@ function ya() {
 # MacOs specifics
 # ==============
 if [[ $OSTYPE == *"darwin"* ]]; then
-	# alias docker-compose='/usr/local/bin/docker-compose'
-	# alias python=/opt/homebrew/opt/python@3.8/bin/python3
-
-	# alias pip=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin/pip
+  export HOMEBREW_GITHUB_API_TOKEN=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
 	export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  export PATH="$PATH:$HOME/.rvm/bin"
+  # check if file is present and add on path
+  # [ -f ~/.tmux/plugins/tmux-fzf/main.tmux ] && 
+  export PATH="$PATH:$HOME/.tmux/plugins/tmux-fzf/main.tmux"
+  if command -v bun &> /dev/null; then
+  # bun completions
+  [ -s "/Users/pielov/.bun/_bun" ] && source "/Users/pielov/.bun/_bun"
+
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+
+  fi
+
+  if command -v turso &> /dev/null; then
+    export PATH="/Users/pielov/.turso:$PATH"
+  fi
+  export PATH="$HOME/.luarocks/bin:$PATH"
 
 	#determines search program for fzf
 	if type ag &>/dev/null; then
@@ -127,8 +144,6 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
 	# ~/Iterm/Scripts/change_background.py ~/Iterm/Images/Nord-Wallpapers/wallpapers
 
-  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
   # The next line updates PATH for the Google Cloud SDK.
   if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -136,22 +151,9 @@ if [[ $OSTYPE == *"darwin"* ]]; then
   # The next line enables shell command completion for gcloud.
   if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-  export HOMEBREW_GITHUB_API_TOKEN=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
-
-  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-  export PATH="$PATH:$HOME/.rvm/bin"
-
-  # check if file is present and add on path
-  # [ -f ~/.tmux/plugins/tmux-fzf/main.tmux ] && 
-  export PATH="$PATH:$HOME/.tmux/plugins/tmux-fzf/main.tmux"
 fi
 
 # ALIAS
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
 alias '?'=duck
 alias '??'=gpt
 
@@ -178,18 +180,6 @@ if command -v go &> /dev/null; then
   alias bb='~/go/bin/bombardier'
 fi
 
-if command -v bun &> /dev/null; then
-# bun completions
-[ -s "/Users/pielov/.bun/_bun" ] && source "/Users/pielov/.bun/_bun"
-
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
-
-fi
-
-if command -v turso &> /dev/null; then
-  export PATH="/Users/pielov/.turso:$PATH"
-fi
 
 
 # load starship - prompt command line manager

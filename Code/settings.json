@@ -243,4 +243,5 @@
     "--max_old_space_size=8162"
   ],
   "workbench.editor.empty.hint": "hidden",
+  "prisma.showPrismaDataPlatformNotification": false,
 }
