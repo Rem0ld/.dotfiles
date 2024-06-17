@@ -1,9 +1,11 @@
 return {
   "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
+  enabled = function()
+    return LazyVim.pick.want() == "telescope"
+  end,
   -- replace all Telescope keymaps with only one mapping
   keys = function()
-    local Util = require("lazyvim.util")
-
     return {
       {
         "<leader>,",
@@ -16,7 +18,7 @@ return {
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       -- find
       { "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File browser" },
-      { "<leader>fc", Util.telescope.config_files(), desc = "Find Config File" },
+      { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
       {
         "<leader>ff",
         "<cmd>lua require('telescope.builtin').find_files()<cr>",
@@ -27,11 +29,11 @@ return {
         "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<cr>",
         desc = "Find Files - no hidden",
       },
-      { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
+      { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
 
       { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
       { "<leader>sg", false },
-      { "<leader>fw", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+      { "<leader>fw", LazyVim.pick("live_grep"), desc = "Grep (root dir)" },
       {
         "<leader>fW",
         "<cmd>lua require('telescope.builtin').live_grep({hidden = true, no_ignore = true})<cr>",
@@ -54,11 +56,11 @@ return {
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      { "<leader>sw", Util.telescope("grep_string", { word_match = "-w" }), desc = "Word (root dir)" },
-      { "<leader>sW", Util.telescope("grep_string", { cwd = false, word_match = "-w" }), desc = "Word (cwd)" },
-      { "<leader>sw", Util.telescope("grep_string"), mode = "v", desc = "Selection (root dir)" },
-      { "<leader>sW", Util.telescope("grep_string", { cwd = false }), mode = "v", desc = "Selection (cwd)" },
-      { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
+      { "<leader>sw", LazyVim.pick("grep_string", { word_match = "-w" }), desc = "Word (root dir)" },
+      { "<leader>sW", LazyVim.pick("grep_string", { cwd = false, word_match = "-w" }), desc = "Word (cwd)" },
+      { "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "Selection (root dir)" },
+      { "<leader>sW", LazyVim.pick("grep_string", { cwd = false }), mode = "v", desc = "Selection (cwd)" },
+      { "<leader>uC", LazyVim.pick("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
       {
         "<leader>ss",
         function()
