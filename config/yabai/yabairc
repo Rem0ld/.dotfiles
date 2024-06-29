@@ -31,3 +31,5 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Web Inspector.*" manage=off
 yabai -m rule --add app="^Slack*" manage=off
 yabai -m rule --add app="^VLC*" manage=off
+yabai -m rule --add app="^DevToys$" manage=off
+yabai -m rule --add app="Code" manage=off
