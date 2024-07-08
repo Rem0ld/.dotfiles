@@ -33,3 +33,4 @@ yabai -m rule --add app="^Slack*" manage=off
 yabai -m rule --add app="^VLC*" manage=off
 yabai -m rule --add app="^DevToys$" manage=off
 yabai -m rule --add app="Code" manage=off
+yabai -m rule --add app="Codium" manage=off
