@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "\"FiraCode Nerd Font\"",
+  "editor.fontFamily": "BlexMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "vscode-icons",
@@ -189,7 +189,7 @@
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
   "git.inputValidationLength": 180,
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "workbench.colorCustomizations": {
     "statusBar.background": "#8FBCBB",
@@ -216,7 +216,8 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
+    "asvetliakov.vscode-neovim": 1,
+    "vscodevim.vim": 1
   },
   "errorLens.enabled": true,
   "errorLens.enabledDiagnosticLevels": [
@@ -244,4 +245,5 @@
   ],
   "workbench.editor.empty.hint": "hidden",
   "prisma.showPrismaDataPlatformNotification": false,
+  "workbench.editor.enablePreview": false,
 }

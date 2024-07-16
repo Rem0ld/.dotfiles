@@ -1,7 +1,7 @@
 return {
   "folke/which-key.nvim",
   opts = {
-    defaults = {
+    spec = {
       triggers_blacklist = {
         i = { "<" },
       },
@@ -44,10 +44,6 @@ return {
       ["<leader>c"] = nil,
       ["<leader>K"] = nil,
       ["y"] = nil,
-      -- ["<leader>d"] = "which_key_ignore",
-      -- ["<leader>q"] = "which_key_ignore",
-      -- ["<leader>w"] = "which_key_ignore",
-      -- ["<leader>k"] = "which_key_ignore",
     },
   },
 }
