@@ -21,7 +21,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.dragAndDrop": false,
-  "editor.hover.delay": 400,
+  "editor.hover.delay": 1000,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
