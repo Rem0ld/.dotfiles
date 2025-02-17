@@ -15,13 +15,13 @@ return {
   opts = {
     formatters_by_ft = {
       js = { "prettier", "eslint-lsp" },
-      ts = { "prettier", "eslint-lsp" },
+      ts = { "eslint-lsp" },
       tsx = { "prettier", "eslint-lsp" },
       jsx = { "prettier", "eslint-lsp" },
       typescriptreact = { "prettier", "eslint-lsp" },
       javascriptreact = { "prettier", "eslint-lsp" },
       javascript = { "prettier", "eslint-lsp" },
-      typescript = { "prettier", "eslint-lsp" },
+      typescript = { "eslint-lsp", "prettier" },
       vue = { "prettier", "eslint-lsp" },
     },
   },

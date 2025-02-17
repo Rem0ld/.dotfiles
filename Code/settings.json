@@ -1,4 +1,14 @@
 {
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^libs/",
+    "^apps/"
+  ],
+  "javascript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^libs/",
+    "^apps/"
+  ],
+  "javascript.preferences.importModuleSpecifierEnding": "js",
   "editor.fontFamily": "BlexMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
@@ -246,4 +256,5 @@
   "workbench.editor.empty.hint": "hidden",
   "prisma.showPrismaDataPlatformNotification": false,
   "workbench.editor.enablePreview": false,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
 }

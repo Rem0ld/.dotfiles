@@ -2,6 +2,7 @@
     "completion.autoRequire": false,
     "diagnostics.globals": [
         "LazyVim",
-        "vim"
+        "vim",
+        "auto_format"
     ]
 }

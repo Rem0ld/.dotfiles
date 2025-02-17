@@ -15,7 +15,7 @@ local Util = require("lazyvim.util")
 -- Remove keymaps
 vim.keymap.del("n", "<leader>l")
 vim.keymap.del("n", "<leader>fn")
-vim.keymap.del("n", "<leader>gG")
+-- vim.keymap.del("n", "<leader>gG")
 vim.keymap.del("n", "<leader>cf")
 vim.keymap.del("n", "<leader>cd")
 map("n", "<leader>co", "<nop>")
@@ -26,12 +26,12 @@ map("n", "<leader>cR", "<nop>")
 -- vim.keymap.del("n", "<leader>w-")
 -- vim.keymap.del("n", "<leader>w|")
 -- Tabs
-vim.keymap.del("n", "<leader><tab>l")
-vim.keymap.del("n", "<leader><tab>f")
-vim.keymap.del("n", "<leader><tab><tab>")
-vim.keymap.del("n", "<leader><tab>[")
-vim.keymap.del("n", "<leader><tab>]")
-vim.keymap.del("n", "<leader><tab>d")
+-- vim.keymap.del("n", "<leader><tab>l")
+-- vim.keymap.del("n", "<leader><tab>f")
+-- vim.keymap.del("n", "<leader><tab><tab>")
+-- vim.keymap.del("n", "<leader><tab>[")
+-- vim.keymap.del("n", "<leader><tab>]")
+-- vim.keymap.del("n", "<leader><tab>d")
 
 -- INSERT
 -- Better escape
