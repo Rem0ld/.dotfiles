@@ -1,15 +1,5 @@
 {
-  "typescript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
-    "^libs/",
-    "^apps/"
-  ],
-  "javascript.preferences.autoImportSpecifierExcludeRegexes": [
-    "^libs/",
-    "^apps/"
-  ],
-  "javascript.preferences.importModuleSpecifierEnding": "js",
-  "editor.fontFamily": "BlexMono Nerd Font Mono",
+  "editor.fontFamily": "\"FiraCode Nerd Font\"",
   "editor.fontLigatures": true,
   "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "vscode-icons",
@@ -31,7 +21,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.dragAndDrop": false,
-  "editor.hover.delay": 1000,
+  "editor.hover.delay": 400,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -199,7 +189,7 @@
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
   "git.inputValidationLength": 180,
-  "editor.fontSize": 14,
+  "editor.fontSize": 13,
   "editor.lineNumbers": "relative",
   "workbench.colorCustomizations": {
     "statusBar.background": "#8FBCBB",
@@ -226,8 +216,7 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1,
-    "vscodevim.vim": 1
+    "asvetliakov.vscode-neovim": 1
   },
   "errorLens.enabled": true,
   "errorLens.enabledDiagnosticLevels": [
@@ -254,7 +243,4 @@
     "--max_old_space_size=8162"
   ],
   "workbench.editor.empty.hint": "hidden",
-  "prisma.showPrismaDataPlatformNotification": false,
-  "workbench.editor.enablePreview": false,
-  "typescript.preferences.includePackageJsonAutoImports": "on",
 }

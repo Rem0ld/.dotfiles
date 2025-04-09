@@ -47,10 +47,10 @@ config.colors = {
 }
 config.window_decorations = "RESIZE"
 config.window_padding = {
-	left = 2,
+	left = 10,
 	top = 0,
 	right = 0,
-	bottom = 10,
+	bottom = 0,
 }
 config.enable_tab_bar = false
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "Regular" })
