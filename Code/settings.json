@@ -243,4 +243,8 @@
     "--max_old_space_size=8162"
   ],
   "workbench.editor.empty.hint": "hidden",
+  "vsicons.presets.hideExplorerArrows": true,
+  "extensions.ignoreRecommendations": true,
+  "settingsSync.keybindingsPerPlatform": false,
+  "search.followSymlinks": false,
 }

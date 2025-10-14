@@ -20,16 +20,6 @@ return -- LSP keymaps
 
     keys[#keys + 1] = { "<leader>ld", ":Telescope diagnostics<cr>", desc = "Telescope diagnostics" }
 
-    table.insert(opts.servers.vtsls.filetypes, "vue")
-    LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
-      {
-        name = "@vue/typescript-plugin",
-        location = LazyVim.get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
-        languages = { "vue" },
-        configNamespace = "typescript",
-        enableForWorkspaceTypeScriptVersions = true,
-      },
-    })
     return {
       -- options for vim.diagnostic.config()
       ---@type vim.diagnostic.Opts
@@ -127,13 +117,6 @@ return -- LSP keymaps
             },
           },
         },
-        volar = {
-          init_options = {
-            vue = {
-              hybridMode = true,
-            },
-          },
-        },
         vtsls = {
           settings = {
             typescript = {
@@ -155,50 +138,43 @@ return -- LSP keymaps
       -- return true if you don't want this server to be setup with lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
-        eslint = function()
-          if not vim.g.autoformat then
-            return
-          end
-
-          local function get_client(buf)
-            return LazyVim.lsp.get_clients({ name = "eslint", bufnr = buf })[1]
-          end
-
-          local formatter = LazyVim.lsp.formatter({
-            name = "eslint: lsp",
-            primary = false,
-            priority = 200,
-            filter = "eslint",
-          })
-
-          -- Use EslintFixAll on Neovim < 0.10.0
-          if not pcall(require, "vim.lsp._dynamic") then
-            formatter.name = "eslint: EslintFixAll"
-            formatter.sources = function(buf)
-              local client = get_client(buf)
-              return client and { "eslint" } or {}
-            end
-            formatter.format = function(buf)
-              local client = get_client(buf)
-              if client then
-                local diag = vim.diagnostic.get(buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
-                if #diag > 0 then
-                  vim.cmd("EslintFixAll")
-                end
-              end
-            end
-          end
-
-          -- register the formatter with LazyVim
-          LazyVim.format.register(formatter)
-        end,
-        -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
+        -- eslint = function()
+        --   if not vim.g.autoformat then
+        --     return
+        --   end
+        --
+        --   local function get_client(buf)
+        --     return LazyVim.lsp.get_clients({ name = "eslint", bufnr = buf })[1]
+        --   end
+        --
+        --   local formatter = LazyVim.lsp.formatter({
+        --     name = "eslint: lsp",
+        --     primary = false,
+        --     priority = 200,
+        --     filter = "eslint",
+        --   })
+        --
+        --   -- Use EslintFixAll on Neovim < 0.10.0
+        --   if not pcall(require, "vim.lsp._dynamic") then
+        --     formatter.name = "eslint: EslintFixAll"
+        --     formatter.sources = function(buf)
+        --       local client = get_client(buf)
+        --       return client and { "eslint" } or {}
+        --     end
+        --     formatter.format = function(buf)
+        --       local client = get_client(buf)
+        --       if client then
+        --         local diag = vim.diagnostic.get(buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
+        --         if #diag > 0 then
+        --           vim.cmd("EslintFixAll")
+        --         end
+        --       end
+        --     end
+        --   end
+        --
+        --   -- register the formatter with LazyVim
+        --   LazyVim.format.register(formatter)
         -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
       },
     }
   end,
