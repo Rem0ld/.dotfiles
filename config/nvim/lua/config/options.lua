@@ -14,9 +14,61 @@ vim.lsp.config("*", {
 })
 
 -- Set configuration for typescript language server
-vim.lsp.config("ts_ls", {
+vim.lsp.config("vtsls", {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  root_dir = vim.fs.dirname(vim.fs.find({ ".git", "package.json", "tsconfig.json" }, { upward = true })[1]),
+  settings = {
+    typescript = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierEnding = "ts",
+        autoImportSpecifierExcludeRegexes = { "^libs/", "^apps/", ".*/dist" },
+      },
+    },
+    javascript = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierEnding = "js",
+        autoImportSpecifierExcludeRegexes = { "^libs/", "^apps/" },
+      },
+    },
+  },
+})
+
+vim.lsp.config("oxlint", {
+  cmd = { "oxlint", "lsp" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  root_dir = vim.fs.dirname(vim.fs.find({ "oxlintrc.json", "package.json", ".git" }, { upward = true })[1]),
+  settings = {
+    oxlint = {
+      -- Optional: any oxlint-specific settings you want
+      enable = true,
+      -- config = "oxlintrc.json", -- if you have a config file
+    },
+  },
+})
+
+vim.lsp.config("eslint", {
+  cmd = { "vscode-eslint-language-server", "--stdio" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue",
+    "svelte",
+    "astro",
+  },
+  root_dir = vim.fs.dirname(vim.fs.find({ ".git", "package.json", "tsconfig.json" }, { upward = true })[1]),
+})
+
+vim.lsp.config("lua_ls", {
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
+  root_dir = vim.fs.dirname(vim.fs.find({ ".git", ".luarc.json", ".luacheckrc" }, { upward = true })[1]),
 })
 
 vim.lsp.config("vue_ls", {
@@ -34,13 +86,4 @@ vim.lsp.config("vue_ls", {
   },
 })
 
--- Enable Typescript Language Server
-vim.lsp.enable("ts_ls")
-
-vim.lsp.config("lua_ls", {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_dir = vim.fs.dirname(vim.fs.find({ ".git", ".luarc.json", ".luacheckrc" }, { upward = true })[1]),
-})
-
-vim.lsp.enable("lua_ls")
+vim.lsp.enable({ "lua_ls", "eslint", "vtsls", "vue_ls", "oxlint" })
