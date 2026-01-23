@@ -14,7 +14,7 @@
   },
   "editor.tabCompletion": "on",
   "editor.quickSuggestionsDelay": 200,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "typescript", "mdx", "svelte"],
   "editor.accessibilitySupport": "off",
   "[json]": {
@@ -247,4 +247,11 @@
   "extensions.ignoreRecommendations": true,
   "settingsSync.keybindingsPerPlatform": false,
   "search.followSymlinks": false,
+  "chat.editor.fontSize": 13,
+  "debug.console.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
 }

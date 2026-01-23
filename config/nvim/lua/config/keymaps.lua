@@ -50,6 +50,7 @@ map("n", "<leader>h", "<cmd>nohl<cr>")
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
 map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
+map("n", "gl", "<cmd>luat vim.diagnostic.open_float()<cr>", { desc = "Show line diagnostic" })
 
 -- Change mapping record macro
 -- map("n", "m", "q")
