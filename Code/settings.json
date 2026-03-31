@@ -5,7 +5,7 @@
   "workbench.iconTheme": "vscode-icons",
   "editor.renderWhitespace": "all",
   "vsicons.dontShowNewVersionMessage": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "[html]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
@@ -254,4 +254,11 @@
   "workbench.editorAssociations": {
     "git-rebase-todo": "default"
   },
+  "claudeCode.preferredLocation": "panel",
+  "workbench.activityBar.location": "top",
+  "chat.mcp.gallery.enabled": true,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "claudeCode.selectedModel": "default",
+  "workbench.secondarySideBar.defaultVisibility": "visible",
 }

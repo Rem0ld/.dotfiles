@@ -157,6 +157,8 @@ if [[ $OSTYPE == *"darwin"* ]]; then
 
 fi
 
+export PATH="$PATH:/opt/homebrew/bin/claude"
+
 # ALIAS
 alias '?'=duck
 alias '??'=gpt
