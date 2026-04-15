@@ -159,17 +159,10 @@ fi
 
 export PATH="$PATH:/opt/homebrew/bin/claude"
 
-# ALIAS
-alias '?'=duck
-alias '??'=gpt
-
 alias dot='cd ~/.dotfiles'
 
 # == VIM ==
 alias vim='nvim'
-
-# == Kitty DIFF ==
-alias d="kitty +kitten diff"
 
 # == REVOLUGO START ==
 alias revo="cd ~/workspace/revolugo-repos"
@@ -181,7 +174,6 @@ alias pnba="pnpm nx run-many --targets=build"
 
 alias ptr="pnpm turbo run"
 alias ptba="pnpm turbo run build build-wc"
-alias skarevo="skaffold dev --filename ./skaffold.local.yaml --build-concurrency=1 --cache-artifacts=true --cleanup=true --no-prune=true --digest-source=tag --status-check=false "
 
 # == REVOLUGO END ==
 
@@ -223,6 +215,3 @@ if [ -f '/Users/pielov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pielov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
