@@ -98,3 +98,5 @@ map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 -- Noice Telescope
 map("n", "<leader>sn", "<nop>")
 map("n", "<leader>sn", "<cmd>NoiceTelescope<cr>")
+
+-- Claude Code
