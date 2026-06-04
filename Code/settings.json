@@ -7,10 +7,13 @@
   "vsicons.dontShowNewVersionMessage": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "[html]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "[yaml]": {
+    "editor.formatOnSave": false,
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.tabCompletion": "on",
   "editor.quickSuggestionsDelay": 200,
@@ -18,12 +21,12 @@
   "eslint.validate": ["javascript", "typescript", "mdx", "svelte"],
   "editor.accessibilitySupport": "off",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.dragAndDrop": false,
   "editor.hover.delay": 400,
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
@@ -39,115 +42,115 @@
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "k"],
-      "after": ["<Esc>"]
+      "after": ["<Esc>"],
     },
     {
       "before": ["j", "j"],
-      "after": ["<Esc>"]
+      "after": ["<Esc>"],
     },
     {
       "before": ["k", "k"],
-      "after": ["<Esc>"]
+      "after": ["<Esc>"],
     },
     {
       "before": ["k", "j"],
-      "after": ["<Esc>"]
-    }
+      "after": ["<Esc>"],
+    },
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
     {
       "before": [","],
-      "after": [",", "<c-g>", "u"]
+      "after": [",", "<c-g>", "u"],
     },
     {
       "before": ["."],
-      "after": [".", "<c-g>", "u"]
+      "after": [".", "<c-g>", "u"],
     },
     {
       "before": ["!"],
-      "after": ["!", "<c-g>", "u"]
+      "after": ["!", "<c-g>", "u"],
     },
     {
       "before": ["?"],
-      "after": ["?", "<c-g>", "u"]
-    }
+      "after": ["?", "<c-g>", "u"],
+    },
   ],
   "vim.leader": "<space>",
   "vim.normalModeKeyBindings": [
     {
       "before": ["K"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
+      "commands": ["editor.action.showDefinitionPreviewHover"],
     },
     {
       "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", "w"],
-      "commands": ["workbench.action.files.save"]
+      "commands": ["workbench.action.files.save"],
     },
     {
       "before": ["<leader>", "c"],
-      "commands": ["workbench.action.closeActiveEditor"]
+      "commands": ["workbench.action.closeActiveEditor"],
     },
     {
       "before": ["]", "d"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next"],
     },
     {
       "before": ["[", "d"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev"],
     },
     {
       "before": ["g", "l"],
-      "commands": ["editor.action.showHover"]
+      "commands": ["editor.action.showHover"],
     },
     {
       "before": ["<leader>", "l", "r"],
-      "commands": ["editor.action.rename"]
+      "commands": ["editor.action.rename"],
     },
     {
       "before": ["<leader>", "m"],
-      "commands": ["bookmarks.toggle"]
+      "commands": ["bookmarks.toggle"],
     },
     {
       "before": ["<leader>", "b"],
-      "commands": ["bookmarks.list"]
+      "commands": ["bookmarks.list"],
     },
     {
       "before": ["n"],
-      "after": ["N", "z", "z", "z", "v"]
+      "after": ["N", "z", "z", "z", "v"],
     },
     {
       "before": ["N"],
-      "after": ["N", "z", "z", "z", "v"]
+      "after": ["N", "z", "z", "z", "v"],
     },
     {
       "before": ["J"],
-      "after": ["m", "z", "J", "`", "z"]
+      "after": ["m", "z", "J", "`", "z"],
     },
     {
       "before": ["<c-d>"],
-      "after": ["<c-d>", "z", "z"]
+      "after": ["<c-d>", "z", "z"],
     },
     {
       "before": ["<c-u>"],
-      "after": ["<c-u>", "z", "z"]
-    }
+      "after": ["<c-u>", "z", "z"],
+    },
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"],
-      "after": ["y", "$"]
+      "after": ["y", "$"],
     },
     {
       "before": ["<leader>", "n"],
-      "commands": [":bN"]
+      "commands": [":bN"],
     },
     {
       "before": ["<leader>", "p"],
-      "commands": [":bp"]
-    }
+      "commands": [":bp"],
+    },
   ],
   "vim.statusBarColorControl": true,
   "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
@@ -166,12 +169,12 @@
   "editor.tabSize": 2,
   "eslint.run": "onSave",
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.cursorSurroundingLines": 6,
   "workbench.enableExperiments": false,
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.inlineSuggest.enabled": false,
   "editor.wordBasedSuggestions": "off",
@@ -180,11 +183,10 @@
   "terminal.external.osxExec": "iterm2",
   "editor.snippetSuggestions": "none",
   "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "diffEditor.ignoreTrimWhitespace": true,
   "html.format.wrapLineLength": 100,
-  "window.confirmBeforeClose": "always",
   "window.restoreWindows": "preserve",
   "vim.smartRelativeLine": true,
   "git.inputValidationSubjectLength": null,
@@ -196,18 +198,21 @@
     "statusBar.noFolderBackground": "#8FBCBB",
     "statusBar.debuggingBackground": "#8FBCBB",
     "statusBar.foreground": "#434C5E",
-    "statusBar.debuggingForeground": "#434C5E"
+    "statusBar.debuggingForeground": "#434C5E",
   },
   "telemetry.telemetryLevel": "off",
   "editor.stickyScroll.enabled": true,
   "tailwindCSS.includeLanguages": {
     "html": "html",
     "javascript": "javascript",
-    "css": "css"
+    "css": "css",
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
+    "editor.codeActionsOnSave": [
+      "source.formatDocument",
+      "source.fixAll.eslint",
+    ],
   },
   "prettier.requireConfig": true,
   "prettier.semi": false,
@@ -216,18 +221,16 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
+    "asvetliakov.vscode-neovim": 1,
   },
   "errorLens.enabled": true,
-  "errorLens.enabledDiagnosticLevels": [
-    "error",
-  ],
+  "errorLens.enabledDiagnosticLevels": ["error"],
   "turboConsoleLog.quote": "'",
   "github.copilot.enable": {
     "*": false,
     "yaml": false,
     "plaintext": false,
-    "markdown": false
+    "markdown": false,
   },
   "volar.inlayHints.eventArgumentInInlineHandlers": false,
   "vue.codeActions.savingTimeLimit": 5000,
@@ -237,11 +240,9 @@
   "eslint.debug": false,
   "svelte.enable-ts-plugin": true,
   "[svelte]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   },
-  "eslint.execArgv": [
-    "--max_old_space_size=8162"
-  ],
+  "eslint.execArgv": ["--max_old_space_size=8162"],
   "workbench.editor.empty.hint": "hidden",
   "vsicons.presets.hideExplorerArrows": true,
   "extensions.ignoreRecommendations": true,
@@ -252,7 +253,7 @@
   "terminal.integrated.fontSize": 13,
   "workbench.editor.enablePreview": false,
   "workbench.editorAssociations": {
-    "git-rebase-todo": "default"
+    "git-rebase-todo": "default",
   },
   "claudeCode.preferredLocation": "panel",
   "workbench.activityBar.location": "top",
@@ -261,4 +262,7 @@
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "claudeCode.selectedModel": "default",
   "workbench.secondarySideBar.defaultVisibility": "visible",
+  "task.allowAutomaticTasks": "on",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "terminal.integrated.initialHint": false,
 }
