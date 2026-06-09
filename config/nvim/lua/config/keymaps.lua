@@ -10,8 +10,6 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-local Util = require("lazyvim.util")
-
 -- Remove keymaps
 vim.keymap.del("n", "<leader>l")
 vim.keymap.del("n", "<leader>fn")
@@ -50,7 +48,7 @@ map("n", "<leader>h", "<cmd>nohl<cr>")
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
 map("n", "<leader>o", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
-map("n", "gl", "<cmd>luat vim.diagnostic.open_float()<cr>", { desc = "Show line diagnostic" })
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show line diagnostic" })
 
 -- Change mapping record macro
 -- map("n", "m", "q")
@@ -80,7 +78,7 @@ map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- Gitui
 map("n", "<leader>gg", function()
-  Util.terminal({ "gitui" })
+  Snacks.terminal({ "gitui" })
 end)
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 

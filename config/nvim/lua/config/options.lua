@@ -6,11 +6,18 @@ vim.g.snacks_animate = false
 -- Set to false to disable auto format
 vim.g.lazyvim_eslint_auto_format = true
 vim.g.auto_format = true
+
+vim.opt.textwidth = 100
+vim.opt.colorcolumn = "100"
+vim.opt.formatoptions:append("t")
 -- Configure LSP clients
 
 -- Set default root markers for all clients
 vim.lsp.config("*", {
   root_markers = { ".git" },
+  capabilities = {
+    general = { positionEncodings = { "utf-8" } },
+  },
 })
 
 -- Set configuration for typescript language server
